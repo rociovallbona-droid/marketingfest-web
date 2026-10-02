@@ -86,6 +86,7 @@ Cada panel tiene su color de fondo plano de la paleta. La regla visual: la calle
 - **Sin anglicismos innecesarios**, salvo los propios del rubro (speaker, sponsor, break).
 - **Datos de speakers:** se respeta lo que viene de la planilla o del deck, solo con correcciones de tipeo ("Mac donalds" → "McDonald's"). Nunca inventar títulos de charla. Si dice "XXX" o "a definir", se omite.
 - **Emilia Vrancic no está confirmada:** no mostrarla en el panel de influencers hasta que Ro avise.
+- **Amé Amor no está confirmada:** se sacó del panel de influencers; no mostrarla hasta que Ro avise.
 - **No se anuncian marcas no confirmadas.** Por eso Google, L'Oréal, Rappi, PedidosYa y Campari no aparecen. Los huecos de agenda se muestran como "Speaker a confirmar".
 
 ### Reglas de diseño que se vienen respetando
