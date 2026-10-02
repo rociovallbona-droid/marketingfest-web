@@ -41,7 +41,7 @@ Cómo se resolvió:
 | 3 | "Dos días. 14 a 21 hs." con horarios | Afiche tipo tabla de horarios | `p-crono` |
 | 4 | "GRATIS" con tiritas para arrancar | Flyer callejero con tiras, una arrancada | `p-inscripcion` |
 | 5 | "¿Y si voy un solo día?" | Afiche cian | `p-faq` |
-| 6 | Vidriera con buzo SNFM colgado y neón | Vidriera de local | `p-organizan` |
+| 6 | Puerta entreabierta con neón "Detrás de escena", cartel "Solo personal autorizado" y credencial STAFF | Puerta de backstage | `p-organizan` |
 | 6b | Fotos pegadas con cinta + "Así se vivió la 1ra edición" | Collage de fotos impresas | `p-ed1` |
 | 7 | "Este espacio está libre." con cinta "Disponible" | Cartel en alquiler | `p-sponsors` |
 | — | "Fin de la cuadra" en stencil + CTA | Pared | `p-inscripcion` |
@@ -80,7 +80,7 @@ Cada panel tiene su color de fondo plano de la paleta. La regla visual: la calle
 ## Tono y copy
 
 - **Español rioplatense con voseo, siempre:** "Inscribite", "Tocá", "Scrolleá", "Mirá", "Reservá tu lugar", "Llegá 13:45 y evitá la fila".
-- **Directo, cercano y con humor de calle**, sin solemnidad institucional: "Arrancá una tirita.", "Este espacio está libre.", "Ellos van a estar. ¿Y vos?", "Fin de la cuadra", "Vestí la marca".
+- **Directo, cercano y con humor de calle**, sin solemnidad institucional: "Arrancá una tirita.", "Este espacio está libre.", "Ellos van a estar. ¿Y vos?", "Fin de la cuadra", "Pasá sin permiso".
 - **Los CTA dicen exactamente qué pasa:** "Inscribite gratis", "Ver cronograma", "Agendar el martes 27", "Escribile a Tomás Cazala".
 - **Los errores dicen qué falló y cómo arreglarlo, sin pedir perdón:** "El DNI tiene que tener 7 u 8 números."
 - **Sin anglicismos innecesarios**, salvo los propios del rubro (speaker, sponsor, break).
@@ -123,6 +123,7 @@ Cada panel tiene su color de fondo plano de la paleta. La regla visual: la calle
   De `DATA` salen la grilla de speakers y el cronograma.
 - **`PH`**: fotos de speakers en base64 por slug (`catalina-smidt`, `mariano-felix-rica`, etc.). Están recortadas del deck.
 - **`GAL`**: fotos de la 1ra edición (`{src, alt, cat}`). Las 5 primeras se usan en el collage de la pared (no cambiar su orden). En `p-ed1` se muestran agrupadas por `cat` en el orden de `GAL_CATS` (Acreditaciones, Charlas, Paneles de IA y marketing, Speakers con su certificado, La gente, Photocall; las vacías no se muestran); para sumar un momento nuevo, agregalo a `GAL_CATS`. Las fotos nuevas van al final, a ~1000 px de ancho en JPEG.
+- **`TEAM`**: fotos del equipo para "Detrás de escena" en `p-organizan` (`{src, alt}`); también se muestran las fotos de `GAL` con `team: true`.
 - **`LOGOS`**: los logos del apoyo institucional.
 - **`SPONSORS`**: los sponsors de esta edición (`{src, alt, url}`).
 - **`SPONSORS_ED1`**: los sponsors de la 1ra edición (`{src, alt, url, main}`). Se muestran en `p-sponsors` ("Nos acompañaron en la 1ra edición") y en `p-ed1`. Si `src` está vacío, `logoCell` muestra el nombre en Anton; `main: true` agrega la etiqueta "Main sponsor" (Tiendanube).
