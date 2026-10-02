@@ -26,7 +26,7 @@ La idea de Ro: *el corazón del marketing es la publicidad en la calle, en los c
 
 Cómo se resolvió:
 
-- **El hero es una calle.** Un sticky de 100vh donde el scroll vertical se traduce en caminar horizontalmente por una pared llena de anuncios. Hay cielo (iridiscente de día, noche en dark mode), skyline con carteles en las terrazas (parallax 0.25), vereda en perspectiva y un HUD con barra de progreso y "Faltan N días".
+- **El hero es una calle.** Un sticky de 100vh donde el scroll vertical se traduce en caminar horizontalmente por una pared llena de anuncios. Hay cielo (iridiscente de día, noche en dark mode), skyline con carteles en las terrazas (parallax 0.25), vereda en perspectiva y un HUD con barra de progreso, el texto "Bienvenido al Marketing Fest. Scrolleá y clickeá lo que te llame la atención." y "Faltan N días". No usar "cuadra" ni "calle" en textos visibles: los botones de cerrar dicen "Volver al evento".
 - **Cada anuncio es un formato distinto de publicidad callejera** y abre una sección como takeover: el anuncio se expande con `clip-path` desde su rectángulo hasta pantalla completa, y al cerrar vuelve al anuncio.
 - **Futurismo sutil:** retícula amarilla que "fija" el anuncio en hover (solo con pointer fine), tilt 3D, brillo holográfico, textura de papel pegado y animación de "pegado" al cargar (una sola orquestación, no efectos sueltos).
 - **Después de la calle:** cuenta regresiva, datos prácticos (cuándo, dónde, cuánto), sponsors, apoyo institucional y footer.
@@ -44,7 +44,7 @@ Cómo se resolvió:
 | 6 | Puerta entreabierta con neón "Detrás de escena", cartel "Solo personal autorizado" y credencial STAFF | Puerta de backstage | `p-organizan` |
 | 6b | Fotos pegadas con cinta + "Así se vivió la 1ra edición" | Collage de fotos impresas | `p-ed1` |
 | 7 | "Este espacio está libre." con cinta "Disponible" | Cartel en alquiler | `p-sponsors` |
-| — | "Fin de la cuadra" en stencil + CTA | Pared | `p-inscripcion` |
+| — | "Fin del recorrido" en stencil + CTA | Pared | `p-inscripcion` |
 
 **Decisión de Ro: el cartel vacío "Este espacio está libre" se queda así.** Le encanta. Es la invitación a sumarse como sponsor. No ponerle logos.
 
@@ -68,7 +68,7 @@ Cada panel tiene su color de fondo plano de la paleta. La regla visual: la calle
 
 ### Marketing Fest
 
-- Logo "MARKETING FEST" negro con etiqueta naranja (`.mf-l`) y versión blanca (`.mf-d`), sacados del deck de Canva. En la nav se muestra el que corresponde según el tema.
+- **Logo: siempre la versión con la bajada "SEGUNDA EDICIÓN"** (pedido de Ro, según manual de marca): "MARKETING" con la etiqueta naranja "FEST" y abajo "SEGUNDA EDICIÓN". Versión oscura sobre fondos claros (`.mf-l`) y blanca sobre fondos oscuros (`.mf-d`); se usa en la nav, el tríptico y el footer. El archivo que pasó Ro es de 426 px de ancho: si llega una versión más grande o SVG, reemplazar.
 - El deck usa naranja `#E85C2E` + teal + amarillo. Las fotos de speakers vienen así: retrato en B&N sobre naranja. Se mantuvo ese look en las fotos.
 - Tagline del deck: "Conectá, innová y aprendé."
 
@@ -80,7 +80,7 @@ Cada panel tiene su color de fondo plano de la paleta. La regla visual: la calle
 ## Tono y copy
 
 - **Español rioplatense con voseo, siempre:** "Inscribite", "Tocá", "Scrolleá", "Mirá", "Reservá tu lugar", "Llegá 13:45 y evitá la fila".
-- **Directo, cercano y con humor de calle**, sin solemnidad institucional: "Arrancá una tirita.", "Este espacio está libre.", "Ellos van a estar. ¿Y vos?", "Fin de la cuadra", "Pasá sin permiso".
+- **Directo, cercano y con humor de calle**, sin solemnidad institucional: "Arrancá una tirita.", "Este espacio está libre.", "Ellos van a estar. ¿Y vos?", "Fin del recorrido", "Pasá sin permiso".
 - **Los CTA dicen exactamente qué pasa:** "Inscribite gratis", "Ver cronograma", "Agendar el martes 27", "Escribile a Tomás Cazala".
 - **Los errores dicen qué falló y cómo arreglarlo, sin pedir perdón:** "El DNI tiene que tener 7 u 8 números."
 - **Sin anglicismos innecesarios**, salvo los propios del rubro (speaker, sponsor, break).
