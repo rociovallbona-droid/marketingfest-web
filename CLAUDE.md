@@ -18,7 +18,7 @@ Objetivo de la web: que la gente **se inscriba** (gratis, cupos limitados), cono
 - **Números:** 1ra edición +1200 personas, 16 speakers (25 y 26 de septiembre de 2025). Meta 2da edición: 2000 personas, +30 speakers confirmados. ⚠️ El deck de sponsors dice +1500 asistentes y +25 speakers; Ro todavía no definió cuáles mostrar.
 - **Contacto sponsors:** Tomás Cazalá, tomascazala@economicas.uba.ar.
 - **Redes:** IG @senosfuedelasmanos.ok. El podcast SNFM está en YouTube, Spotify, TikTok y Gigared TV.
-- **Propiedades sponsoreables de SNFM:** Marketing Fest, GenIA (fest de IA de la UBA) y el podcast SNFM.
+- **Propiedades sponsoreables de SNFM:** Marketing Fest y el podcast SNFM. GenIA se sacó de la web a pedido de Ro: no mencionarlo.
 
 ## Concepto: "La cuadra del Marketing Fest"
 
@@ -119,6 +119,7 @@ Cada panel tiene su color de fondo plano de la paleta. La regla visual: la calle
 - **`GAL`**: 9 fotos de la 1ra edición (`{src, alt}`). Las 5 primeras se usan en el collage de la pared.
 - **`LOGOS`**: los logos del apoyo institucional.
 - **`SPONSORS`**: los sponsors de esta edición (`{src, alt, url}`).
+- **`SPONSORS_ED1`**: los sponsors de la 1ra edición (`{src, alt, url, main}`). Se muestran en `p-sponsors` ("Nos acompañaron en la 1ra edición") y en `p-ed1`. Si `src` está vacío, `logoCell` muestra el nombre en Anton; `main: true` agrega la etiqueta "Main sponsor" (Tiendanube).
 - **`COLORS` / `DAYNAME`**: helpers.
 
 ### Piezas clave del JS
@@ -134,7 +135,7 @@ Cada panel tiene su color de fondo plano de la paleta. La regla visual: la calle
 ## Pendientes y cosas a confirmar con Ro
 
 1. **Cargar `CONFIG.webhook` y `CONFIG.whatsapp`.** Es bloqueante para el lanzamiento real.
-2. **Sponsors de la 1ra edición:** Ro los va a pasar y son importantes. Van en el panel `p-ed1`, en una sección nueva "Nos acompañaron en la 1ra edición" con la misma grilla `.logos`, y conviene sumarlos también al footer o a sponsors como trayectoria.
+2. **Logos de sponsors de la 1ra edición:** ya están cargados en `SPONSORS_ED1` (Tiendanube como main, Heineken 0.0, Gigared, DT Comunicación, Doble Dosis, FlashTag, Óptica Lof y Prometheo). Faltan los archivos de logo de Tiendanube, Heineken 0.0, Gigared, Óptica Lof y Prometheo: hoy se muestran como texto.
 3. **Speakers a confirmar:** martes 15:45, miércoles 17:45 y miércoles 20:00. También falta un invitado del panel gamer y una invitada del panel de logística ("Iara o la otra").
 4. **Fotos que faltan:** Romina Fuentes (en el deck la foto está vacía), Luciana Danduono, Natalia Landa, Norman Vietre, el panel de influencers, Agustín Arias, Sebastián Lutz y los moderadores.
 5. **Discrepancias entre deck y planilla:**
