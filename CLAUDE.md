@@ -26,7 +26,7 @@ La idea de Ro: *el corazón del marketing es la publicidad en la calle, en los c
 
 Cómo se resolvió:
 
-- **El hero es una calle.** Un sticky de 100vh donde el scroll vertical se traduce en caminar horizontalmente por una pared llena de anuncios. Hay cielo (iridiscente de día, noche en dark mode), skyline con carteles en las terrazas (parallax 0.25), vereda en perspectiva y un HUD con barra de progreso y "Faltan N días".
+- **El hero es una calle.** Un sticky de 100vh donde el scroll vertical se traduce en caminar horizontalmente por una pared llena de anuncios. Hay cielo (iridiscente de día, noche en dark mode), skyline con carteles en las terrazas (parallax 0.25), vereda en perspectiva y un HUD con barra de progreso, el texto "Scrolleá para ver más del evento." y "Faltan N días". No usar "cuadra" en textos visibles.
 - **Cada anuncio es un formato distinto de publicidad callejera** y abre una sección como takeover: el anuncio se expande con `clip-path` desde su rectángulo hasta pantalla completa, y al cerrar vuelve al anuncio.
 - **Futurismo sutil:** retícula amarilla que "fija" el anuncio en hover (solo con pointer fine), tilt 3D, brillo holográfico, textura de papel pegado y animación de "pegado" al cargar (una sola orquestación, no efectos sueltos).
 - **Después de la calle:** cuenta regresiva, datos prácticos (cuándo, dónde, cuánto), sponsors, apoyo institucional y footer.
@@ -68,7 +68,7 @@ Cada panel tiene su color de fondo plano de la paleta. La regla visual: la calle
 
 ### Marketing Fest
 
-- Logo "MARKETING FEST" negro con etiqueta naranja (`.mf-l`) y versión blanca (`.mf-d`), sacados del deck de Canva. En la nav se muestra el que corresponde según el tema.
+- **Logo: siempre la versión con la bajada "SEGUNDA EDICIÓN"** (pedido de Ro, según manual de marca): "MARKETING" con la etiqueta naranja "FEST" y abajo "SEGUNDA EDICIÓN". Versión oscura sobre fondos claros (`.mf-l`) y blanca sobre fondos oscuros (`.mf-d`); se usa en la nav, el tríptico y el footer. El archivo que pasó Ro es de 426 px de ancho: si llega una versión más grande o SVG, reemplazar.
 - El deck usa naranja `#E85C2E` + teal + amarillo. Las fotos de speakers vienen así: retrato en B&N sobre naranja. Se mantuvo ese look en las fotos.
 - Tagline del deck: "Conectá, innová y aprendé."
 
