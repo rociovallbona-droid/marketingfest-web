@@ -800,6 +800,11 @@ fieldset.f{border:0;padding:0;margin:0}
 (()=>{
 /* ====== CONFIG: completá esto antes de publicar ====== */
 const CONFIG = {
+  /* Pre-inscripción: mientras sea true, el formulario junta nombre, email, WhatsApp, perfil y día
+     y los guarda en n8n (data table "Pre-inscripción MKT Fest 2026") para avisar cuando abra la oficial.
+     Cuando abra la inscripción oficial: poner false y cargar `webhook`. */
+  preinscripcion: true,
+  webhookPre: 'https://n8n.dtcomunicacion.com/webhook/preinscripcion-mkt-fest',
   webhook: '',   // URL del webhook (n8n, Zapier, etc.) que recibe la inscripción y dispara el Mail 1
   whatsapp: ''   // link a la comunidad de WhatsApp
 };
@@ -1042,6 +1047,23 @@ $('.close-drawer').addEventListener('click',closeDrawer);
 
 /* ---------- form ---------- */
 const form=$('#form'), err=$('#f-err');
+const PRE=!!CONFIG.preinscripcion, KEY=PRE?'mktfest26-pre':'mktfest26';
+if(PRE){
+  $('#t-in').textContent='Pre-inscribite';
+  $('#in-wrap .lead').textContent='La inscripción oficial abre pronto. Dejanos tus datos y te avisamos al toque por mail y WhatsApp para que te asegures tu lugar antes que nadie.';
+  $('#f-dni').closest('.f').outerHTML='<div class="f"><label for="f-wpp">WhatsApp</label><input id="f-wpp" name="whatsapp" type="tel" inputmode="tel" autocomplete="tel" placeholder="11 2345 6789" required></div>';
+  $('.submit',form).innerHTML='Pre-inscribirme <svg aria-hidden="true"><use href="#arr"/></svg>';
+  $$('[data-open="p-inscripcion"]').forEach(b=>{ for(const n of b.childNodes) if(n.nodeType===3) n.textContent=n.textContent.replace(/^(\s*)Inscribite/,'$1Pre-inscribite'); });
+}
+function successPre(name,email){
+  const first=esc(name.split(' ')[0]);
+  $('#in-wrap').innerHTML=`<div class="ok-box">
+    <h2 class="ph">¡Ya estás en la lista!</h2>
+    <p class="lead" style="margin-bottom:1rem">${first}, apenas abra la inscripción oficial te avisamos a <b>${esc(email)}</b> y por WhatsApp. Ahí confirmás tu lugar y te llega el QR de acceso.</p>
+    <div class="btn-row">${[1,2].map(d=>`<a class="cta" target="_blank" rel="noopener" href="${gcal(d)}">Agendar el ${DAYNAME[d].toLowerCase()}</a>`).join('')}</div>
+    <div class="btn-row"><button class="ghost" id="again" style="color:var(--paper)">Pre-inscribir a otra persona</button></div></div>`;
+  $('#again').addEventListener('click',()=>{ try{localStorage.removeItem(KEY)}catch(e){} location.hash='inscripcion'; location.reload(); });
+}
 function success(name,email,dia){
   const first=esc(name.split(' ')[0]);
   const days = dia==='Martes 27'?[1]:dia==='Miércoles 28'?[2]:[1,2];
@@ -1052,23 +1074,31 @@ function success(name,email,dia){
     ${CONFIG.whatsapp?`<a class="ghost" target="_blank" rel="noopener" href="${CONFIG.whatsapp}">Sumate a la comunidad de WhatsApp</a>`:''}</div><div class="btn-row"><button class="ghost" id="again" style="color:var(--paper)">Inscribir a otra persona</button></div></div>`;
   $('#again').addEventListener('click',()=>{ try{localStorage.removeItem('mktfest26')}catch(e){} location.hash='inscripcion'; location.reload(); });
 }
-try{ const saved=JSON.parse(localStorage.getItem('mktfest26')||'null'); if(saved) success(saved.nombre,saved.email,saved.dia); }catch(e){}
+try{ const saved=JSON.parse(localStorage.getItem(KEY)||'null'); if(saved) (PRE?successPre:success)(saved.nombre,saved.email,saved.dia); }catch(e){}
 form && form.addEventListener('submit',async e=>{
   e.preventDefault();
   const fd=Object.fromEntries(new FormData(form));
-  fd.nombre=(fd.nombre||'').trim(); fd.email=(fd.email||'').trim(); fd.dni=(fd.dni||'').replace(/\D/g,'');
+  fd.nombre=(fd.nombre||'').trim(); fd.email=(fd.email||'').trim();
   if(fd.nombre.split(/\s+/).length<2){ err.textContent='Escribí tu nombre y apellido.'; $('#f-name').focus(); return; }
   if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(fd.email)){ err.textContent='Revisá el email: le falta algo (por ejemplo, la @ o el dominio).'; $('#f-mail').focus(); return; }
-  if(fd.dni.length<7||fd.dni.length>8){ err.textContent='El DNI tiene que tener 7 u 8 números.'; $('#f-dni').focus(); return; }
+  if(PRE){
+    fd.whatsapp=(fd.whatsapp||'').trim();
+    const dig=fd.whatsapp.replace(/\D/g,'');
+    if(dig.length<8||dig.length>15){ err.textContent='Revisá el WhatsApp: escribilo con código de área, por ejemplo 11 2345 6789.'; $('#f-wpp').focus(); return; }
+  } else {
+    fd.dni=(fd.dni||'').replace(/\D/g,'');
+    if(fd.dni.length<7||fd.dni.length>8){ err.textContent='El DNI tiene que tener 7 u 8 números.'; $('#f-dni').focus(); return; }
+  }
   if(!fd.perfil){ err.textContent='Elegí tu perfil.'; $('#f-perfil').focus(); return; }
   err.textContent='';
-  const btn=$('.submit',form); btn.disabled=true; btn.textContent='Reservando tu lugar…';
-  if(CONFIG.webhook){
-    try{ const r=await fetch(CONFIG.webhook,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({...fd,evento:'Marketing Fest 2026',fecha:new Date().toISOString()})}); if(!r.ok) throw 0; }
-    catch(_){ err.textContent='No pudimos guardar tu inscripción. Revisá tu conexión y probá de nuevo.'; btn.disabled=false; btn.textContent='Inscribirme gratis'; return; }
+  const btn=$('.submit',form), label=btn.innerHTML; btn.disabled=true; btn.textContent=PRE?'Anotándote…':'Reservando tu lugar…';
+  const url=PRE?CONFIG.webhookPre:CONFIG.webhook;
+  if(url){
+    try{ const r=await fetch(url,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({...fd,evento:'Marketing Fest 2026',tipo:PRE?'preinscripcion':'inscripcion',fecha:new Date().toISOString()})}); if(!r.ok) throw 0; }
+    catch(_){ err.textContent=PRE?'No pudimos guardar tu pre-inscripción. Revisá tu conexión y probá de nuevo.':'No pudimos guardar tu inscripción. Revisá tu conexión y probá de nuevo.'; btn.disabled=false; btn.innerHTML=label; return; }
   }
-  try{ localStorage.setItem('mktfest26',JSON.stringify({nombre:fd.nombre,email:fd.email,dia:fd.dia})); }catch(e){}
-  success(fd.nombre,fd.email,fd.dia);
+  try{ localStorage.setItem(KEY,JSON.stringify({nombre:fd.nombre,email:fd.email,dia:fd.dia})); }catch(e){}
+  (PRE?successPre:success)(fd.nombre,fd.email,fd.dia);
 });
 
 /* ---------- init ---------- */
