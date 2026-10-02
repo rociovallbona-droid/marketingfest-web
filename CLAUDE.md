@@ -85,6 +85,7 @@ Cada panel tiene su color de fondo plano de la paleta. La regla visual: la calle
 - **Los errores dicen qué falló y cómo arreglarlo, sin pedir perdón:** "El DNI tiene que tener 7 u 8 números."
 - **Sin anglicismos innecesarios**, salvo los propios del rubro (speaker, sponsor, break).
 - **Datos de speakers:** se respeta lo que viene de la planilla o del deck, solo con correcciones de tipeo ("Mac donalds" → "McDonald's"). Nunca inventar títulos de charla. Si dice "XXX" o "a definir", se omite.
+- **Emilia Vrancic no está confirmada:** no mostrarla en el panel de influencers hasta que Ro avise.
 - **No se anuncian marcas no confirmadas.** Por eso Google, L'Oréal, Rappi, PedidosYa y Campari no aparecen. Los huecos de agenda se muestran como "Speaker a confirmar".
 
 ### Reglas de diseño que se vienen respetando
@@ -139,7 +140,7 @@ Cada panel tiene su color de fondo plano de la paleta. La regla visual: la calle
 1. **Cargar `CONFIG.webhook` y `CONFIG.whatsapp`.** Es bloqueante para el lanzamiento real.
 2. **Sponsors de la 1ra edición:** cargados en `SPONSORS_ED1` (Tiendanube como main, Heineken 0.0, Gigared, DT Comunicación, Doble Dosis, FlashTag, Óptica Lof, Prometheo y Mikhuna Nikkei; 9 marcas). Falta el archivo del logo de Mikhuna: hoy se muestra como texto.
 3. **Speakers a confirmar:** martes 15:00 (era Luciana Danduono, se pasó a "?" a pedido de Ro), martes 15:45, miércoles 17:45 y miércoles 20:00. También falta un invitado del panel gamer y una invitada del panel de logística ("Iara o la otra").
-4. **Fotos que faltan:** Romina Fuentes (en el deck la foto está vacía), Natalia Landa, Norman Vietre, el panel de influencers, Agustín Arias, Sebastián Lutz y los moderadores.
+4. **Fotos que faltan:** Romina Fuentes (en el deck la foto está vacía), Natalia Landa, Norman Vietre, Agustín Arias, Sebastián Lutz y los moderadores.
 5. **Discrepancias entre deck y planilla:**
    - el nombre del salón;
    - el horario del panel gamer: el deck dice 19:00, se usa 17:10 de la planilla;
