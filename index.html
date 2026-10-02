@@ -405,7 +405,7 @@ fieldset.f{border:0;padding:0;margin:0}
 .ed1-video figcaption b{display:block;font-family:var(--display);font-weight:400;text-transform:uppercase;font-size:clamp(2rem,5vw,3.5rem);line-height:1;margin-bottom:.6rem;color:var(--y)}
 @media (max-width:700px){.ed1-video{grid-template-columns:1fr}.ed1-video video{max-width:340px}}
 .gal{columns:3 240px;column-gap:12px;margin:1rem 0 2.5rem}
-.gal figure{break-inside:avoid;margin:0 0 12px;background:#fbfbf6;padding:8px 8px 10px;color:var(--ink)}
+.gal figure{break-inside:avoid;margin:0 0 12px;background:#fbfbf6;padding:8px;color:var(--ink)}
 .gal img{display:block;width:100%;aspect-ratio:1/1;object-fit:cover;object-position:50% 88%}
 .gal figcaption{font-weight:700;font-size:.85rem;margin-top:.45rem}
 /* logos */
@@ -894,7 +894,7 @@ renderSpeakers('all');
 $$('img[data-g]').forEach(i=>{ i.src=GAL[+i.dataset.g].src; });
 /* Galería de la 1ra edición agrupada por momento. Las 5 primeras fotos de GAL también van en el collage de la pared. */
 const GAL_CATS=['Acreditaciones','Charlas','Paneles de IA y marketing','Speakers con su certificado','La gente','Photocall'];
-const galFig=g=>`<figure><img src="${g.src}" alt="${esc(g.alt)}" loading="lazy"${g.pos?` style="object-position:${g.pos}"`:''}><figcaption>${esc(g.alt)}</figcaption></figure>`;
+const galFig=g=>`<figure><img src="${g.src}" alt="${esc(g.alt)}" loading="lazy"${g.pos?` style="object-position:${g.pos}"`:''}></figure>`;
 $('#team').innerHTML=[...TEAM,...GAL.filter(g=>g.team)].map(galFig).join('');
 $('#gal').outerHTML=GAL_CATS.filter(c=>GAL.some(g=>g.cat===c)).map(c=>`<h3 class="reveal">${c}</h3><div class="gal reveal">${GAL.filter(g=>g.cat===c).map(galFig).join('')}</div>`).join('');
 $$('[data-logos]').forEach(el=>{ el.innerHTML=LOGOS.map(l=>`<div><img src="${l.src}" alt="${esc(l.alt)}" loading="lazy"></div>`).join(''); });
