@@ -120,7 +120,7 @@ Cada panel tiene su color de fondo plano de la paleta. La regla visual: la calle
 
   De `DATA` salen la grilla de speakers y el cronograma.
 - **`PH`**: fotos de speakers en base64 por slug (`catalina-smidt`, `mariano-felix-rica`, etc.). Están recortadas del deck.
-- **`GAL`**: 9 fotos de la 1ra edición (`{src, alt}`). Las 5 primeras se usan en el collage de la pared.
+- **`GAL`**: fotos de la 1ra edición (`{src, alt, cat}`). Las 5 primeras se usan en el collage de la pared (no cambiar su orden). En `p-ed1` se muestran agrupadas por `cat` en el orden de `GAL_CATS` (Acreditaciones, Charlas, Photocall); para sumar un momento nuevo, agregalo a `GAL_CATS`. Las fotos nuevas van al final, a ~1000 px de ancho en JPEG.
 - **`LOGOS`**: los logos del apoyo institucional.
 - **`SPONSORS`**: los sponsors de esta edición (`{src, alt, url}`).
 - **`SPONSORS_ED1`**: los sponsors de la 1ra edición (`{src, alt, url, main}`). Se muestran en `p-sponsors` ("Nos acompañaron en la 1ra edición") y en `p-ed1`. Si `src` está vacío, `logoCell` muestra el nombre en Anton; `main: true` agrega la etiqueta "Main sponsor" (Tiendanube).
