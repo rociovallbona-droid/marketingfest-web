@@ -135,7 +135,7 @@ Cada panel tiene su color de fondo plano de la paleta. La regla visual: la calle
 ## Pendientes y cosas a confirmar con Ro
 
 1. **Cargar `CONFIG.webhook` y `CONFIG.whatsapp`.** Es bloqueante para el lanzamiento real.
-2. **Logos de sponsors de la 1ra edición:** ya están cargados en `SPONSORS_ED1` (Tiendanube como main, Heineken 0.0, Gigared, DT Comunicación, Doble Dosis, FlashTag, Óptica Lof y Prometheo). Faltan los archivos de logo de Tiendanube, Heineken 0.0, Gigared, Óptica Lof y Prometheo: hoy se muestran como texto.
+2. **Sponsors de la 1ra edición:** cargados en `SPONSORS_ED1` (Tiendanube como main, Heineken 0.0, Gigared, DT Comunicación, Doble Dosis, FlashTag, Óptica Lof, Prometheo y Mikhuna Nikkei; 9 marcas). Falta el archivo del logo de Mikhuna: hoy se muestra como texto.
 3. **Speakers a confirmar:** martes 15:45, miércoles 17:45 y miércoles 20:00. También falta un invitado del panel gamer y una invitada del panel de logística ("Iara o la otra").
 4. **Fotos que faltan:** Romina Fuentes (en el deck la foto está vacía), Luciana Danduono, Natalia Landa, Norman Vietre, el panel de influencers, Agustín Arias, Sebastián Lutz y los moderadores.
 5. **Discrepancias entre deck y planilla:**
