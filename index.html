@@ -390,6 +390,11 @@ fieldset.f{border:0;padding:0;margin:0}
 #p-ed1 .close{background:var(--y);color:var(--ink)}#p-ed1 .close svg{color:var(--ink)}
 #p-ed1 .stats{border-top-color:var(--y)}
 #p-ed1 .stats b{color:var(--y)}
+.ed1-video{display:grid;grid-template-columns:minmax(0,340px) 1fr;gap:1.5rem 2rem;align-items:end;margin:0 0 2.5rem}
+.ed1-video video{width:100%;aspect-ratio:9/16;object-fit:cover;display:block;background:#000;border-radius:4px}
+.ed1-video figcaption{font-weight:600;max-width:32ch}
+.ed1-video figcaption b{display:block;font-family:var(--display);font-weight:400;text-transform:uppercase;font-size:clamp(2rem,5vw,3.5rem);line-height:1;margin-bottom:.6rem;color:var(--y)}
+@media (max-width:700px){.ed1-video{grid-template-columns:1fr}.ed1-video video{max-width:340px}}
 .gal{columns:3 240px;column-gap:12px;margin:1rem 0 2.5rem}
 .gal figure{break-inside:avoid;margin:0 0 12px;background:#fbfbf6;padding:8px 8px 10px;color:var(--ink)}
 .gal img{display:block;width:100%;aspect-ratio:1/1;object-fit:cover;object-position:50% 88%}
@@ -720,6 +725,10 @@ fieldset.f{border:0;padding:0;margin:0}
       <div><b>1</b><span>salón lleno</span></div>
       <div><b>2000</b><span>es la meta de la 2da edición</span></div>
     </div>
+    <figure class="ed1-video reveal">
+      <video poster="assets/ed1-sala-llena.jpg" muted loop playsinline controls preload="none" aria-label="La sala vacía antes de arrancar y después llena, con una charla en vivo"><source src="assets/ed1-sala-llena.mp4" type="video/mp4"><source src="assets/ed1-sala-llena.webm" type="video/webm"></video>
+      <figcaption><b>De la sala vacía a la sala llena.</b>Así arrancó la 1ra edición: el salón listo y, un rato después, sin una silla libre.</figcaption>
+    </figure>
     <div class="gal reveal" id="gal"></div>
     <h3 class="reveal">Nos acompañaron</h3>
     <div class="logos reveal" data-ed1></div>
@@ -1018,8 +1027,10 @@ function open(id, src){
   openPanel=p; ret.classList.remove('lock'); locked=null;
   $('.close',p).focus({preventScroll:true});
   history.replaceState(null,'','#'+p.dataset.hash);
+  if(!reduce) $$('video',p).forEach(v=>{ const r=v.play(); r&&r.catch(()=>{}); });
 }
 function hide(p, instant){
+  $$('video',p).forEach(v=>v.pause());
   p.classList.remove('show');
   const done=()=>{ p.hidden=true; p.style.clipPath=''; };
   if(instant||reduce){ done(); return; }
