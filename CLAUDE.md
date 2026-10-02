@@ -96,6 +96,8 @@ Cada panel tiene su color de fondo plano de la paleta. La regla visual: la calle
 
 ## Arquitectura técnica
 
+**Favicon:** el chasquido de SNFM en `favicon.png` (64 px, fondo transparente) y `apple-touch-icon.png` (180 px, fondo amarillo `#F3DA00`), en la raíz junto al `index.html`.
+
 **Hoy es un solo archivo:** `index.html`, de unos 1.8 MB, con HTML, CSS, JS e imágenes en base64. Sin build ni dependencias, solo Google Fonts.
 
 ### Datos (al principio del `<script>`)
