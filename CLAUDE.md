@@ -127,6 +127,7 @@ Cada panel tiene su color de fondo plano de la paleta. La regla visual: la calle
 - **`LOGOS`**: los logos del apoyo institucional.
 - **`SPONSORS`**: los sponsors de esta edición (`{src, alt, url}`).
 - **`SPONSORS_ED1`**: los sponsors de la 1ra edición (`{src, alt, url, main}`). Se muestran en `p-sponsors` ("Nos acompañaron en la 1ra edición") y en `p-ed1`. Si `src` está vacío, `logoCell` muestra el nombre en Anton; `main: true` agrega la etiqueta "Main sponsor" (Tiendanube).
+- **`BRANDS`**: logos de las marcas de los speakers (`{src, alt}`), en el orden del cronograma. Se muestran en `p-speakers` bajo "Vienen de estas marcas". Están recortados del deck y pasados a fondo transparente (los logos blancos del deck se pasaron a `#202020` para que se vean sobre el fondo blanco). Si `src` es `"@Nombre"`, reusa el logo de `SPONSORS` o `SPONSORS_ED1` con ese `alt` (Tiendanube, DT, Doble Dosis, FlashTag). Cuando se suma o se baja un speaker, actualizar también esta lista.
 - **`COLORS` / `DAYNAME`**: helpers.
 
 ### Piezas clave del JS
