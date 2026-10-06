@@ -87,7 +87,7 @@ Cada panel tiene su color de fondo plano de la paleta. La regla visual: la calle
 - **Datos de speakers:** se respeta lo que viene de la planilla o del deck, solo con correcciones de tipeo ("Mac donalds" → "McDonald's"). Nunca inventar títulos de charla. Si dice "XXX" o "a definir", se omite.
 - **Emilia Vrancic no está confirmada:** no mostrarla en el panel de influencers hasta que Ro avise.
 - **Amé Amor no está confirmada:** se sacó del panel de influencers; no mostrarla hasta que Ro avise.
-- **No se anuncian marcas no confirmadas.** Por eso Google, L'Oréal, Rappi, PedidosYa y Campari no aparecen. Los huecos de agenda se muestran como "Speaker a confirmar".
+- **No se anuncian marcas no confirmadas.** Por eso Google, L'Oréal, Rappi, PedidosYa, Campari, Mercado Libre y Pickit no aparecen. Los huecos de agenda se muestran como "Speaker a confirmar".
 
 ### Reglas de diseño que se vienen respetando
 
@@ -144,7 +144,7 @@ Cada panel tiene su color de fondo plano de la paleta. La regla visual: la calle
 
 1. **Cargar `CONFIG.webhook` y `CONFIG.whatsapp`** para la inscripción oficial. Es bloqueante para el lanzamiento real. Mientras tanto corre la pre-inscripción; al abrir la oficial hay que avisar a todos los de la data table de pre-inscripción (mail + WhatsApp) y marcar `avisado`.
 2. **Sponsors de la 1ra edición:** cargados en `SPONSORS_ED1` (Tiendanube como main, Heineken 0.0, Gigared, DT Comunicación, Doble Dosis, FlashTag, Óptica Lof, Prometheo y Mikhuna Nikkei; 9 marcas). Falta el archivo del logo de Mikhuna: hoy se muestra como texto.
-3. **Speakers a confirmar:** martes 15:00 (era Luciana Danduono, se pasó a "?" a pedido de Ro; la planilla del 6/10 la sigue listando), miércoles 17:45 (la planilla dice "Juan Pablo Brea o Rappi") y miércoles 20:00 (la planilla dice "SPONSOR?"). También falta un invitado del panel gamer, los invitados de Mercado Libre y Pickit en el panel de logística, el speaker sorpresa del panel de Sabrina Kolod (martes 20:30) y el del panel de Fernanda Rivera (miércoles 14:20), y el moderador del panel Pepsico + Hudson.
+3. **Speakers a confirmar:** martes 15:00 (era Luciana Danduono, se pasó a "?" a pedido de Ro; la planilla del 6/10 la sigue listando), miércoles 17:45 (la planilla dice "Juan Pablo Brea o Rappi") y miércoles 20:00 (la planilla dice "SPONSOR?"). También falta un invitado del panel gamer, el resto del panel de logística (por ahora solo está confirmado Agustín Arias; el deck muestra lugares "A definir" de Mercado Libre y Pickit, que no se anuncian hasta que estén confirmados), el speaker sorpresa del panel de Sabrina Kolod (martes 20:30) y el del panel de Fernanda Rivera (miércoles 14:20), y el moderador del panel Pepsico + Hudson.
 4. **Fotos que faltan:** José Antonio Stracquadaini y los moderadores. (Norman Ventre, Natalia Landa y Agustín Arias se recortaron del deck del 6/10.)
 5. **Discrepancias entre deck y planilla:**
    - el nombre del salón;
