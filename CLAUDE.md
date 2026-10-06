@@ -144,15 +144,16 @@ Cada panel tiene su color de fondo plano de la paleta. La regla visual: la calle
 
 1. **Cargar `CONFIG.webhook` y `CONFIG.whatsapp`** para la inscripción oficial. Es bloqueante para el lanzamiento real. Mientras tanto corre la pre-inscripción; al abrir la oficial hay que avisar a todos los de la data table de pre-inscripción (mail + WhatsApp) y marcar `avisado`.
 2. **Sponsors de la 1ra edición:** cargados en `SPONSORS_ED1` (Tiendanube como main, Heineken 0.0, Gigared, DT Comunicación, Doble Dosis, FlashTag, Óptica Lof, Prometheo y Mikhuna Nikkei; 9 marcas). Falta el archivo del logo de Mikhuna: hoy se muestra como texto.
-3. **Speakers a confirmar:** martes 15:00 (era Luciana Danduono, se pasó a "?" a pedido de Ro), martes 15:45, miércoles 17:45 y miércoles 20:00. También falta un invitado del panel gamer y una invitada del panel de logística ("Iara o la otra").
-4. **Fotos que faltan:** Romina Fuentes (en el deck la foto está vacía), Natalia Landa, Norman Vietre, Agustín Arias, Sebastián Lutz y los moderadores.
+3. **Speakers a confirmar:** martes 15:00 (era Luciana Danduono, se pasó a "?" a pedido de Ro; la planilla del 6/10 la sigue listando), miércoles 17:45 (la planilla dice "Juan Pablo Brea o Rappi") y miércoles 20:00 (la planilla dice "SPONSOR?"). También falta un invitado del panel gamer, los invitados de Mercado Libre y Pickit en el panel de logística, el speaker sorpresa del panel de Sabrina Kolod (martes 20:30) y el del panel de Fernanda Rivera (miércoles 14:20), y el moderador del panel Pepsico + Hudson.
+4. **Fotos que faltan:** José Antonio Stracquadaini y los moderadores. (Norman Ventre, Natalia Landa y Agustín Arias se recortaron del deck del 6/10.)
 5. **Discrepancias entre deck y planilla:**
    - el nombre del salón;
    - el horario del panel gamer: el deck dice 19:00, se usa 17:10 de la planilla;
+   - el día del panel de influencers: el deck dice miércoles 15:00, se usa martes 16:15 de la planilla;
    - el cargo de Mariano Félix Rica;
    - los números (+1500 / +25 contra 2000 / +30).
 6. **El link de FlashTag** para su logo de sponsor.
-7. **Títulos de charla "a definir":** Marcelo Romeo, Caro Dubi, el panel Kolod/Abadi, el panel Lookeo y Tomás Cazalá.
+7. **Títulos de charla "a definir":** Norman Ventre, Marcelo Romeo, el panel Pepsico + Hudson, el panel Caro Dubi + Aldana Abadi, el panel de Sabrina Kolod, el panel Lookeo, el panel gamer y Tomás Cazalá.
 8. **Precios de sponsorship:** están en el deck (Silver USD 1.500, Gold 2.500, Platinum 5.000, podcast 2.000, main 6.000). Se decidió **no** mostrarlos en la web pública salvo que Ro lo pida.
 
 ## Próximos pasos técnicos sugeridos
