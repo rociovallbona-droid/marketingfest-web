@@ -87,7 +87,7 @@ Cada panel tiene su color de fondo plano de la paleta. La regla visual: la calle
 - **Datos de speakers:** se respeta lo que viene de la planilla o del deck, solo con correcciones de tipeo ("Mac donalds" → "McDonald's"). Nunca inventar títulos de charla. Si dice "XXX" o "a definir", se omite.
 - **Emilia Vrancic no está confirmada:** no mostrarla en el panel de influencers hasta que Ro avise.
 - **Amé Amor no está confirmada:** se sacó del panel de influencers; no mostrarla hasta que Ro avise.
-- **No se anuncian marcas no confirmadas.** Por eso Google, L'Oréal, Rappi, PedidosYa y Campari no aparecen. Los huecos de agenda se muestran como "Speaker a confirmar".
+- **No se anuncian marcas no confirmadas.** Por eso Google, L'Oréal, PedidosYa, Campari y Mercado Libre no aparecen. Rappi entró en la planilla del 9/10 (Facundo González Chans). Los huecos de agenda se muestran como "Speaker a confirmar".
 
 ### Reglas de diseño que se vienen respetando
 
@@ -144,15 +144,15 @@ Cada panel tiene su color de fondo plano de la paleta. La regla visual: la calle
 
 1. **Cargar `CONFIG.webhook` y `CONFIG.whatsapp`** para la inscripción oficial. Es bloqueante para el lanzamiento real. Mientras tanto corre la pre-inscripción; al abrir la oficial hay que avisar a todos los de la data table de pre-inscripción (mail + WhatsApp) y marcar `avisado`.
 2. **Sponsors de la 1ra edición:** cargados en `SPONSORS_ED1` (Tiendanube como main, Heineken 0.0, Gigared, DT Comunicación, Doble Dosis, FlashTag, Óptica Lof, Prometheo y Mikhuna Nikkei; 9 marcas). Falta el archivo del logo de Mikhuna: hoy se muestra como texto.
-3. **Speakers a confirmar:** martes 15:00 (era Luciana Danduono, se pasó a "?" a pedido de Ro), martes 15:45, miércoles 17:45 y miércoles 20:00. También falta un invitado del panel gamer y una invitada del panel de logística ("Iara o la otra").
-4. **Fotos que faltan:** Romina Fuentes (en el deck la foto está vacía), Natalia Landa, Norman Vietre, Agustín Arias, Sebastián Lutz y los moderadores.
+3. **Speakers a confirmar:** martes 15:00 (la planilla dice "Luciana Danduono o Julieta Skilki", Laboratorio de Bikinis / Azania, charla "Del Moodboard al Mercado"; sigue como "?" hasta que se defina quién). También falta un invitado del panel gamer, el acompañante de Norman Ventre (Bayer, "a definir con quién") y los títulos de Norman, el panel de influencers, Fernanda Rivera, Facundo González Chans y Sabrina Kolod.
+4. **Fotos que faltan:** Natalia Landa, Norman Ventre, Solana Epstein, José Antonio Stracquadaini, Juan Pablo Brea, Facundo González Chans, Agustín Arias y los moderadores.
 5. **Discrepancias entre deck y planilla:**
    - el nombre del salón;
    - el horario del panel gamer: el deck dice 19:00, se usa 17:10 de la planilla;
    - el cargo de Mariano Félix Rica;
    - los números (+1500 / +25 contra 2000 / +30).
 6. **El link de FlashTag** para su logo de sponsor.
-7. **Títulos de charla "a definir":** Marcelo Romeo, Caro Dubi, el panel Kolod/Abadi, el panel Lookeo y Tomás Cazalá.
+7. **Títulos de charla "a definir":** Marcelo Romeo, el panel Abadi/Dubiansky, Sabrina Kolod, Fernanda Rivera y Tomás Cazalá.
 8. **Precios de sponsorship:** están en el deck (Silver USD 1.500, Gold 2.500, Platinum 5.000, podcast 2.000, main 6.000). Se decidió **no** mostrarlos en la web pública salvo que Ro lo pida.
 
 ## Próximos pasos técnicos sugeridos
