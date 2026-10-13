@@ -100,6 +100,8 @@ Cada panel tiene su color de fondo plano de la paleta. La regla visual: la calle
 
 **Assets externos:** `assets/ed1-sala-llena.mp4` (H.264) + `.webm` (VP9, respaldo) + `.jpg` (poster): video vertical de la sala vacía a la sala llena, en `p-ed1`. Se reproduce muteado en loop al abrir el panel (salvo `prefers-reduced-motion`) y se pausa al cerrar.
 
+**Google Tag Manager:** contenedor `GTM-5Z65GSRG` (de SNFM). El script va arriba de todo en el `<head>` y el `<noscript>` justo después de abrir el `<body>`. Los tags y eventos (clicks en inscripción, calendario, WPP) se configuran desde GTM, no en el código.
+
 **Favicon:** el chasquido de SNFM en `favicon.png` (64 px, fondo transparente) y `apple-touch-icon.png` (180 px, fondo amarillo `#F3DA00`), en la raíz junto al `index.html`.
 
 **Hoy es un solo archivo:** `index.html`, de unos 1.8 MB, con HTML, CSS, JS e imágenes en base64. Sin build ni dependencias, solo Google Fonts.
