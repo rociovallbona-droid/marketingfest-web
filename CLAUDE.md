@@ -15,6 +15,7 @@ Objetivo de la web: que la gente **se inscriba** (gratis, cupos limitados), cono
 - **Fechas:** martes 27 y miércoles 28 de octubre de 2026, de 14 a 21 hs. Acreditación desde las 14, primera charla 14:20.
 - **Lugar:** Salón Principal, Edificio Nuevo, FCE UBA, Uriburu 781, CABA. ⚠️ El deck de Canva dice "Salón de Actos"; la planilla dice "Salón Principal". Pendiente de confirmar.
 - **Costo:** libre y gratuito, cupos limitados, requiere inscripción.
+- **DNI:** no es requisito (pedido de Ro). No pedirlo ni mencionarlo en la web.
 - **Números:** 1ra edición +1200 personas, 16 speakers (25 y 26 de septiembre de 2025). Meta 2da edición: 2000 personas, +30 speakers confirmados. ⚠️ El deck de sponsors dice +1500 asistentes y +25 speakers; Ro todavía no definió cuáles mostrar.
 - **Contacto sponsors:** Tomás Cazalá, tomascazala@economicas.uba.ar.
 - **Redes:** IG @senosfuedelasmanos.ok. El podcast SNFM está en YouTube, Spotify, TikTok y Gigared TV.
@@ -82,7 +83,7 @@ Cada panel tiene su color de fondo plano de la paleta. La regla visual: la calle
 - **Español rioplatense con voseo, siempre:** "Inscribite", "Tocá", "Scrolleá", "Mirá", "Reservá tu lugar", "Llegá 13:45 y evitá la fila".
 - **Directo, cercano y con humor de calle**, sin solemnidad institucional: "Arrancá una tirita.", "Este espacio está libre.", "Ellos van a estar. ¿Y vos?", "Fin del recorrido", "Pasá sin permiso".
 - **Los CTA dicen exactamente qué pasa:** "Inscribite gratis", "Ver cronograma", "Agendar el martes 27", "Escribile a Tomás Cazala".
-- **Los errores dicen qué falló y cómo arreglarlo, sin pedir perdón:** "El DNI tiene que tener 7 u 8 números."
+- **Los errores dicen qué falló y cómo arreglarlo, sin pedir perdón:** "Revisá el email: le falta la @."
 - **Sin anglicismos innecesarios**, salvo los propios del rubro (speaker, sponsor, break).
 - **Datos de speakers:** se respeta lo que viene de la planilla o del deck, solo con correcciones de tipeo ("Mac donalds" → "McDonald's"). Nunca inventar títulos de charla. Si dice "XXX" o "a definir", se omite.
 - **Emilia Vrancic no está confirmada:** no mostrarla en el panel de influencers hasta que Ro avise.
