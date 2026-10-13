@@ -39,12 +39,12 @@ Cómo se resolvió:
 | 2 | Pantalla LED en poste | Reel 9:16 que cicla marcas y "Faltan N días" | `p-speakers` |
 | 2b | Mosaico de 9 caras + "+30 speakers" | Afiche con fotos en B&N, color en hover | `p-speakers` |
 | 3 | "Dos días. 14 a 21 hs." con horarios | Afiche tipo tabla de horarios | `p-crono` |
-| 4 | "GRATIS" con tiritas para arrancar | Flyer callejero con tiras, una arrancada | `p-inscripcion` |
+| 4 | "GRATIS" con tiritas para arrancar | Flyer callejero con tiras, una arrancada | link a la inscripción |
 | 5 | "¿Y si voy un solo día?" | Afiche cian | `p-faq` |
 | 6 | Puerta entreabierta con neón "Detrás de escena", cartel "Solo personal autorizado" y credencial STAFF | Puerta de backstage | `p-organizan` |
 | 6b | Fotos pegadas con cinta + "Así se vivió la 1ra edición" | Collage de fotos impresas | `p-ed1` |
 | 7 | "Este espacio está libre." con cinta "Disponible" | Cartel en alquiler | `p-sponsors` |
-| — | "Fin del recorrido" en stencil + CTA | Pared | `p-inscripcion` |
+| — | "Fin del recorrido" en stencil + CTA | Pared | link a la inscripción |
 
 **Decisión de Ro: el cartel vacío "Este espacio está libre" se queda así.** Le encanta. Es la invitación a sumarse como sponsor. No ponerle logos.
 
@@ -52,7 +52,7 @@ Cómo se resolvió:
 
 Son `section.panel[role=dialog]`, cada uno con `data-hash` para deep links (`#speakers` abre directo ese panel):
 
-`el-fest` · `speakers` · `cronograma` · `inscripcion` · `primera-edicion` · `preguntas` · `organizan` · `sponsors`
+`el-fest` · `speakers` · `cronograma` · `primera-edicion` · `preguntas` · `organizan` · `sponsors`
 
 Cada panel tiene su color de fondo plano de la paleta. La regla visual: la calle es lo audaz, los paneles son disciplinados (tipografía grande, listas limpias, sin decoración extra).
 
@@ -108,7 +108,7 @@ Cada panel tiene su color de fondo plano de la paleta. La regla visual: la calle
 
 ### Datos (al principio del `<script>`)
 
-- **`CONFIG`**: tiene `webhook` y `whatsapp`. ⚠️ **Ambos vacíos.** El formulario muestra la confirmación pero no envía nada hasta que se cargue el webhook de n8n, que dispara el Mail 1 con QR + calendario + comunidad WPP. Si `whatsapp` está vacío, el botón no aparece.
+- **`CONFIG`**: tiene `inscripcion` con la URL de la inscripción oficial (`https://mi.econ.uba.ar/marketingfest`, sistema de la FCE).
 - **`EVENT`**: fecha objetivo de la cuenta regresiva (`2026-10-27T14:00:00-03:00`).
 - **`DATA`**: el cronograma completo. Cada ítem es `{d, t, n, c, tp, k, w, ph, pause, tbc}`:
   - `d`: día (1 o 2).
@@ -138,13 +138,12 @@ Cada panel tiene su color de fondo plano de la paleta. La regla visual: la calle
 - **Accesibilidad de la calle:** cuando un anuncio recibe foco por teclado, se scrollea para centrarlo. `.scene` usa `overflow: clip` para que el navegador no la desplace sola (era un bug).
 - **Retícula, tilt y holo:** solo con `pointer: fine`.
 - **Pantalla LED:** `reel()` + `frame()` cada 820 ms, con el tamaño de fuente ajustado según el largo de la palabra.
-- **Formulario:** valida nombre y apellido, email, DNI de 7 u 8 dígitos y perfil; si hay `CONFIG.webhook`, hace POST. Guarda en `localStorage` (`mktfest26`) para mostrar "¡Inscripción confirmada!" al volver, y tiene un botón "Inscribir a otra persona".
-- **Pre-inscripción (activa hoy):** con `CONFIG.preinscripcion: true` el formulario cambia a "Pre-inscribite": pide nombre, email, WhatsApp, perfil y día (sin DNI) y hace POST a `CONFIG.webhookPre` (`https://n8n.dtcomunicacion.com/webhook/preinscripcion-mkt-fest`). El workflow de n8n "Pre-inscripción MKT Fest 2026" (id `E6dF41wKNW31obCu`) guarda en la data table "Pre-inscripción MKT Fest 2026" (id `d7GBQXcVm9nlEQsh`), sin duplicar por email, con la columna `avisado` en false. Después de responder a la web, también escribe (sin duplicar por Email) en el Google Sheet "Pre-inscripción Marketing Fest 2026" (id `1Y0BM4c904CzP39UAmYkIgErZsOKoPjnkcfR2w2ZQYo4`, pestaña "Untitled", columnas Fecha, Nombre, Email, WhatsApp, Perfil, Día, Avisado) con la credencial "Sheets DT". Si el Sheet falla, la inscripción igual queda guardada en la data table. Los CTA "Inscribite" pasan a "Pre-inscribite" por JS. Guarda en `localStorage` con la clave `mktfest26-pre`. Cuando abra la oficial: `preinscripcion: false`, cargar `webhook` y avisar a la lista.
+- **Inscripción:** la hace la FCE en `https://mi.econ.uba.ar/marketingfest`, no la web. Todos los CTA de inscripción (nav, menú mobile, flyer "GRATIS", "Fin del recorrido" y los paneles) son `<a data-inscripcion>` que abren esa URL en otra pestaña. El deep link `#inscripcion` redirige ahí, así los links viejos de mails y redes siguen funcionando. Ya no hay formulario propio ni panel `p-inscripcion`. La pre-inscripción se cerró: los datos siguen en la data table de n8n "Pre-inscripción MKT Fest 2026" (id `d7GBQXcVm9nlEQsh`) y en el Google Sheet "Pre-inscripción Marketing Fest 2026".
 - **Google Calendar:** links por día, 14 a 21 hs ART.
 
 ## Pendientes y cosas a confirmar con Ro
 
-1. **Cargar `CONFIG.webhook` y `CONFIG.whatsapp`** para la inscripción oficial. Es bloqueante para el lanzamiento real. Mientras tanto corre la pre-inscripción; al abrir la oficial hay que avisar a todos los de la data table de pre-inscripción (mail + WhatsApp) y marcar `avisado`.
+1. **Avisar a la lista de pre-inscripción** (mail + WhatsApp) que ya abrió la inscripción oficial en mi.econ.uba.ar/marketingfest, y marcar `avisado` en la data table.
 2. **Sponsors de la 1ra edición:** cargados en `SPONSORS_ED1` (Tiendanube como main, Heineken 0.0, Gigared, DT Comunicación, Doble Dosis, FlashTag, Óptica Lof, Prometheo y Mikhuna Nikkei; 9 marcas). Falta el archivo del logo de Mikhuna: hoy se muestra como texto.
 3. **Speakers a confirmar:** martes 15:00 (era Luciana Danduono, se pasó a "?" a pedido de Ro), martes 15:45, miércoles 17:45 y miércoles 20:00. También falta un invitado del panel gamer y una invitada del panel de logística ("Iara o la otra").
 4. **Fotos que faltan:** Romina Fuentes (en el deck la foto está vacía), Natalia Landa, Norman Vietre, Agustín Arias, Sebastián Lutz y los moderadores.
@@ -169,6 +168,6 @@ Cada panel tiene su color de fondo plano de la paleta. La regla visual: la calle
 
 - Probar desktop 1440×900 y mobile 390×844: caminar la cuadra, abrir y cerrar cada panel, y navegar con teclado (Tab sobre los anuncios no debe descuadrar la escena).
 - Probar dark mode.
-- Mandar el formulario con y sin webhook.
+- Que los CTA "Inscribite" y `#inscripcion` lleven a la inscripción oficial.
 - Que no aparezca ninguna marca no confirmada.
 - Que todo el copy esté en voseo.
