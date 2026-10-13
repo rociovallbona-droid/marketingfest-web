@@ -721,7 +721,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <h2 class="ph reveal" id="t-fq">Lo que nos preguntan</h2>
     <div class="cols reveal">
       <div class="qa"><h3>¿Se puede ir un solo día?</h3><p>Sí. Podés venir el martes 27, el miércoles 28 o los dos. Lo elegís cuando te inscribís.</p></div>
-      <div class="qa"><h3>¿Qué tengo que llevar?</h3><p>Tu celular con el QR de acceso que te llega por mail y tu DNI. No hace falta imprimir nada.</p></div>
+      <div class="qa"><h3>¿Qué tengo que llevar?</h3><p>Tu celular con el QR de acceso que te llega por mail. No hace falta imprimir nada.</p></div>
       <div class="qa"><h3>¿A qué hora llego?</h3><p>Las acreditaciones abren a las 14 y las charlas empiezan a las 14:20. Si llegás 13:45 evitás la fila.</p></div>
       <div class="qa"><h3>¿Hay pausas?</h3><p>Sí. Entre charlas hay breaks con comida, stands y música.</p></div>
       <div class="qa"><h3>¿Cuánto sale?</h3><p>Nada. Es libre y gratuito, pero los cupos son limitados y tenés que inscribirte.</p></div>
@@ -876,7 +876,7 @@ $$('.filter button').forEach(b=>b.addEventListener('click',()=>{
 }));
 const gcal=d=>{
   const day = d===1 ? '20261027' : '20261028', next = d===1 ? '20261028' : '20261029';
-  const p=new URLSearchParams({action:'TEMPLATE',text:`Marketing Fest 2026 · Día ${d}`,dates:`${day}T170000Z/${next}T000000Z`,details:'Marketing Fest 2da edición. Llevá tu QR de acceso y tu DNI.',location:'Salón Principal, Edificio Nuevo, FCE UBA, Uriburu 781, CABA'});
+  const p=new URLSearchParams({action:'TEMPLATE',text:`Marketing Fest 2026 · Día ${d}`,dates:`${day}T170000Z/${next}T000000Z`,details:'Marketing Fest 2da edición. Llevá tu QR de acceso.',location:'Salón Principal, Edificio Nuevo, FCE UBA, Uriburu 781, CABA'});
   return 'https://calendar.google.com/calendar/render?'+p.toString();
 };
 $('#cr-cols').innerHTML=[1,2].map(d=>`<div class="day"><h3>${DAYNAME[d]} <small style="font-family:var(--body);font-size:1rem;font-weight:700">14 a 21 hs</small></h3>
