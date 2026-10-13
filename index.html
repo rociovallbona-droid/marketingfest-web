@@ -51,6 +51,8 @@ body{background:var(--ink);color:var(--ink);font-family:var(--body);font-weight:
 img,svg{max-width:100%}
 button{font:inherit;color:inherit}
 a{color:inherit}
+a.ad,a.item{text-decoration:none}
+a.item{display:block}
 :focus-visible{outline:3px solid var(--y);outline-offset:3px}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 .logo-ico{display:block}
@@ -82,7 +84,7 @@ a{color:inherit}
 }
 .drawer{position:fixed;inset:0;z-index:45;background:var(--y);color:var(--ink);display:flex;flex-direction:column;padding:calc(env(safe-area-inset-top,0px) + 5.5rem) 1.5rem calc(env(safe-area-inset-bottom,0px) + 1.5rem)}
 .drawer[hidden]{display:none}
-.drawer button.item{background:none;border:0;text-align:left;font-family:var(--display);font-size:clamp(2.6rem,12vw,4.5rem);line-height:1.02;text-transform:uppercase;padding:.15rem 0;cursor:pointer}
+.drawer button.item,.drawer a.item{background:none;border:0;text-align:left;font-family:var(--display);font-size:clamp(2.6rem,12vw,4.5rem);line-height:1.02;text-transform:uppercase;padding:.15rem 0;cursor:pointer}
 .drawer .close-drawer{position:absolute;top:calc(env(safe-area-inset-top,0px) + 1rem);right:1rem;background:var(--ink);color:var(--y);border:0;border-radius:999px;padding:.7rem 1.1rem;font-weight:700;cursor:pointer}
 
 /* ---------- STREET ---------- */
@@ -321,25 +323,6 @@ a{color:inherit}
 .slot-row span{font-size:.93rem}
 .slot-row.pause{opacity:.7}
 
-#p-inscripcion{background:var(--green)}
-form{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem 1.2rem;max-width:760px}
-@media (max-width:640px){form{grid-template-columns:1fr}}
-.f{display:flex;flex-direction:column;gap:.35rem}
-.f.full{grid-column:1/-1}
-.f label,.f legend{font-weight:700}
-.f input,.f select{font:inherit;font-weight:600;padding:.9rem 1rem;border:2px solid var(--ink);border-radius:10px;background:var(--paper);color:var(--ink);width:100%}
-fieldset.f{border:0;padding:0;margin:0}
-.opts{display:flex;gap:.5rem;flex-wrap:wrap}
-.opts label{position:relative}
-.opts input{position:absolute;opacity:0;width:1px;height:1px}
-.opts span{display:inline-block;padding:.7rem 1rem;border:2px solid var(--ink);border-radius:999px;font-weight:700;cursor:pointer;background:var(--paper)}
-.opts input:checked + span{background:var(--ink);color:var(--y)}
-.opts input:focus-visible + span{outline:3px solid var(--y);outline-offset:2px}
-.err{color:#5a0b00;font-weight:700;font-size:.9rem;min-height:1.2em}
-.submit{grid-column:1/-1;justify-self:start;font-size:1.1rem;padding:1rem 1.5rem}
-.ok-box{background:var(--ink);color:var(--paper);padding:clamp(1.4rem,4vw,2.5rem);border-radius:4px;max-width:760px}
-.ok-box .ph{color:var(--y);font-size:clamp(2.6rem,8vw,6rem)}
-
 #p-faq{background:var(--cyan)}
 .qa{border-top:3px solid var(--ink);padding:1.1rem 0 .6rem}
 .qa h3{font-size:clamp(1.5rem,3vw,2.1rem)}
@@ -465,7 +448,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <button data-open="p-sponsors">Sponsors</button>
     </nav>
     <button class="menu-btn" aria-expanded="false" aria-controls="drawer">Menú</button>
-    <button class="cta nav-cta" data-open="p-inscripcion">Inscribite gratis <svg aria-hidden="true"><use href="#arr"/></svg></button>
+    <a class="cta nav-cta" href="https://mi.econ.uba.ar/marketingfest" target="_blank" rel="noopener" data-inscripcion>Inscribite gratis <svg aria-hidden="true"><use href="#arr"/></svg></a>
   </div>
 </header>
 
@@ -474,7 +457,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <button class="item" data-open="p-fest">El fest</button>
   <button class="item" data-open="p-speakers">Speakers</button>
   <button class="item" data-open="p-crono">Cronograma</button>
-  <button class="item" data-open="p-inscripcion">Inscribite</button>
+  <a class="item" href="https://mi.econ.uba.ar/marketingfest" target="_blank" rel="noopener" data-inscripcion>Inscribite</a>
   <button class="item" data-open="p-ed1">La 1ra edición</button>
   <button class="item" data-open="p-faq">Preguntas</button>
   <button class="item" data-open="p-organizan">Detrás de escena</button>
@@ -564,7 +547,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
       <!-- 4. Flyer con tiritas -->
       <div class="slot" style="--gap:60"><div class="paste" style="--i:3">
-        <button class="ad" data-open="p-inscripcion" aria-label="Gratis, cupos limitados. Abrir: inscripción">
+        <a class="ad" href="https://mi.econ.uba.ar/marketingfest" target="_blank" rel="noopener" data-inscripcion aria-label="Gratis, cupos limitados. Inscribite en mi.econ.uba.ar (se abre en una pestaña nueva)">
           <div class="poster flyer">
             <div class="flyer-top">
               <p class="big">Gratis</p>
@@ -575,7 +558,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
               <span>Inscribite</span><span>Inscribite</span><span class="torn">.</span><span>Inscribite</span><span>Inscribite</span><span>Inscribite</span>
             </div>
           </div>
-        </button>
+        </a>
       </div></div>
 
       <!-- 5. FAQ -->
@@ -633,7 +616,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="slot"><div class="end">
         <p class="big" aria-hidden="true">Fin del recorrido</p>
         <p>Nos vemos el martes 27 a las 14 hs. Llegá 13:45 y evitá la fila.</p>
-        <button class="cta dark" data-open="p-inscripcion">Inscribite gratis <svg aria-hidden="true"><use href="#arr"/></svg></button>
+        <a class="cta dark" href="https://mi.econ.uba.ar/marketingfest" target="_blank" rel="noopener" data-inscripcion>Inscribite gratis <svg aria-hidden="true"><use href="#arr"/></svg></a>
       </div></div>
     </div>
 
@@ -655,7 +638,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <p><strong>Cuánto</strong>Nada. Es libre y gratuito, pero los cupos son limitados y hace falta inscribirse.</p>
   </div>
   <div class="btn-row" style="margin-bottom:4rem">
-    <button class="cta" data-open="p-inscripcion">Inscribite gratis <svg aria-hidden="true"><use href="#arr"/></svg></button>
+    <a class="cta" href="https://mi.econ.uba.ar/marketingfest" target="_blank" rel="noopener" data-inscripcion>Inscribite gratis <svg aria-hidden="true"><use href="#arr"/></svg></a>
     <button class="ghost" data-open="p-crono">Ver cronograma</button>
   </div>
   <div class="support"><p>Sponsors</p><div class="logos" data-sponsors></div></div>
@@ -683,7 +666,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div><h3>Para quién</h3><p>Dueños de empresas y negocios que quieran conectar con marcas referentes, proveedores de la industria y plataformas, estudiantes, graduados y cualquiera que esté interesado en el marketing.</p></div>
       <div><h3>Qué vas a encontrar</h3><p>Charlas de marcas y emprendedores, paneles de influencers, franquicias, gaming y logística, y breaks con comida, stands y música entre una charla y otra.</p></div>
     </div>
-    <div class="btn-row reveal"><button class="cta dark" data-open="p-inscripcion">Inscribite gratis <svg aria-hidden="true"><use href="#arr"/></svg></button><button class="ghost" data-open="p-speakers">Ver speakers</button></div>
+    <div class="btn-row reveal"><a class="cta dark" href="https://mi.econ.uba.ar/marketingfest" target="_blank" rel="noopener" data-inscripcion>Inscribite gratis <svg aria-hidden="true"><use href="#arr"/></svg></a><button class="ghost" data-open="p-speakers">Ver speakers</button></div>
   </div>
 </section>
 
@@ -697,7 +680,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <button aria-pressed="false" data-f="2">Miércoles 28</button>
     </div>
     <div class="grid reveal" id="sp-grid"></div>
-    <div class="btn-row reveal"><button class="cta" data-open="p-inscripcion">Inscribite gratis <svg aria-hidden="true"><use href="#arr"/></svg></button></div>
+    <div class="btn-row reveal"><a class="cta" href="https://mi.econ.uba.ar/marketingfest" target="_blank" rel="noopener" data-inscripcion>Inscribite gratis <svg aria-hidden="true"><use href="#arr"/></svg></a></div>
   </div>
 </section>
 
@@ -707,33 +690,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <h2 class="ph reveal" id="t-cr">El cronograma</h2>
     <p class="lead reveal">Podés venir un día o los dos. Las acreditaciones abren a las 14 y la primera charla arranca a las 14:20.</p>
     <div class="cols reveal" id="cr-cols"></div>
-  </div>
-</section>
-
-<section class="panel" id="p-inscripcion" hidden role="dialog" aria-modal="true" aria-labelledby="t-in" data-hash="inscripcion">
-  <button class="close"><svg aria-hidden="true"><use href="#arr"/></svg>Volver al evento</button>
-  <div class="panel-in" id="in-wrap">
-    <h2 class="ph reveal" id="t-in">Reservá tu lugar</h2>
-    <p class="lead reveal">Es gratis. Completá tus datos y te mandamos por mail tu QR de acceso, el link para agendarlo y la comunidad de WhatsApp.</p>
-    <form class="reveal" id="form" novalidate>
-      <div class="f full"><label for="f-name">Nombre completo</label><input id="f-name" name="nombre" autocomplete="name" required></div>
-      <div class="f"><label for="f-mail">Email</label><input id="f-mail" name="email" type="email" autocomplete="email" required></div>
-      <div class="f"><label for="f-dni">DNI</label><input id="f-dni" name="dni" inputmode="numeric" required></div>
-      <div class="f full"><label for="f-perfil">Perfil</label>
-        <select id="f-perfil" name="perfil" required>
-          <option value="">Elegí una opción</option>
-          <option>Estudiante</option><option>Graduado/a</option><option>Posgrado</option><option>Dueño/a de empresa o negocio</option><option>Proveedor/a o plataforma de la industria</option><option>Profesional de marketing</option><option>Otro</option>
-        </select></div>
-      <fieldset class="f full"><legend>¿Qué día venís?</legend>
-        <div class="opts">
-          <label><input type="radio" name="dia" value="Martes 27"><span>Martes 27</span></label>
-          <label><input type="radio" name="dia" value="Miércoles 28"><span>Miércoles 28</span></label>
-          <label><input type="radio" name="dia" value="Los dos" checked><span>Los dos</span></label>
-        </div>
-      </fieldset>
-      <p class="err full" id="f-err" role="alert"></p>
-      <button class="cta dark submit" type="submit">Inscribirme gratis <svg aria-hidden="true"><use href="#arr"/></svg></button>
-    </form>
   </div>
 </section>
 
@@ -755,7 +711,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="gal reveal" id="gal"></div>
     <h3 class="reveal">Nos acompañaron</h3>
     <div class="logos reveal" data-ed1></div>
-    <div class="btn-row reveal"><button class="cta" data-open="p-inscripcion">Reservá tu lugar en la 2da <svg aria-hidden="true"><use href="#arr"/></svg></button></div>
+    <div class="btn-row reveal"><a class="cta" href="https://mi.econ.uba.ar/marketingfest" target="_blank" rel="noopener" data-inscripcion>Reservá tu lugar en la 2da <svg aria-hidden="true"><use href="#arr"/></svg></a></div>
   </div>
 </section>
 
@@ -771,7 +727,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="qa"><h3>¿Cuánto sale?</h3><p>Nada. Es libre y gratuito, pero los cupos son limitados y tenés que inscribirte.</p></div>
       <div class="qa"><h3>¿Dan certificado?</h3><p>Sí. Si te acreditás con tu QR, después del evento te mandamos el certificado de asistencia por mail.</p></div>
     </div>
-    <div class="btn-row reveal"><button class="cta dark" data-open="p-inscripcion">Inscribite gratis <svg aria-hidden="true"><use href="#arr"/></svg></button></div>
+    <div class="btn-row reveal"><a class="cta dark" href="https://mi.econ.uba.ar/marketingfest" target="_blank" rel="noopener" data-inscripcion>Inscribite gratis <svg aria-hidden="true"><use href="#arr"/></svg></a></div>
   </div>
 </section>
 
@@ -833,15 +789,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <script>
 (()=>{
-/* ====== CONFIG: completá esto antes de publicar ====== */
+/* ====== CONFIG ====== */
 const CONFIG = {
-  /* Pre-inscripción: mientras sea true, el formulario junta nombre, email, WhatsApp, perfil y día
-     y los guarda en n8n (data table "Pre-inscripción MKT Fest 2026") para avisar cuando abra la oficial.
-     Cuando abra la inscripción oficial: poner false y cargar `webhook`. */
-  preinscripcion: true,
-  webhookPre: 'https://n8n.dtcomunicacion.com/webhook/preinscripcion-mkt-fest',
-  webhook: '',   // URL del webhook (n8n, Zapier, etc.) que recibe la inscripción y dispara el Mail 1
-  whatsapp: ''   // link a la comunidad de WhatsApp
+  inscripcion: 'https://mi.econ.uba.ar/marketingfest'   // inscripción oficial (sistema de la FCE): todos los CTA "Inscribite" van acá
 };
 const EVENT = new Date('2026-10-27T14:00:00-03:00');
 
@@ -1077,6 +1027,7 @@ function close(){
 }
 document.addEventListener('click',e=>{
   const o=e.target.closest('[data-open]'); if(o){ e.preventDefault(); open(o.dataset.open,o); return; }
+  if(e.target.closest('[data-inscripcion]')){ closeDrawer(); return; }
   if(e.target.closest('.panel .close')) close();
   if(e.target.closest('[data-top]')){ close(); scrollTo({top:0,behavior:reduce?'auto':'smooth'}); }
 });
@@ -1088,63 +1039,8 @@ mb.addEventListener('click',()=>{ drawer.hidden=false; mb.setAttribute('aria-exp
 function closeDrawer(){ if(drawer.hidden) return; drawer.hidden=true; mb.setAttribute('aria-expanded','false'); }
 $('.close-drawer').addEventListener('click',closeDrawer);
 
-/* ---------- form ---------- */
-const form=$('#form'), err=$('#f-err');
-const PRE=!!CONFIG.preinscripcion, KEY=PRE?'mktfest26-pre':'mktfest26';
-if(PRE){
-  $('#t-in').textContent='Pre-inscribite';
-  $('#in-wrap .lead').textContent='La inscripción oficial abre pronto. Dejanos tus datos y te avisamos al toque por mail y WhatsApp para que te asegures tu lugar antes que nadie.';
-  $('#f-dni').closest('.f').outerHTML='<div class="f"><label for="f-wpp">WhatsApp</label><input id="f-wpp" name="whatsapp" type="tel" inputmode="tel" autocomplete="tel" placeholder="11 2345 6789" required></div>';
-  $('.submit',form).innerHTML='Pre-inscribirme <svg aria-hidden="true"><use href="#arr"/></svg>';
-  $$('[data-open="p-inscripcion"]').forEach(b=>{ for(const n of b.childNodes) if(n.nodeType===3) n.textContent=n.textContent.replace(/^(\s*)Inscribite/,'$1Pre-inscribite'); });
-}
-function successPre(name,email){
-  const first=esc(name.split(' ')[0]);
-  $('#in-wrap').innerHTML=`<div class="ok-box">
-    <h2 class="ph">¡Ya estás en la lista!</h2>
-    <p class="lead" style="margin-bottom:1rem">${first}, apenas abra la inscripción oficial te avisamos a <b>${esc(email)}</b> y por WhatsApp. Ahí confirmás tu lugar y te llega el QR de acceso.</p>
-    <div class="btn-row">${[1,2].map(d=>`<a class="cta" target="_blank" rel="noopener" href="${gcal(d)}">Agendar el ${DAYNAME[d].toLowerCase()}</a>`).join('')}</div>
-    <div class="btn-row"><button class="ghost" id="again" style="color:var(--paper)">Pre-inscribir a otra persona</button></div></div>`;
-  $('#again').addEventListener('click',()=>{ try{localStorage.removeItem(KEY)}catch(e){} location.hash='inscripcion'; location.reload(); });
-}
-function success(name,email,dia){
-  const first=esc(name.split(' ')[0]);
-  const days = dia==='Martes 27'?[1]:dia==='Miércoles 28'?[2]:[1,2];
-  $('#in-wrap').innerHTML=`<div class="ok-box">
-    <h2 class="ph">¡Inscripción confirmada!</h2>
-    <p class="lead" style="margin-bottom:1rem">${first}, tu lugar está reservado para ${dia==='Los dos'?'los dos días':'el '+esc(dia.toLowerCase())}. Te mandamos a <b>${esc(email)}</b> tu QR de acceso. Mostralo desde el celular en la acreditación, con tu DNI.</p>
-    <div class="btn-row">${days.map(d=>`<a class="cta" target="_blank" rel="noopener" href="${gcal(d)}">Agendar el ${DAYNAME[d].toLowerCase()}</a>`).join('')}
-    ${CONFIG.whatsapp?`<a class="ghost" target="_blank" rel="noopener" href="${CONFIG.whatsapp}">Sumate a la comunidad de WhatsApp</a>`:''}</div><div class="btn-row"><button class="ghost" id="again" style="color:var(--paper)">Inscribir a otra persona</button></div></div>`;
-  $('#again').addEventListener('click',()=>{ try{localStorage.removeItem('mktfest26')}catch(e){} location.hash='inscripcion'; location.reload(); });
-}
-try{ const saved=JSON.parse(localStorage.getItem(KEY)||'null'); if(saved) (PRE?successPre:success)(saved.nombre,saved.email,saved.dia); }catch(e){}
-form && form.addEventListener('submit',async e=>{
-  e.preventDefault();
-  const fd=Object.fromEntries(new FormData(form));
-  fd.nombre=(fd.nombre||'').trim(); fd.email=(fd.email||'').trim();
-  if(fd.nombre.split(/\s+/).length<2){ err.textContent='Escribí tu nombre y apellido.'; $('#f-name').focus(); return; }
-  if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(fd.email)){ err.textContent='Revisá el email: le falta algo (por ejemplo, la @ o el dominio).'; $('#f-mail').focus(); return; }
-  if(PRE){
-    fd.whatsapp=(fd.whatsapp||'').trim();
-    const dig=fd.whatsapp.replace(/\D/g,'');
-    if(dig.length<8||dig.length>15){ err.textContent='Revisá el WhatsApp: escribilo con código de área, por ejemplo 11 2345 6789.'; $('#f-wpp').focus(); return; }
-  } else {
-    fd.dni=(fd.dni||'').replace(/\D/g,'');
-    if(fd.dni.length<7||fd.dni.length>8){ err.textContent='El DNI tiene que tener 7 u 8 números.'; $('#f-dni').focus(); return; }
-  }
-  if(!fd.perfil){ err.textContent='Elegí tu perfil.'; $('#f-perfil').focus(); return; }
-  err.textContent='';
-  const btn=$('.submit',form), label=btn.innerHTML; btn.disabled=true; btn.textContent=PRE?'Anotándote…':'Reservando tu lugar…';
-  const url=PRE?CONFIG.webhookPre:CONFIG.webhook;
-  if(url){
-    try{ const r=await fetch(url,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({...fd,evento:'Marketing Fest 2026',tipo:PRE?'preinscripcion':'inscripcion',fecha:new Date().toISOString()})}); if(!r.ok) throw 0; }
-    catch(_){ err.textContent=PRE?'No pudimos guardar tu pre-inscripción. Revisá tu conexión y probá de nuevo.':'No pudimos guardar tu inscripción. Revisá tu conexión y probá de nuevo.'; btn.disabled=false; btn.innerHTML=label; return; }
-  }
-  try{ localStorage.setItem(KEY,JSON.stringify({nombre:fd.nombre,email:fd.email,dia:fd.dia})); }catch(e){}
-  (PRE?successPre:success)(fd.nombre,fd.email,fd.dia);
-});
-
 /* ---------- init ---------- */
+if(location.hash==='#inscripcion') location.replace(CONFIG.inscripcion);
 const go=()=>{ layout(); const h=location.hash.slice(1); if(h){ const p=$$('.panel').find(x=>x.dataset.hash===h); if(p) open(p.id,null); } };
 if(document.fonts && document.fonts.ready) document.fonts.ready.then(go); else addEventListener('load',go);
 layout();
