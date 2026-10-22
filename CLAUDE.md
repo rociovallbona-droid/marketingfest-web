@@ -127,8 +127,8 @@ Cada panel tiene su color de fondo plano de la paleta. La regla visual: la calle
 - **`GAL`**: fotos de la 1ra edición (`{src, alt, cat}`). Las 5 primeras se usan en el collage de la pared (no cambiar su orden). En `p-ed1` se muestran agrupadas por `cat` en el orden de `GAL_CATS` (Acreditaciones, Charlas, Paneles de IA y marketing, Speakers con su certificado, La gente, Photocall; las vacías no se muestran); para sumar un momento nuevo, agregalo a `GAL_CATS`. Las fotos nuevas van al final, a ~1000 px de ancho en JPEG.
 - **`TEAM`**: fotos del equipo para "Detrás de escena" en `p-organizan` (`{src, alt}`); también se muestran las fotos de `GAL` con `team: true`.
 - **`LOGOS`**: los logos del apoyo institucional.
-- **`SPONSORS`**: los sponsors de esta edición (`{src, alt, url}`).
-- **`MAIN_SPONSOR`**: el main sponsor de la 2da edición, **Heineken** (`{src, alt, url}`). Se muestra grande en el bloque "Main sponsor" de la página (arriba de Sponsors), primero en `p-sponsors` y en la pantalla LED ("Main sponsor" / "Heineken"). Reemplazó al recuadro "Este lugar está libre" del panel; el cartel de la pared sigue igual.
+- **`SPONSORS`**: los sponsors de esta edición (`{src, alt, url}`): DT Comunicación, Doble Dosis, FlashTag, Sushi Burger y Bengala.
+- **`MAIN_SPONSORS`**: el main sponsor de la 2da edición, **Heineken**, junto con **Heineken 0.0** (`{src, alt, url, tile}`; `tile: true` es un logo que trae su propio fondo, como la placa azul de 0.0). Se muestra grande en el bloque "Main sponsor" de la página (arriba de Sponsors), primero en `p-sponsors` y en la pantalla LED ("Main sponsor" / "Heineken"). Reemplazó al recuadro "Este lugar está libre" del panel; el cartel de la pared sigue igual.
 - **`SPONSORS_ED1`**: los sponsors de la 1ra edición (`{src, alt, url, main}`). Se muestran en `p-sponsors` ("Nos acompañaron en la 1ra edición") y en `p-ed1`. Si `src` está vacío, `logoCell` muestra el nombre en Anton; `main: true` agrega la etiqueta "Main sponsor" (Tiendanube).
 - **`COLORS` / `DAYNAME`**: helpers.
 
