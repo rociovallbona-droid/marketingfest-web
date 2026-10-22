@@ -128,6 +128,7 @@ Cada panel tiene su color de fondo plano de la paleta. La regla visual: la calle
 - **`TEAM`**: fotos del equipo para "Detrás de escena" en `p-organizan` (`{src, alt}`); también se muestran las fotos de `GAL` con `team: true`.
 - **`LOGOS`**: los logos del apoyo institucional.
 - **`SPONSORS`**: los sponsors de esta edición (`{src, alt, url}`).
+- **`MAIN_SPONSOR`**: el main sponsor de la 2da edición, **Heineken** (`{src, alt, url}`). Se muestra grande en el bloque "Main sponsor" de la página (arriba de Sponsors), primero en `p-sponsors` y en la pantalla LED ("Main sponsor" / "Heineken"). Reemplazó al recuadro "Este lugar está libre" del panel; el cartel de la pared sigue igual.
 - **`SPONSORS_ED1`**: los sponsors de la 1ra edición (`{src, alt, url, main}`). Se muestran en `p-sponsors` ("Nos acompañaron en la 1ra edición") y en `p-ed1`. Si `src` está vacío, `logoCell` muestra el nombre en Anton; `main: true` agrega la etiqueta "Main sponsor" (Tiendanube).
 - **`COLORS` / `DAYNAME`**: helpers.
 
