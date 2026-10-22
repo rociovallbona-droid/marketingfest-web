@@ -37,13 +37,18 @@ Cómo se resolvió:
 |---|---|---|---|
 | 1 | Tríptico (logo MKT Fest + "Conectá, innová y aprendé." / "2da edición" / "27 y 28 de octubre") | 3 afiches estilo Kaktus, amarillo / negro / rojo | `p-fest` |
 | 2 | Pantalla LED en poste | Reel 9:16 que cicla marcas y "Faltan N días" | `p-speakers` |
+| 2a | Heladera de Heineken 0.0 con porrones (main sponsor) | Heladera de kiosco | al tocarla caen porrones y aparece "¡Salud!" (`cheers()`) |
 | 2b | Mosaico de 9 caras + "+30 speakers" | Afiche con fotos en B&N, color en hover | `p-speakers` |
 | 3 | "Dos días. 14 a 21 hs." con horarios | Afiche tipo tabla de horarios | `p-crono` |
+| 3b | Gigantografía de CCU (main sponsor) | Cartel gigante con banda verde | `p-sponsors` |
 | 4 | "GRATIS" con tiritas para arrancar | Flyer callejero con tiras, una arrancada | link a la inscripción |
 | 5 | "¿Y si voy un solo día?" | Afiche cian | `p-faq` |
 | 6 | Puerta entreabierta con neón "Detrás de escena", cartel "Solo personal autorizado" y credencial STAFF | Puerta de backstage | `p-organizan` |
 | 6b | Fotos pegadas con cinta + "Así se vivió la 1ra edición" | Collage de fotos impresas | `p-ed1` |
+| 7 | Un anuncio por cada sponsor de `SPONSORS`, generado por JS antes del final. Formatos rotativos (`SP_FORMATS`): chapa, afiche pegado, sticker, toldo, caja de luz y volante | Varios | `p-sponsors` |
 | — | "Fin del recorrido" en stencil + CTA | Pared | link a la inscripción |
+
+**Heineken 0.0 tiene visibilidad extra** (pedido de Ro): carteles en las terrazas del skyline (`buildSkyline`), "Presentado por Heineken 0.0" en el HUD y en la cuenta regresiva, la heladera de la pared y la lluvia de porrones (`BOTTLE`, con la foto del porrón que pasó Ro). La lluvia respeta `prefers-reduced-motion`: en ese caso solo aparece el cartel "¡Salud!".
 
 **El cartel "Este espacio está libre" se sacó de la pared** a pedido de Ro (falta poco para el evento). El panel `p-sponsors` se sigue abriendo desde la nav y desde "¿Querés sumarte?".
 
