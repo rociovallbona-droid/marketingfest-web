@@ -127,7 +127,7 @@ Cada panel tiene su color de fondo plano de la paleta. La regla visual: la calle
 - **`TEAM`**: fotos del equipo para "Detrás de escena" en `p-organizan` (`{src, alt}`); también se muestran las fotos de `GAL` con `team: true`.
 - **`LOGOS`**: los logos del apoyo institucional: CACE, DMA, Academia Argentina de la Publicidad, Secretaría de Graduados, CECE y UBA Económicas Posgrado (ENAP).
 - **`SPONSORS`**: los sponsors de esta edición (`{src, alt, url}`): DT Comunicación, Doble Dosis, FlashTag, Sushi Burger, Bengala y Dismaser.
-- **`MAIN_SPONSORS`**: el main sponsor de la 2da edición, **Heineken 0.0** (solo esa versión del logo, a pedido de Ro; `{src, alt, url}`).
+- **`MAIN_SPONSORS`**: los main sponsors de la 2da edición, **Heineken 0.0** (solo esa versión del logo, a pedido de Ro) y **CCU** (`{src, alt, url}`). Van lado a lado en el bloque "Main sponsor" de la página y de `p-sponsors`, y en la pantalla LED.
 - **`MEDIA`**: los media partners (`{src, alt, url}`): Radio Simphony 91.3 y Radio UBA 87.9. Se muestran en la página (debajo de Sponsors) y en `p-sponsors`.
 - **`SPONSORS_ED1`**: los sponsors de la 1ra edición (`{src, alt, url, main}`). Se muestran en `p-sponsors` ("Nos acompañaron en la 1ra edición") y en `p-ed1`. Si `src` está vacío, `logoCell` muestra el nombre en Anton; `main: true` agrega la etiqueta "Main sponsor" (Tiendanube).
 - **`COLORS` / `DAYNAME`**: helpers.
