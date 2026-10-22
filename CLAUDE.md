@@ -145,8 +145,8 @@ Cada panel tiene su color de fondo plano de la paleta. La regla visual: la calle
 
 1. **Avisar a la lista de pre-inscripción** (mail + WhatsApp) que ya abrió la inscripción oficial en mi.econ.uba.ar/marketingfest, y marcar `avisado` en la data table.
 2. **Sponsors de la 1ra edición:** cargados en `SPONSORS_ED1` (Tiendanube como main, Heineken 0.0, Gigared, DT Comunicación, Doble Dosis, FlashTag, Óptica Lof, Prometheo y Mikhuna Nikkei; 9 marcas). Falta el archivo del logo de Mikhuna: hoy se muestra como texto.
-3. **Line up:** actualizado con la planilla del 22/10 (todos los horarios tienen speaker; ya no hay "Speaker a confirmar"). En la planilla figuran en rosa Mariano Garibini, Abadi/Dubiansky, Tamara Stronguin (Rappi) y Tomás Cazalá: confirmar con Ro qué significa el rosa. Chequear "Sebastián Kutz" (antes figuraba como Lutz) y "Norman Ventre" (antes Vietre).
-4. **Fotos que faltan:** Federico Bongiorno, Norman Ventre, Sergio Doval, Solana Epszteyn, Natalia Landa, Kevin Gofinkel, Mariano Garibini, Walter Costabel, Juan Pablo Brea, Santiago Giovannetti, Agustín Arias, Sebastián Kutz, Tamara Stronguin y los moderadores.
+3. **Line up:** actualizado con la planilla del 22/10 (todos los horarios tienen speaker; ya no hay "Speaker a confirmar"). En la planilla figuran en rosa Mariano Garibini, Abadi/Dubiansky, Tamara Stronguin (Rappi) y Tomás Cazalá: confirmar con Ro qué significa el rosa. En la planilla dice "Sebastián Kutz", pero el apellido correcto es Lutz (confirmado por Ro). Chequear "Norman Ventre" (antes Vietre).
+4. **Fotos que faltan:** Federico Bongiorno, Norman Ventre, Sergio Doval, Solana Epszteyn, Natalia Landa, Kevin Gofinkel, Mariano Garibini, Walter Costabel, Juan Pablo Brea, Santiago Giovannetti, Agustín Arias, Sebastián Lutz, Tamara Stronguin y los moderadores.
 5. **Discrepancias entre deck y planilla:**
    - el nombre del salón;
    - el horario del panel gamer: el deck dice 19:00, se usa 17:10 de la planilla;
