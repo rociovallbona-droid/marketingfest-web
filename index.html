@@ -155,6 +155,10 @@ a.item{display:block}
 .big{font-family:var(--display);font-weight:400;text-transform:uppercase;line-height:.9;letter-spacing:.005em;margin:0}
 .fine{font-weight:600;line-height:1.35;margin:0}
 
+/* cartel de bienvenida: lo primero que se ve al entrar */
+.hola{width:min(calc(var(--H) * 1.15), 88vw);background:#E85C2E;color:var(--ink);padding:0 7cqw;display:flex;flex-direction:column;justify-content:center;transform:rotate(-.6deg)}
+.hola .big{font-size:min(36cqh,27cqw);line-height:.95}
+.hola .big + .big{font-size:min(29cqh,22cqw)}
 .tri{display:flex;height:100%}
 .tri .poster{width:calc(var(--H) * .74)}
 .tri-a{padding:6cqh 6cqh;display:flex;flex-direction:column;justify-content:space-between}
@@ -528,6 +532,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
     <div class="track">
       <div class="wall-bg" aria-hidden="true"></div>
+
+      <!-- 0. Cartel de bienvenida -->
+      <div class="slot" style="--gap:60"><div class="paste" style="--i:0">
+        <div class="poster hola">
+          <p class="big">Hola</p>
+          <p class="big">estudiantes</p>
+          <p class="big">de la UBA</p>
+        </div>
+      </div></div>
 
       <!-- 1. Tríptico -->
       <div class="slot" style="--gap:70"><div class="paste" style="--i:0">
