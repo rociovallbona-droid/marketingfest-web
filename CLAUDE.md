@@ -87,7 +87,7 @@ Cada panel tiene su color de fondo plano de la paleta. La regla visual: la calle
 - **Datos de speakers:** se respeta lo que viene de la planilla o del deck, solo con correcciones de tipeo ("Mac donalds" → "McDonald's"). Nunca inventar títulos de charla. Si dice "XXX" o "a definir", se omite.
 - **Emilia Vrancic no está confirmada:** no mostrarla en el panel de influencers hasta que Ro avise.
 - **Amé Amor no está confirmada:** se sacó del panel de influencers; no mostrarla hasta que Ro avise.
-- **No se anuncian marcas no confirmadas.** Por eso Google, L'Oréal, Rappi, PedidosYa y Campari no aparecen. Los huecos de agenda se muestran como "Speaker a confirmar".
+- **No se anuncian marcas no confirmadas.** Por eso Google, L'Oréal, PedidosYa, Campari y Mercado Libre no aparecen. Rappi entró con Tamara Stronguin (miércoles 20:00). Los huecos de agenda se muestran como "Speaker a confirmar".
 
 ### Reglas de diseño que se vienen respetando
 
@@ -145,15 +145,15 @@ Cada panel tiene su color de fondo plano de la paleta. La regla visual: la calle
 
 1. **Avisar a la lista de pre-inscripción** (mail + WhatsApp) que ya abrió la inscripción oficial en mi.econ.uba.ar/marketingfest, y marcar `avisado` en la data table.
 2. **Sponsors de la 1ra edición:** cargados en `SPONSORS_ED1` (Tiendanube como main, Heineken 0.0, Gigared, DT Comunicación, Doble Dosis, FlashTag, Óptica Lof, Prometheo y Mikhuna Nikkei; 9 marcas). Falta el archivo del logo de Mikhuna: hoy se muestra como texto.
-3. **Speakers a confirmar:** martes 15:00 (era Luciana Danduono, se pasó a "?" a pedido de Ro), martes 15:45, miércoles 17:45 y miércoles 20:00. También falta un invitado del panel gamer y una invitada del panel de logística ("Iara o la otra").
-4. **Fotos que faltan:** Romina Fuentes (en el deck la foto está vacía), Natalia Landa, Norman Vietre, Agustín Arias, Sebastián Lutz y los moderadores.
+3. **Line up:** actualizado con la planilla del 22/10 (todos los horarios tienen speaker; ya no hay "Speaker a confirmar"). Todos están confirmados (las filas en rosa de la planilla no significan nada). Nombres confirmados por Ro: Sebastián Lutz (la planilla dice "Kutz") y Norman Ventre (no "Vietre").
+4. **Fotos que faltan:** Federico Bongiorno, Norman Ventre, Sergio Doval, Solana Epszteyn, Natalia Landa, Kevin Gofinkel, Mariano Garibini, Walter Costabel, Juan Pablo Brea, Santiago Giovannetti, Agustín Arias, Sebastián Lutz, Tamara Stronguin y los moderadores.
 5. **Discrepancias entre deck y planilla:**
    - el nombre del salón;
    - el horario del panel gamer: el deck dice 19:00, se usa 17:10 de la planilla;
    - el cargo de Mariano Félix Rica;
    - los números (+1500 / +25 contra 2000 / +30).
 6. **El link de FlashTag** para su logo de sponsor.
-7. **Títulos de charla "a definir":** Marcelo Romeo, Caro Dubi, el panel Kolod/Abadi, el panel Lookeo y Tomás Cazalá.
+7. **Títulos de charla "a definir":** Mariano Garibini, Aldana Abadi y Carolina Dubiansky, y Tomás Cazalá.
 8. **Precios de sponsorship:** están en el deck (Silver USD 1.500, Gold 2.500, Platinum 5.000, podcast 2.000, main 6.000). Se decidió **no** mostrarlos en la web pública salvo que Ro lo pida.
 
 ## Próximos pasos técnicos sugeridos
