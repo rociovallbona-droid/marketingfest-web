@@ -43,10 +43,9 @@ Cómo se resolvió:
 | 5 | "¿Y si voy un solo día?" | Afiche cian | `p-faq` |
 | 6 | Puerta entreabierta con neón "Detrás de escena", cartel "Solo personal autorizado" y credencial STAFF | Puerta de backstage | `p-organizan` |
 | 6b | Fotos pegadas con cinta + "Así se vivió la 1ra edición" | Collage de fotos impresas | `p-ed1` |
-| 7 | "Este espacio está libre." con cinta "Disponible" | Cartel en alquiler | `p-sponsors` |
 | — | "Fin del recorrido" en stencil + CTA | Pared | link a la inscripción |
 
-**Decisión de Ro: el cartel vacío "Este espacio está libre" se queda así.** Le encanta. Es la invitación a sumarse como sponsor. No ponerle logos.
+**El cartel "Este espacio está libre" se sacó de la pared** a pedido de Ro (falta poco para el evento). El panel `p-sponsors` se sigue abriendo desde la nav y desde "¿Querés sumarte?".
 
 ### Paneles (takeovers)
 
@@ -128,7 +127,8 @@ Cada panel tiene su color de fondo plano de la paleta. La regla visual: la calle
 - **`TEAM`**: fotos del equipo para "Detrás de escena" en `p-organizan` (`{src, alt}`); también se muestran las fotos de `GAL` con `team: true`.
 - **`LOGOS`**: los logos del apoyo institucional.
 - **`SPONSORS`**: los sponsors de esta edición (`{src, alt, url}`): DT Comunicación, Doble Dosis, FlashTag, Sushi Burger y Bengala.
-- **`MAIN_SPONSORS`**: el main sponsor de la 2da edición, **Heineken**, junto con **Heineken 0.0** (`{src, alt, url, tile}`; `tile: true` es un logo que trae su propio fondo, como la placa azul de 0.0). Se muestra grande en el bloque "Main sponsor" de la página (arriba de Sponsors), primero en `p-sponsors` y en la pantalla LED ("Main sponsor" / "Heineken"). Reemplazó al recuadro "Este lugar está libre" del panel; el cartel de la pared sigue igual.
+- **`MAIN_SPONSORS`**: el main sponsor de la 2da edición, **Heineken 0.0** (solo esa versión del logo, a pedido de Ro; `{src, alt, url}`).
+- **`MEDIA`**: los media partners (`{src, alt, url}`): Radio Simphony 91.3 y Radio UBA 87.9. Se muestran en la página (debajo de Sponsors) y en `p-sponsors`.
 - **`SPONSORS_ED1`**: los sponsors de la 1ra edición (`{src, alt, url, main}`). Se muestran en `p-sponsors` ("Nos acompañaron en la 1ra edición") y en `p-ed1`. Si `src` está vacío, `logoCell` muestra el nombre en Anton; `main: true` agrega la etiqueta "Main sponsor" (Tiendanube).
 - **`COLORS` / `DAYNAME`**: helpers.
 
