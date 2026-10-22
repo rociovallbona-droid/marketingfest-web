@@ -35,7 +35,6 @@ Cómo se resolvió:
 
 | # | Anuncio | Formato | Abre |
 |---|---|---|---|
-| 0 | "Hola estudiantes de la UBA" | Cartel naranja `#E85C2E` gigante, lo primero que se ve al entrar (no es clickeable) | — |
 | 1 | Tríptico (logo MKT Fest + "Conectá, innová y aprendé." / "2da edición" / "27 y 28 de octubre") | 3 afiches estilo Kaktus, amarillo / negro / rojo | `p-fest` |
 | 2 | Pantalla LED en poste | Reel 9:16 que cicla marcas y "Faltan N días" | `p-speakers` |
 | 2a | Heladera de Heineken 0.0 con porrones (main sponsor) | Heladera de kiosco | al tocarla caen porrones y aparece "¡Salud!" (`cheers()`) |
