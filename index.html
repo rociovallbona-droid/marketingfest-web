@@ -460,6 +460,9 @@ a.item{display:block}
 .pres img{height:14px;width:auto;display:block}
 .hud-rw{display:flex;flex-direction:column;align-items:flex-end}
 .hud .pres{white-space:nowrap}
+.hud-l{transition:opacity .3s,transform .3s}
+/* en el celu el HUD tapa el skyline: el mensaje de bienvenida se va al empezar a caminar, así se ven los carteles de las terrazas */
+@media (max-width:600px){.hud.walking .hud-l{opacity:0;transform:translateY(-10px)}}
 @media (max-width:600px){.hud .pres{font-size:.58rem;padding:.3rem .45rem;flex-direction:column;align-items:flex-start;gap:.2rem;white-space:normal}.hud .pres img{height:11px}}
 .after .pres{font-size:.9rem;padding:.5rem .8rem;margin:0 0 1.6rem}
 .after .pres img{height:22px}
@@ -975,7 +978,7 @@ $('#cr-cols').innerHTML=[1,2].map(d=>`<div class="day"><h3>${DAYNAME[d]} <small 
 /* ---------- skyline ---------- */
 let seed=7; const rnd=()=>{seed=(seed*16807)%2147483647;return (seed-1)/2147483646};
 function buildSkyline(w){
-  const H=200; let x=0, out='', nextBB=180;
+  const H=200; let x=0, out='', nextBB=40, bbEnd=-1;
   const ads=['#F3DA00','#EB462E','#A68ADE','#44BDDE','#2EA866'];
   while(x<w){
     const bw=40+rnd()*90, bh=60+rnd()*135;
@@ -984,16 +987,16 @@ function buildSkyline(w){
     if(x>=nextBB && bh<140){ // cartel de Heineken 0.0 en la terraza
       const bx=x+bw/2-84, by=H-bh-56;
       out+=`<rect x="${(bx+24).toFixed(1)}" y="${(by+41).toFixed(1)}" width="4" height="15" fill="var(--city)"/><rect x="${(bx+140).toFixed(1)}" y="${(by+41).toFixed(1)}" width="4" height="15" fill="var(--city)"/><rect x="${bx.toFixed(1)}" y="${by.toFixed(1)}" width="168" height="42" rx="3" fill="#fff" stroke="#0b5a35" stroke-width="2.5"/><image href="${MAIN_SPONSORS[0].src}" x="${(bx+9).toFixed(1)}" y="${(by+9.5).toFixed(1)}" width="150" height="23.6"/>`;
-      nextBB=x+520+rnd()*260; x+=bw+rnd()*6; continue;
+      nextBB=x+(innerWidth<600?240+rnd()*100:520+rnd()*260); bbEnd=bx+176; x+=bw+rnd()*6; continue;
     }
-    if(rnd()<.22){ const c=ads[Math.floor(rnd()*ads.length)]; out+=`<rect x="${(x+8).toFixed(1)}" y="${(H-bh-26).toFixed(1)}" width="${Math.min(60,bw-16).toFixed(1)}" height="22" fill="${c}"/><rect x="${(x+14).toFixed(1)}" y="${(H-bh-4).toFixed(1)}" width="3" height="4" fill="var(--city)"/>`; }
+    if(rnd()<.22 && x>bbEnd){ const c=ads[Math.floor(rnd()*ads.length)]; out+=`<rect x="${(x+8).toFixed(1)}" y="${(H-bh-26).toFixed(1)}" width="${Math.min(60,bw-16).toFixed(1)}" height="22" fill="${c}"/><rect x="${(x+14).toFixed(1)}" y="${(H-bh-4).toFixed(1)}" width="3" height="4" fill="var(--city)"/>`; }
     x+=bw+rnd()*6;
   }
   $('.skyline').innerHTML=`<svg viewBox="0 0 ${w} ${H}" preserveAspectRatio="xMinYMax meet">${out}</svg>`;
 }
 
 /* ---------- the walk ---------- */
-const street=$('#calle'), scene=$('.scene'), track=$('.track'), sky=$('.skyline'), plane=$('.floor-plane'), bar=$('.hud-bar i'), hint=$('.hint');
+const hud=$('.hud'), street=$('#calle'), scene=$('.scene'), track=$('.track'), sky=$('.skyline'), plane=$('.floor-plane'), bar=$('.hud-bar i'), hint=$('.hint');
 let travel=0, sceneH=0;
 function layout(){
   const H = track.getBoundingClientRect().height;
@@ -1014,6 +1017,7 @@ function onScroll(){
   plane.style.backgroundPosition=`${-x}px 0, ${-x}px 0`;
   bar.style.width=(p*100)+'%';
   hint.classList.toggle('gone', p>.015);
+  hud.classList.toggle('walking', p>.015);
   ticking=false;
 }
 addEventListener('scroll',()=>{ if(!ticking){ticking=true;requestAnimationFrame(onScroll);} },{passive:true});
