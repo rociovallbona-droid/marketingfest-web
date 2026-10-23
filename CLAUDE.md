@@ -48,7 +48,7 @@ Cómo se resolvió:
 | 7 | Un anuncio por cada sponsor de `SPONSORS`, generado por JS antes del final. Formatos rotativos (`SP_FORMATS`): chapa, afiche pegado, sticker, toldo, caja de luz y volante | Varios | `p-sponsors` |
 | — | "Fin del recorrido" en stencil + CTA | Pared | link a la inscripción |
 
-**Heineken 0.0 tiene visibilidad extra** (pedido de Ro): carteles en las terrazas del skyline (`buildSkyline`), "Presentado por Heineken 0.0" en el HUD y en la cuenta regresiva, la heladera de la pared y la lluvia de porrones (`BOTTLE`, con la foto del porrón que pasó Ro). La lluvia respeta `prefers-reduced-motion`: en ese caso solo aparece el cartel "¡Salud!".
+**Heineken 0.0 tiene visibilidad extra** (pedido de Ro): carteles en las terrazas del skyline (`buildSkyline`; en mobile van más seguidos y el mensaje de bienvenida del HUD se esconde al empezar a scrollear, porque si no tapa el skyline), "Presentado por Heineken 0.0" en el HUD y en la cuenta regresiva, la heladera de la pared y la lluvia de porrones (`BOTTLE`, con la foto del porrón que pasó Ro). La lluvia respeta `prefers-reduced-motion`: en ese caso solo aparece el cartel "¡Salud!".
 
 **El cartel "Este espacio está libre" se sacó de la pared** a pedido de Ro (falta poco para el evento). El panel `p-sponsors` se sigue abriendo desde la nav y desde "¿Querés sumarte?".
 
