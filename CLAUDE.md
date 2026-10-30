@@ -15,7 +15,7 @@ La dueña del proyecto es **Ro (Rocío Vallbona)**, Responsable Comercial en DT 
 **Objetivos de la web:**
 1. Que la gente **descargue las presentaciones** del Marketing Fest 2026.
 2. Que vaya a **YouTube** a ver los capítulos del podcast.
-3. Que **las marcas contraten a SNFM**: contenido de marca en la calle, videos y UGC (con alguien de SNFM o de la empresa como cara) y organización de eventos. El contacto es el WhatsApp de Ro.
+3. Que **las marcas contraten a SNFM**: contenido de marca en la calle, videos y UGC (con alguien de SNFM o de la empresa como cara) y organización de eventos. El contacto para servicios es el WhatsApp de **Juan Pedro** (+54 9 11 3478-4373).
 
 ## Concepto: "El programa"
 
@@ -62,7 +62,7 @@ En el menú, "Marketing Fest" y "Servicios" tienen un desplegable (en desktop) c
 
 - **Español rioplatense con voseo, siempre:** "Descargá", "Mirá", "Escribile a Ro", "Bajalas en PDF".
 - **Directo, cercano y con humor de calle**, sin solemnidad institucional.
-- **Los CTA dicen exactamente qué pasa:** "Descargar PDF", "Ver el capítulo", "Quiero contenido en la calle", "Escribile a Ro".
+- **Los CTA dicen exactamente qué pasa:** "Descargar PDF", "Ver el capítulo", "Quiero contenido en la calle", "Escribile a Juan Pedro".
 - **Sin anglicismos innecesarios**, salvo los propios del rubro (speaker, sponsor, break, reel).
 - **Datos de speakers:** se respeta lo que viene de la planilla o del deck, solo con correcciones de tipeo. Nunca inventar títulos de charla.
 - **Números:** no inventar. 1ra edición: +1200 personas y 16 speakers. 2da edición: **más de 2600 personas** (dato de Ro, 30/10/2026) y +30 speakers. Entre las dos ediciones, **más de 60 speakers** (dato de Ro). La cantidad de charlas sale de `DATA`.
@@ -92,7 +92,7 @@ Sitio estático. Las páginas se **generan** con un script de Node sin dependenc
 
 ### Datos (`data.js`)
 
-- **`CONFIG`:** `site` (dominio, para SEO), `youtube`, `instagram` y `whatsapp` (wa.me al 11 5134-1115 de Ro, con mensaje precargado).
+- **`CONFIG`:** `site` (dominio, para SEO), `youtube`, `instagram`, `contacto` (nombre y teléfono que se muestran) y `whatsapp` (wa.me al 11 3478-4373 de Juan Pedro, con mensaje precargado). Para cambiar el contacto de servicios se tocan solo `contacto` y `whatsapp`.
 - **`MANU`:** `img`, `avatar`, `video` y `poster` de Manu (ver arriba).
 - **`EPISODES`:** capítulos del podcast, del más nuevo al más viejo: `{n, id, t, g, b, hot, fest}`. `id` es el código de YouTube; si está vacío, el capítulo lleva al canal y la miniatura se arma con el título (pasa con el #9 de Belu Fiora, que no tiene link todavía). Las miniaturas salen de `i.ytimg.com/vi/<id>/hqdefault.jpg`.
 - **`REELS`:** códigos de los reels de Instagram; el primero (`DYiW6gNxA1m`) va grande como destacado. Se muestran con el embed oficial de IG, que se carga recién cuando la sección está cerca.
@@ -119,5 +119,5 @@ Sitio estático. Las páginas se **generan** con un script de Node sin dependenc
 - Correr `node build.js` y probar con un servidor local (`python3 -m http.server`).
 - Probar desktop 1440×900 y mobile 390×844, en modo claro y oscuro, todas las páginas.
 - Que cada "Descargar PDF" baje el archivo correcto y que los capítulos abran el video correcto en YouTube.
-- Que los botones de WhatsApp abran el chat con Ro.
+- Que los botones de WhatsApp abran el chat con Juan Pedro.
 - Que no aparezca ninguna marca no confirmada y que todo el copy esté en voseo.

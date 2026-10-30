@@ -88,7 +88,7 @@ function band(k, P, text = 'Contenido en la calle, videos y UGC, eventos o tu ma
     <div>
       <a class="wa" href="${esc(CONFIG.whatsapp)}" ${ext} data-wa>
         ${icon(P, 'wa', 'w')}
-        <div><strong>Escribile a Ro</strong><span>Por WhatsApp, al 11 5134-1115</span></div>
+        <div><strong>Escribile a ${esc(CONFIG.contacto.nombre)}</strong><span>Por WhatsApp, al ${esc(CONFIG.contacto.tel)}</span></div>
       </a>
       <p class="also">O seguinos en <a href="${CONFIG.instagram}" ${ext}>@senosfuedelasmanos.ok</a>.</p>
     </div>
@@ -101,7 +101,7 @@ function qa(k) {
     { q: '¿Dónde bajo las presentaciones del Fest?', a: `Están en <a href="${rel(k, 'f2026')}#descargas">la página de la 2da edición</a>, separadas por día. Tocá "Descargar PDF" en la charla que quieras.` },
     { q: '¿Dónde veo el podcast?', a: `En nuestro <a href="${CONFIG.youtube}" ${ext}>canal de YouTube</a>. Si no sabés por cuál arrancar, andá por el de Con el Kora o el de McDonald's. Están todos en <a href="${rel(k, 'podcast')}">la página del podcast</a>.` },
     { q: 'Tengo una marca, ¿qué pueden hacer conmigo?', a: `Mirá <a href="${rel(k, 'servicios')}">nuestros servicios</a>: <a href="${rel(k, 'calle')}">Contenido en la calle</a>, <a href="${rel(k, 'videos')}">videos y UGC</a> con nosotros o alguien de tu equipo como cara, <a href="${rel(k, 'eventos')}">eventos</a> como el Marketing Fest y tu marca en el podcast.` },
-    { q: '¿Cuánto sale?', a: `Depende de la idea. Escribile a Ro por <a href="${esc(CONFIG.whatsapp)}" ${ext}>WhatsApp</a>, contale qué tenés en mente y te pasa una propuesta.` },
+    { q: '¿Cuánto sale?', a: `Depende de la idea. Escribile a ${esc(CONFIG.contacto.nombre)} por <a href="${esc(CONFIG.whatsapp)}" ${ext}>WhatsApp</a>, contale qué tenés en mente y te pasa una propuesta.` },
     { q: '¿Quién sos?', a: 'Soy Manu, el vocero con IA de Se Nos Fue de las Manos. Te ayudo a encontrar lo que buscás en la web. Para algo más, te paso con el equipo.' },
   ];
 }

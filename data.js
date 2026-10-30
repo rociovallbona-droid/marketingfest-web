@@ -11,8 +11,9 @@ const CONFIG = {
   site: '',
   youtube: 'https://www.youtube.com/@SeNosFueDeLasManos',
   instagram: 'https://www.instagram.com/senosfuedelasmanos.ok/',
-  /* Contacto de marcas: WhatsApp de Ro. El texto se precarga en el chat. */
-  whatsapp: 'https://wa.me/5491151341115?text=' + encodeURIComponent('¡Hola Ro! Vi la web de Se Nos Fue de las Manos y quiero hacer algo con mi marca.')
+  /* Contacto para servicios (marcas): nombre, teléfono como se muestra y link de WhatsApp con el texto precargado */
+  contacto: { nombre: 'Juan Pedro', tel: '11 3478-4373' },
+  whatsapp: 'https://wa.me/5491134784373?text=' + encodeURIComponent('¡Hola Juan Pedro! Vi la web de Se Nos Fue de las Manos y quiero hacer algo con mi marca.')
 };
 
 /* Manu, el vocero con IA de SNFM.
