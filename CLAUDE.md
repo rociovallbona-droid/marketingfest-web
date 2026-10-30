@@ -24,7 +24,7 @@ La web es un programa de SNFM y **Manu, el vocero con IA de SNFM, es el conducto
 - **Hero (#00):** "Se nos fue de las manos" gigante, chips con números y la tarjeta de Manu con su burbuja de bienvenida.
 - **Cada página tiene una línea de Manu** (`.says`) que la presenta.
 - **"Preguntale a Manu":** botón flotante que abre un `<dialog>` con preguntas y respuestas armadas (`QA` en el script). No es IA de verdad; si algún día se conecta a una IA, sería vía n8n.
-- **Manu es una mano ilustrada** con gorra y zapatillas, que muestra un celular y señala (fondo amarillo propio `#FBE90B`). `MANU.img` (`assets/img/manu.webp`) va entera en la tarjeta del inicio y `MANU.avatar` (`assets/img/manu-cara.webp`, recorte de la cara) en los círculos chicos y en el botón "Preguntale a Manu". Si llega un video, va en `MANU.video` y reemplaza a la imagen en la tarjeta.
+- **Manu es una mano ilustrada** con gorra y zapatillas, que muestra un celular y señala (fondo amarillo propio `#FBE90B`). `MANU.img` (`assets/img/manu.webp`) va entera en la tarjeta del inicio y `MANU.avatar` (`assets/img/manu-avatar.webp`, recorte de Manu de cuerpo casi entero) en los círculos chicos y en el botón "Preguntale a Manu". Si llega un video, va en `MANU.video` y reemplaza a la imagen en la tarjeta.
 
 ### Páginas
 

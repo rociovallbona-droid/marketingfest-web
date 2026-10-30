@@ -16,9 +16,9 @@ const CONFIG = {
 };
 
 /* Manu, el vocero con IA de SNFM.
-   img: la ilustración entera (va en la tarjeta del inicio) · avatar: recorte cuadrado de la cara (va en los círculos chicos)
+   img: la ilustración entera (va en la tarjeta del inicio) · avatar: recorte cuadrado de Manu (va en los círculos chicos)
    video: mp4 vertical opcional; si está, reemplaza a img en la tarjeta (poster: su primer cuadro). */
-const MANU = { video: '', poster: '', img: 'assets/img/manu.webp', avatar: 'assets/img/manu-cara.webp' };
+const MANU = { video: '', poster: '', img: 'assets/img/manu.webp', avatar: 'assets/img/manu-avatar.webp' };
 
 /* Capítulos del podcast, del más nuevo al más viejo.
    id: el código del video de YouTube (lo que va después de youtu.be/). Si está vacío, el capítulo lleva al canal.
