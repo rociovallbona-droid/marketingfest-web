@@ -67,8 +67,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <p class="num">#02</p>
     <h1>Marketing Fest</h1>
     <p class="lead">El evento de marketing más grande de la Facultad de Ciencias Económicas de la UBA, abierto a todo el mundo, libre y gratuito. Lo hacemos para democratizar el conocimiento: que no tengas que pagar una fortuna para ver a los capos del rubro contar lo que hacen bien y entender cómo hacer crecer tu negocio o tu carrera profesional.</p>
-    <div class="says"><span class="av" aria-hidden="true"><img src="../assets/img/manu-avatar.webp" alt=""></span><p><b>Manu</b>Ya van dos ediciones y más de 60 speakers. Elegí cuál querés ver.</p></div>
-    <div class="btns"><a class="cta" href="#tercera">Avisame de la 3ra edición <svg aria-hidden="true"><use href="../assets/icons.svg#arr"/></svg></a></div><img class="mf-logo" style="margin-top:2rem" src="../assets/img/logos/marketing-fest-blanco.png" alt="Marketing Fest, segunda edición">
+    <div class="says"><span class="av" aria-hidden="true"><img src="../assets/img/manu-avatar.webp" alt=""></span><p><b>Manu</b>Ya van dos ediciones, más de 3800 personas y más de 60 speakers. Elegí cuál querés ver.</p></div>
+    <div class="btns"><a class="cta" href="#tercera">Avisame de la 3ra edición <svg aria-hidden="true"><use href="../assets/icons.svg#arr"/></svg></a><a class="ghost" href="#speaker">Quiero ser speaker</a><a class="ghost" href="#sponsor-3ra">Quiero ser sponsor</a></div><img class="mf-logo" style="margin-top:2rem" src="../assets/img/logos/marketing-fest-blanco.png" alt="Marketing Fest, segunda edición">
   </div>
 </section>
 <section class="ch" aria-labelledby="t-eds">
@@ -87,6 +87,56 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
   </div>
 </section>
+<section class="ch aviso-wrap" id="speaker" aria-labelledby="t-speaker">
+  <div class="wrap">
+    <div class="aviso sumate">
+      <div>
+        <p class="num">Gratis · 3ra edición</p>
+        <h2 id="t-speaker">Sé speaker en el Marketing Fest</h2>
+        <p class="lead">¿Querés que tu marca suba al escenario? Contanos qué le vas a dejar a la gente: qué aprende, qué se lleva para su negocio o su carrera. Elegimos las charlas por lo que suman, no por quién paga.</p>
+        <p class="free">Ser speaker es gratuito.</p>
+      </div>
+      <form class="aviso-form" data-form="speaker-fest" data-hook="https://n8n.dtcomunicacion.com/webhook/formularios-snfm" data-asunto="Propuesta de speaker para el Marketing Fest" data-intro="¡Hola, Juampe! ¿Cómo estás? Te escribo desde la web de Se Nos Fue de las Manos porque quiero proponer una charla para el Marketing Fest." data-ok="Recibimos tu propuesta de charla. La leemos con el equipo y te escribimos." data-wa-base="https://wa.me/5491134784373" novalidate>
+        <div class="f"><label for="speaker-nombre">Nombre y apellido</label><input id="speaker-nombre" name="nombre" data-label="Nombre y apellido" data-err="Escribí tu nombre y apellido." required type="text" autocomplete="name"></div>
+        <div class="f"><label for="speaker-marca">Marca o empresa</label><input id="speaker-marca" name="marca" data-label="Marca o empresa" data-err="Contanos de qué marca o empresa sos." required type="text" autocomplete="organization"></div>
+        <div class="f"><label for="speaker-cargo">Tu cargo</label><input id="speaker-cargo" name="cargo" data-label="Tu cargo" data-err="Contanos tu cargo." required placeholder="Por ejemplo: gerente de marketing" type="text"></div>
+        <div class="f"><label for="speaker-email">Email</label><input id="speaker-email" name="email" data-label="Email" data-err="Revisá el email: le falta algo (por ejemplo, la @ o el dominio)." required type="email" autocomplete="email"></div>
+        <div class="f"><label for="speaker-whatsapp">Teléfono (WhatsApp)</label><input id="speaker-whatsapp" name="whatsapp" data-label="Teléfono (WhatsApp)" data-err="El teléfono tiene que tener al menos 10 números, con la característica (por ejemplo, 11 2345 6789)." required placeholder="11 2345 6789" type="tel" inputmode="tel" autocomplete="tel"></div>
+        <div class="f"><label for="speaker-propuesta">Tu propuesta de valor: ¿qué se lleva la gente de tu charla?</label><textarea id="speaker-propuesta" name="propuesta" data-label="Tu propuesta de valor: ¿qué se lleva la gente de tu charla?" data-err="Contanos tu propuesta de valor en al menos un par de frases: qué aprende la gente con tu charla." data-min="40" required placeholder="Por ejemplo: cómo armamos una comunidad de 100 mil personas sin pauta, con los números reales." rows="4"></textarea></div>
+        <div class="f"><label for="speaker-link">LinkedIn o web de la marca <small>(opcional)</small></label><input id="speaker-link" name="link" data-label="LinkedIn o web de la marca" data-err="Completá este campo." placeholder="https://" type="url" inputmode="url"></div>
+        <p class="err" role="alert"></p>
+        <button class="cta ink" type="submit">Mandar mi propuesta <svg aria-hidden="true"><use href="../assets/icons.svg#arr"/></svg></button>
+        
+      </form>
+      <div class="aviso-ok" hidden tabindex="-1"></div>
+    </div>
+  </div>
+</section>
+<section class="ch aviso-wrap" id="sponsor-3ra" aria-labelledby="t-sponsor-3ra">
+  <div class="wrap">
+    <div class="aviso sumate">
+      <div>
+        <p class="num">3ra edición</p>
+        <h2 id="t-sponsor-3ra">Sumá tu marca como sponsor</h2>
+        <p class="lead">Más de 2600 personas en la 2da edición, entre estudiantes, profesionales y emprendedores. Dejanos tus datos y te mandamos las opciones para la 3ra.</p>
+        
+      </div>
+      <form class="aviso-form" data-form="sponsor-fest" data-hook="https://n8n.dtcomunicacion.com/webhook/formularios-snfm" data-asunto="Una marca quiere ser sponsor de la 3ra edición del Marketing Fest" data-intro="¡Hola, Juampe! ¿Cómo estás? Te escribo desde la web de Se Nos Fue de las Manos porque quiero que mi marca sea sponsor de la 3ra edición del Marketing Fest." data-ok="Recibimos tus datos. Te escribimos con las opciones para la 3ra edición." data-wa-base="https://wa.me/5491134784373" novalidate>
+        <div class="f"><label for="sponsor-3ra-nombre">Nombre y apellido</label><input id="sponsor-3ra-nombre" name="nombre" data-label="Nombre y apellido" data-err="Escribí tu nombre y apellido." required type="text" autocomplete="name"></div>
+        <div class="f"><label for="sponsor-3ra-marca">Marca o empresa</label><input id="sponsor-3ra-marca" name="marca" data-label="Marca o empresa" data-err="Contanos de qué marca o empresa sos." required type="text" autocomplete="organization"></div>
+        <div class="f"><label for="sponsor-3ra-cargo">Tu cargo</label><input id="sponsor-3ra-cargo" name="cargo" data-label="Tu cargo" data-err="Contanos tu cargo." required placeholder="Por ejemplo: gerente de marketing" type="text"></div>
+        <div class="f"><label for="sponsor-3ra-email">Email</label><input id="sponsor-3ra-email" name="email" data-label="Email" data-err="Revisá el email: le falta algo (por ejemplo, la @ o el dominio)." required type="email" autocomplete="email"></div>
+        <div class="f"><label for="sponsor-3ra-whatsapp">Teléfono (WhatsApp)</label><input id="sponsor-3ra-whatsapp" name="whatsapp" data-label="Teléfono (WhatsApp)" data-err="El teléfono tiene que tener al menos 10 números, con la característica (por ejemplo, 11 2345 6789)." required placeholder="11 2345 6789" type="tel" inputmode="tel" autocomplete="tel"></div>
+        <fieldset class="f" data-group="interes" data-label="¿Qué te interesa?" data-err="Elegí al menos una opción (si no sabés, marcá &quot;Todavía no sé&quot;)." data-req><legend>¿Qué te interesa? <small>Elegí uno o más</small></legend><div class="roles"><label class="role"><input type="checkbox" name="interes" value="Main sponsor"><span>Main sponsor</span></label><label class="role"><input type="checkbox" name="interes" value="Sponsor"><span>Sponsor</span></label><label class="role"><input type="checkbox" name="interes" value="Stand o activación"><span>Stand o activación</span></label><label class="role"><input type="checkbox" name="interes" value="Sorteo de productos"><span>Sorteo de productos</span></label><label class="role"><input type="checkbox" name="interes" value="Todavía no sé"><span>Todavía no sé</span></label></div></fieldset>
+        <div class="f"><label for="sponsor-3ra-mensaje">Contanos algo más <small>(opcional)</small></label><textarea id="sponsor-3ra-mensaje" name="mensaje" data-label="Contanos algo más" data-err="Completá este campo." placeholder="Por ejemplo: queremos hacer sampling de un producto nuevo." rows="3"></textarea></div>
+        <p class="err" role="alert"></p>
+        <button class="cta ink" type="submit">Quiero ser sponsor <svg aria-hidden="true"><use href="../assets/icons.svg#arr"/></svg></button>
+        
+      </form>
+      <div class="aviso-ok" hidden tabindex="-1"></div>
+    </div>
+  </div>
+</section>
 <section class="ch aviso-wrap" id="tercera" aria-labelledby="t-tercera">
   <div class="wrap">
     <div class="aviso">
@@ -95,7 +145,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <h2 id="t-tercera">Avisame cuando salga la 3ra</h2>
         <p class="lead">Dejanos tus datos y te escribimos apenas abra la inscripción. Es libre y gratuita, pero los cupos vuelan.</p>
       </div>
-      <form class="aviso-form" data-aviso="https://n8n.dtcomunicacion.com/webhook/preinscripcion-mkt-fest" novalidate>
+      <form class="aviso-form" data-aviso="https://n8n.dtcomunicacion.com/webhook/preinscripcion-mkt-fest" data-hook="https://n8n.dtcomunicacion.com/webhook/formularios-snfm" novalidate>
         <div class="f"><label for="tercera-n">Nombre y apellido</label><input id="tercera-n" name="nombre" autocomplete="name" required></div>
         <div class="f"><label for="tercera-e">Email</label><input id="tercera-e" name="email" type="email" autocomplete="email" required></div>
         <div class="f"><label for="tercera-t">Teléfono (WhatsApp)</label><input id="tercera-t" name="whatsapp" type="tel" inputmode="tel" autocomplete="tel" placeholder="11 2345 6789" required></div>
@@ -149,7 +199,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="chat-log" id="chat-log" aria-live="polite"></div>
   <div class="chat-q" id="chat-q"></div>
 </dialog>
-<script>window.QA=[{"q":"¿Dónde bajo las presentaciones del Fest?","a":"Están en <a href=\"../marketing-fest/2026/#descargas\">la página de la 2da edición</a>, separadas por día. Tocá \"Descargar PDF\" en la charla que quieras."},{"q":"¿Cuándo es la 3ra edición del Fest?","a":"Todavía no tiene fecha. Dejá tus datos en <a href=\"../marketing-fest/#tercera\">Avisame cuando salga la 3ra</a> y te escribimos apenas abra la inscripción."},{"q":"¿Dónde veo el podcast?","a":"En nuestro <a href=\"https://www.youtube.com/@SeNosFueDeLasManos\" target=\"_blank\" rel=\"noopener\">canal de YouTube</a>. Si no sabés por cuál arrancar, andá por el de Con el Kora o el de McDonald's. Están todos en <a href=\"../podcast/\">la página del podcast</a>."},{"q":"Tengo una marca, ¿qué pueden hacer conmigo?","a":"Mirá <a href=\"../servicios/\">nuestros servicios</a>: <a href=\"../servicios/contenido-en-la-calle/\">Contenido en la calle</a>, <a href=\"../servicios/videos-y-ugc/\">videos y UGC</a> con nosotros o alguien de tu equipo como cara, <a href=\"../servicios/eventos/\">eventos</a> como el Marketing Fest y tu marca en el podcast."},{"q":"¿Cómo me sumo a Se Nos Fue?","a":"Anotate en <a href=\"../sumate/\">Sumate</a> y contanos en qué podés ayudar. Ojo: no es remunerado, lo hacemos por amor al marketing."},{"q":"¿Mi marca puede ser sponsor del podcast?","a":"¡Sí! Sponsorear solo el podcast sale 2.000 USD. Mirá <a href=\"../servicios/sponsor-del-podcast/\">qué incluye</a> o escribile directo a Juan Pedro por <a href=\"https://wa.me/5491134784373?text=%C2%A1Hola%2C%20Juampe!%20%C2%BFC%C3%B3mo%20est%C3%A1s%3F%20Te%20escribo%20desde%20la%20web%20de%20Se%20Nos%20Fue%20de%20las%20Manos%20porque%20quiero%20que%20mi%20marca%20sea%20sponsor%20del%20podcast.\" target=\"_blank\" rel=\"noopener\">WhatsApp</a>."},{"q":"¿Cuánto sale?","a":"Depende de la idea. Escribile a Juan Pedro por <a href=\"https://wa.me/5491134784373?text=%C2%A1Hola%2C%20Juampe!%20%C2%BFC%C3%B3mo%20est%C3%A1s%3F%20Te%20escribo%20desde%20la%20web%20de%20Se%20Nos%20Fue%20de%20las%20Manos%20para%20trabajar%20juntos.\" target=\"_blank\" rel=\"noopener\">WhatsApp</a>, contale qué tenés en mente y te pasa una propuesta."},{"q":"¿Quién sos?","a":"Soy Manu, el vocero con IA de Se Nos Fue de las Manos. Te ayudo a encontrar lo que buscás en la web. Para algo más, te paso con el equipo."}];</script>
+<script>window.QA=[{"q":"¿Dónde bajo las presentaciones del Fest?","a":"Están en <a href=\"../marketing-fest/2026/#descargas\">la página de la 2da edición</a>, separadas por día. Tocá \"Descargar PDF\" en la charla que quieras."},{"q":"¿Cuándo es la 3ra edición del Fest?","a":"Todavía no tiene fecha. Dejá tus datos en <a href=\"../marketing-fest/#tercera\">Avisame cuando salga la 3ra</a> y te escribimos apenas abra la inscripción."},{"q":"¿Dónde veo el podcast?","a":"En nuestro <a href=\"https://www.youtube.com/@SeNosFueDeLasManos\" target=\"_blank\" rel=\"noopener\">canal de YouTube</a>. Si no sabés por cuál arrancar, andá por el de Con el Kora o el de McDonald's. Están todos en <a href=\"../podcast/\">la página del podcast</a>."},{"q":"Tengo una marca, ¿qué pueden hacer conmigo?","a":"Mirá <a href=\"../servicios/\">nuestros servicios</a>: <a href=\"../servicios/contenido-en-la-calle/\">Contenido en la calle</a>, <a href=\"../servicios/videos-y-ugc/\">videos y UGC</a> con nosotros o alguien de tu equipo como cara, <a href=\"../servicios/eventos/\">eventos</a> como el Marketing Fest y tu marca en el podcast."},{"q":"¿Cómo me sumo a Se Nos Fue?","a":"Anotate en <a href=\"../sumate/\">Sumate</a> y contanos en qué podés ayudar. Ojo: no es remunerado, lo hacemos por amor al marketing."},{"q":"¿Mi marca puede ser sponsor del podcast?","a":"¡Sí! Sponsorear solo el podcast sale 2.000 USD. Mirá <a href=\"../servicios/sponsor-del-podcast/\">qué incluye</a> o escribile directo a Juan Pedro por <a href=\"https://wa.me/5491134784373?text=%C2%A1Hola%2C%20Juampe!%20%C2%BFC%C3%B3mo%20est%C3%A1s%3F%20Te%20escribo%20desde%20la%20web%20de%20Se%20Nos%20Fue%20de%20las%20Manos%20porque%20quiero%20que%20mi%20marca%20sea%20sponsor%20del%20podcast.\" target=\"_blank\" rel=\"noopener\">WhatsApp</a>."},{"q":"¿Puedo hacer un capítulo del podcast sin ser sponsor?","a":"¡Sí, y es gratis! Proponé tu capítulo en <a href=\"../podcast/#invitado\">Vení al podcast</a>."},{"q":"¿Cómo hago para ser speaker en el Fest?","a":"Es gratis. Contanos tu propuesta de valor (qué se lleva la gente de tu charla) en <a href=\"../marketing-fest/#speaker\">Sé speaker en el Marketing Fest</a>."},{"q":"¿Cómo sumo mi marca como sponsor de la 3ra edición?","a":"Dejanos tus datos en <a href=\"../marketing-fest/#sponsor-3ra\">Sumá tu marca como sponsor</a> y te mandamos las opciones."},{"q":"¿Cuánto sale?","a":"Depende de la idea. Escribile a Juan Pedro por <a href=\"https://wa.me/5491134784373?text=%C2%A1Hola%2C%20Juampe!%20%C2%BFC%C3%B3mo%20est%C3%A1s%3F%20Te%20escribo%20desde%20la%20web%20de%20Se%20Nos%20Fue%20de%20las%20Manos%20para%20trabajar%20juntos.\" target=\"_blank\" rel=\"noopener\">WhatsApp</a>, contale qué tenés en mente y te pasa una propuesta."},{"q":"¿Quién sos?","a":"Soy Manu, el vocero con IA de Se Nos Fue de las Manos. Te ayudo a encontrar lo que buscás en la web. Para algo más, te paso con el equipo."}];</script>
 <script src="../assets/site.js" defer></script>
 </body>
 </html>

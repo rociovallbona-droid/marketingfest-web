@@ -100,6 +100,99 @@ function band(k, P, text = 'Contenido en la calle, videos y UGC, eventos o tu ma
 </section>`;
 }
 
+/* Formularios (capítulo del podcast, speaker, sponsor de la 3ra, Sumate).
+   Mandan los datos a CONFIG.formsWebhook (n8n, que avisa por mail al equipo). Si el webhook no responde,
+   ofrecen mandar lo mismo por WhatsApp al contacto, así no se pierde nada.
+   fields: [name, label, {type: text|email|tel|url|chips|check, req, ph, rows, min, err, options}] */
+const ERR = {
+  nombre: 'Escribí tu nombre y apellido.',
+  email: 'Revisá el email: le falta algo (por ejemplo, la @ o el dominio).',
+  tel: 'El teléfono tiene que tener al menos 10 números, con la característica (por ejemplo, 11 2345 6789).',
+};
+function formBlock(k, P, { id, tipo, num, h, lead, free, intro, asunto, fields, btn, ok, fine, style = '' }) {
+  const field = ([name, label, o = {}]) => {
+    const req = o.req !== false;
+    const err = o.err || ERR[name] || (o.type === 'email' ? ERR.email : o.type === 'tel' ? ERR.tel : 'Completá este campo.');
+    const data = `data-label="${esc(label)}" data-err="${esc(err)}"${o.min ? ` data-min="${o.min}"` : ''}`;
+    if (o.type === 'chips') return `<fieldset class="f" data-group="${name}" ${data}${req ? ' data-req' : ''}><legend>${esc(label)} <small>${req ? 'Elegí uno o más' : '(opcional)'}</small></legend><div class="roles">${o.options.map(v => `<label class="role"><input type="checkbox" name="${name}" value="${esc(v)}"><span>${esc(v)}</span></label>`).join('')}</div></fieldset>`;
+    if (o.type === 'check') return `<label class="check"><input type="checkbox" name="${name}" ${data} required><span>${esc(label)}</span></label>`;
+    const attrs = `id="${id}-${name}" name="${name}" ${data}${req ? ' required' : ''}${o.ph ? ` placeholder="${esc(o.ph)}"` : ''}`;
+    const auto = o.type === 'tel' ? ' inputmode="tel" autocomplete="tel"' : o.type === 'email' ? ' autocomplete="email"' : o.type === 'url' ? ' inputmode="url"' : name === 'nombre' ? ' autocomplete="name"' : name === 'marca' ? ' autocomplete="organization"' : '';
+    const input = o.rows ? `<textarea ${attrs} rows="${o.rows}"></textarea>` : `<input ${attrs} type="${o.type || 'text'}"${auto}>`;
+    return `<div class="f"><label for="${id}-${name}">${esc(label)}${req ? '' : ' <small>(opcional)</small>'}</label>${input}</div>`;
+  };
+  return `<section class="ch aviso-wrap" id="${id}" aria-labelledby="t-${id}"${style ? ` style="${style}"` : ''}>
+  <div class="wrap">
+    <div class="aviso sumate">
+      <div>
+        <p class="num">${num}</p>
+        <h2 id="t-${id}">${h}</h2>
+        <p class="lead">${lead}</p>
+        ${free ? `<p class="free">${free}</p>` : ''}
+      </div>
+      <form class="aviso-form" data-form="${tipo}" data-hook="${esc(CONFIG.formsWebhook)}" data-asunto="${esc(asunto)}" data-intro="${esc(intro)}" data-ok="${esc(ok)}" data-wa-base="${esc(CONFIG.whatsapp.split('?')[0])}" novalidate>
+        ${fields.map(field).join('\n        ')}
+        <p class="err" role="alert"></p>
+        <button class="cta ink" type="submit">${btn} ${icon(P, 'arr')}</button>
+        ${fine ? `<p class="fine">${fine}</p>` : ''}
+      </form>
+      <div class="aviso-ok" hidden tabindex="-1"></div>
+    </div>
+  </div>
+</section>`;
+}
+const F = {
+  nombre: ['nombre', 'Nombre y apellido'],
+  marca: ['marca', 'Marca o empresa', { err: 'Contanos de qué marca o empresa sos.' }],
+  cargo: ['cargo', 'Tu cargo', { ph: 'Por ejemplo: gerente de marketing', err: 'Contanos tu cargo.' }],
+  email: ['email', 'Email', { type: 'email' }],
+  tel: ['whatsapp', 'Teléfono (WhatsApp)', { type: 'tel', ph: '11 2345 6789' }],
+};
+const hola = q => `¡Hola, Juampe! ¿Cómo estás? Te escribo desde la web de Se Nos Fue de las Manos ${q}`;
+const podcastForm = (k, P) => formBlock(k, P, {
+  id: 'invitado', tipo: 'capitulo-podcast', asunto: 'Quieren hacer un capítulo del podcast',
+  num: 'Gratis', h: 'Vení al podcast',
+  lead: '¿Tu marca tiene una historia para contar? Grabamos un capítulo con vos para mostrar la cocina de tu marketing. No hace falta ser sponsor.',
+  free: 'Participar de un capítulo es gratuito.',
+  intro: hola('porque quiero hacer un capítulo del podcast.'),
+  btn: 'Quiero hacer un capítulo', ok: 'Recibimos tu propuesta. Te escribimos para coordinar el capítulo.',
+  fields: [F.nombre, F.marca, F.cargo, F.email, F.tel,
+    ['tema', '¿De qué te gustaría hablar?', { rows: 3, min: 20, ph: 'Por ejemplo: cómo lanzamos una marca nueva con poco presupuesto.', err: 'Contanos en una o dos frases de qué te gustaría hablar.' }]],
+});
+const speakerForm = (k, P) => formBlock(k, P, {
+  id: 'speaker', tipo: 'speaker-fest', asunto: 'Propuesta de speaker para el Marketing Fest',
+  num: 'Gratis · 3ra edición', h: 'Sé speaker en el Marketing Fest',
+  lead: '¿Querés que tu marca suba al escenario? Contanos qué le vas a dejar a la gente: qué aprende, qué se lleva para su negocio o su carrera. Elegimos las charlas por lo que suman, no por quién paga.',
+  free: 'Ser speaker es gratuito.',
+  intro: hola('porque quiero proponer una charla para el Marketing Fest.'),
+  btn: 'Mandar mi propuesta', ok: 'Recibimos tu propuesta de charla. La leemos con el equipo y te escribimos.',
+  fields: [F.nombre, F.marca, F.cargo, F.email, F.tel,
+    ['propuesta', 'Tu propuesta de valor: ¿qué se lleva la gente de tu charla?', { rows: 4, min: 40, ph: 'Por ejemplo: cómo armamos una comunidad de 100 mil personas sin pauta, con los números reales.', err: 'Contanos tu propuesta de valor en al menos un par de frases: qué aprende la gente con tu charla.' }],
+    ['link', 'LinkedIn o web de la marca', { req: false, type: 'url', ph: 'https://' }]],
+});
+const sponsorFestForm = (k, P) => formBlock(k, P, {
+  id: 'sponsor-3ra', tipo: 'sponsor-fest', asunto: 'Una marca quiere ser sponsor de la 3ra edición del Marketing Fest',
+  num: '3ra edición', h: 'Sumá tu marca como sponsor',
+  lead: 'Más de 2600 personas en la 2da edición, entre estudiantes, profesionales y emprendedores. Dejanos tus datos y te mandamos las opciones para la 3ra.',
+  intro: hola('porque quiero que mi marca sea sponsor de la 3ra edición del Marketing Fest.'),
+  btn: 'Quiero ser sponsor', ok: 'Recibimos tus datos. Te escribimos con las opciones para la 3ra edición.',
+  fields: [F.nombre, F.marca, F.cargo, F.email, F.tel,
+    ['interes', '¿Qué te interesa?', { type: 'chips', options: ['Main sponsor', 'Sponsor', 'Stand o activación', 'Sorteo de productos', 'Todavía no sé'], err: 'Elegí al menos una opción (si no sabés, marcá "Todavía no sé").' }],
+    ['mensaje', 'Contanos algo más', { req: false, rows: 3, ph: 'Por ejemplo: queremos hacer sampling de un producto nuevo.' }]],
+});
+const sumateForm = (k, P) => formBlock(k, P, {
+  id: 'anotate', tipo: 'sumate', asunto: 'Alguien se quiere sumar a Se Nos Fue de las Manos', style: 'padding-top:0',
+  num: 'La base de SNFM', h: 'Anotate',
+  lead: 'Contanos quién sos y en qué te gustaría ayudar. No hace falta experiencia profesional: hacen falta ganas.',
+  intro: hola('porque quiero sumarme al equipo.'),
+  btn: 'Quiero sumarme', ok: 'Ya estás en la base. Cuando necesitemos una mano en lo tuyo, te escribimos.',
+  fields: [F.nombre, F.email, F.tel,
+    ['roles', '¿En qué podés ayudar?', { type: 'chips', options: ROLES.map(r => r.t), err: 'Elegí al menos una forma de ayudar.' }],
+    ['link', 'Link a tu portfolio, Instagram o TikTok', { req: false, type: 'url', ph: 'https://' }],
+    ['mensaje', 'Contanos algo más', { req: false, rows: 3, ph: 'Por ejemplo: tengo cámara y micrófono, o puedo los martes a la tarde.' }],
+    ['ok', 'Entiendo que no es remunerado: me sumo por amor al marketing.', { type: 'check', err: 'Marcá la casilla para confirmar que sabés que no es remunerado.' }]],
+});
+
 /* Formulario para que te avisen cuando abra la 3ra edición del Marketing Fest */
 function aviso(k, P, id = 'tercera') {
   return `<section class="ch aviso-wrap" id="${id}" aria-labelledby="t-${id}">
@@ -110,7 +203,7 @@ function aviso(k, P, id = 'tercera') {
         <h2 id="t-${id}">Avisame cuando salga la 3ra</h2>
         <p class="lead">Dejanos tus datos y te escribimos apenas abra la inscripción. Es libre y gratuita, pero los cupos vuelan.</p>
       </div>
-      <form class="aviso-form" data-aviso="${esc(CONFIG.avisoWebhook)}" novalidate>
+      <form class="aviso-form" data-aviso="${esc(CONFIG.avisoWebhook)}" data-hook="${esc(CONFIG.formsWebhook)}" novalidate>
         <div class="f"><label for="${id}-n">Nombre y apellido</label><input id="${id}-n" name="nombre" autocomplete="name" required></div>
         <div class="f"><label for="${id}-e">Email</label><input id="${id}-e" name="email" type="email" autocomplete="email" required></div>
         <div class="f"><label for="${id}-t">Teléfono (WhatsApp)</label><input id="${id}-t" name="whatsapp" type="tel" inputmode="tel" autocomplete="tel" placeholder="11 2345 6789" required></div>
@@ -132,6 +225,9 @@ function qa(k) {
     { q: 'Tengo una marca, ¿qué pueden hacer conmigo?', a: `Mirá <a href="${rel(k, 'servicios')}">nuestros servicios</a>: <a href="${rel(k, 'calle')}">Contenido en la calle</a>, <a href="${rel(k, 'videos')}">videos y UGC</a> con nosotros o alguien de tu equipo como cara, <a href="${rel(k, 'eventos')}">eventos</a> como el Marketing Fest y tu marca en el podcast.` },
     { q: '¿Cómo me sumo a Se Nos Fue?', a: `Anotate en <a href="${rel(k, 'sumate')}">Sumate</a> y contanos en qué podés ayudar. Ojo: no es remunerado, lo hacemos por amor al marketing.` },
     { q: '¿Mi marca puede ser sponsor del podcast?', a: `¡Sí! Sponsorear solo el podcast sale ${esc(PODCAST_SPONSOR.precio)}. Mirá <a href="${rel(k, 'sponsor')}">qué incluye</a> o escribile directo a ${esc(CONFIG.contacto.nombre)} por <a href="${esc(CONFIG.whatsappSponsor)}" ${ext}>WhatsApp</a>.` },
+    { q: '¿Puedo hacer un capítulo del podcast sin ser sponsor?', a: `¡Sí, y es gratis! Proponé tu capítulo en <a href="${rel(k, 'podcast')}#invitado">Vení al podcast</a>.` },
+    { q: '¿Cómo hago para ser speaker en el Fest?', a: `Es gratis. Contanos tu propuesta de valor (qué se lleva la gente de tu charla) en <a href="${rel(k, 'fest')}#speaker">Sé speaker en el Marketing Fest</a>.` },
+    { q: '¿Cómo sumo mi marca como sponsor de la 3ra edición?', a: `Dejanos tus datos en <a href="${rel(k, 'fest')}#sponsor-3ra">Sumá tu marca como sponsor</a> y te mandamos las opciones.` },
     { q: '¿Cuánto sale?', a: `Depende de la idea. Escribile a ${esc(CONFIG.contacto.nombre)} por <a href="${esc(CONFIG.whatsapp)}" ${ext}>WhatsApp</a>, contale qué tenés en mente y te pasa una propuesta.` },
     { q: '¿Quién sos?', a: 'Soy Manu, el vocero con IA de Se Nos Fue de las Manos. Te ayudo a encontrar lo que buscás en la web. Para algo más, te paso con el equipo.' },
   ];
@@ -392,9 +488,10 @@ if(h in m){location.replace('${rel(k, 'f2026')}'+(m[h]?'#'+m[h]:''));}else if(h=
     </div>
   </div>
 </section>
+${podcastForm(k, P)}
 <section class="ch s-ink" aria-labelledby="t-spon" style="padding:clamp(40px,6vw,72px) 0">
   <div class="wrap spon-strip">
-    <div><h2 id="t-spon">Tu marca en el podcast</h2><p class="lead">Sponsoreá los próximos capítulos y llegá a quienes aprenden marketing de los que lo hacen.</p></div>
+    <div><h2 id="t-spon">Tu marca en el podcast</h2><p class="lead">Sponsoreá los próximos capítulos y llegá a quienes aprenden marketing de los que lo hacen. ¿Solo querés contar tu historia? <a href="#invitado">Hacer un capítulo es gratis</a>.</p></div>
     <div class="btns" style="margin:0">${wa(P, `Hablá con ${esc(CONFIG.contacto.nombre)}`, 'cta', CONFIG.whatsappSponsor)}<a class="ghost" href="${rel(k, 'sponsor')}">Ver más info</a></div>
   </div>
 </section>
@@ -409,8 +506,8 @@ ${band(k, P, 'También hacemos contenido en la calle, videos, UGC y eventos.')}`
       body: `${pageHero(k, P, {
         num: '#02', h1: 'Marketing Fest', trail: [['home', 'Inicio'], [null, 'Marketing Fest']],
         lead: 'El evento de marketing más grande de la Facultad de Ciencias Económicas de la UBA, abierto a todo el mundo, libre y gratuito. Lo hacemos para democratizar el conocimiento: que no tengas que pagar una fortuna para ver a los capos del rubro contar lo que hacen bien y entender cómo hacer crecer tu negocio o tu carrera profesional.',
-        say: 'Ya van dos ediciones y más de 60 speakers. Elegí cuál querés ver.',
-        extra: `<div class="btns"><a class="cta" href="#tercera">Avisame de la 3ra edición ${icon(P, 'arr')}</a></div><img class="mf-logo" style="margin-top:2rem" src="${P(MF_LOGO.dark)}" alt="Marketing Fest, segunda edición">`,
+        say: 'Ya van dos ediciones, más de 3800 personas y más de 60 speakers. Elegí cuál querés ver.',
+        extra: `<div class="btns"><a class="cta" href="#tercera">Avisame de la 3ra edición ${icon(P, 'arr')}</a><a class="ghost" href="#speaker">Quiero ser speaker</a><a class="ghost" href="#sponsor-3ra">Quiero ser sponsor</a></div><img class="mf-logo" style="margin-top:2rem" src="${P(MF_LOGO.dark)}" alt="Marketing Fest, segunda edición">`,
       })}
 <section class="ch" aria-labelledby="t-eds">
   <div class="wrap">
@@ -428,6 +525,8 @@ ${band(k, P, 'También hacemos contenido en la calle, videos, UGC y eventos.')}`
     </div>
   </div>
 </section>
+${speakerForm(k, P)}
+${sponsorFestForm(k, P)}
 ${aviso(k, P)}
 ${band(k, P, '¿Querés sumar tu marca al próximo Marketing Fest u organizar un evento propio? Escribinos.')}`,
     });
@@ -474,6 +573,8 @@ ${band(k, P, '¿Querés sumar tu marca al próximo Marketing Fest u organizar un
       <div><p class="label">Con el apoyo institucional de</p>${logoRow(P, LOGOS)}</div>
     </div>
     <div class="next-links">
+      <a class="cta" href="${rel(k, 'fest')}#sponsor-3ra">Quiero que mi marca sea sponsor de la 3ra ${icon(P, 'arr')}</a>
+      <a class="ghost" href="${rel(k, 'fest')}#speaker">Quiero ser speaker en la 3ra</a>
       <a class="ghost" href="${rel(k, 'f2025')}">Mirá cómo fue la 1ra edición</a>
       <a class="ghost" href="${rel(k, 'podcast')}">Escuchá a los speakers en el podcast</a>
     </div>
@@ -515,7 +616,7 @@ ${band(k, P, '¿Querés sumar tu marca a la 3ra edición del Marketing Fest u or
         ${gallery(P, TEAM)}
         <p class="label" style="margin-top:2.5rem">Nos acompañaron</p>
         ${logoRow(P, SPONSORS_ED1)}
-        <div class="next-links"><a class="ghost" href="${rel(k, 'f2026')}">Mirá cómo fue la 2da edición</a></div>
+        <div class="next-links"><a class="ghost" href="${rel(k, 'f2026')}">Mirá cómo fue la 2da edición</a><a class="ghost" href="${rel(k, 'fest')}#speaker">Quiero ser speaker en la 3ra</a></div>
       </div>
     </div>
   </div>
@@ -552,7 +653,6 @@ ${band(k, P, 'También podés sumar tu marca al podcast o al próximo Marketing 
   },
 
   sumate(k, P) {
-    const roles = ROLES.map((r, i) => `<label class="role"><input type="checkbox" name="roles" value="${esc(r.t)}"><span>${esc(r.t)}</span></label>`).join('');
     return layout(k, {
       title: 'Sumate a Se Nos Fue de las Manos · UGC, filmmakers, cámaras y más',
       description: '¿Hacés UGC, filmás, editás o sacás fotos? Sumate a la base de Se Nos Fue de las Manos y te llamamos cuando necesitemos una mano para el podcast, el Marketing Fest o un proyecto. No es remunerado: es por amor al marketing.',
@@ -574,29 +674,7 @@ ${band(k, P, 'También podés sumar tu marca al podcast o al próximo Marketing 
   </div>
 </section>
 
-<section class="ch aviso-wrap" id="anotate" aria-labelledby="t-anotate" style="padding-top:0">
-  <div class="wrap">
-    <div class="aviso sumate">
-      <div>
-        <p class="num">La base de SNFM</p>
-        <h2 id="t-anotate">Anotate</h2>
-        <p class="lead">Contanos quién sos y en qué te gustaría ayudar. No hace falta experiencia profesional: hacen falta ganas.</p>
-      </div>
-      <form class="aviso-form" data-sumate="${esc(CONFIG.sumateWebhook)}" data-wa-base="${esc(CONFIG.whatsapp.split('?')[0])}" novalidate>
-        <div class="f"><label for="s-n">Nombre y apellido</label><input id="s-n" name="nombre" autocomplete="name" required></div>
-        <div class="f"><label for="s-e">Email</label><input id="s-e" name="email" type="email" autocomplete="email" required></div>
-        <div class="f"><label for="s-t">Teléfono (WhatsApp)</label><input id="s-t" name="whatsapp" type="tel" inputmode="tel" autocomplete="tel" placeholder="11 2345 6789" required></div>
-        <fieldset class="f"><legend>¿En qué podés ayudar? <small>Elegí uno o más</small></legend><div class="roles">${roles}</div></fieldset>
-        <div class="f"><label for="s-l">Link a tu portfolio, Instagram o TikTok <small>(opcional)</small></label><input id="s-l" name="link" type="url" inputmode="url" placeholder="https://"></div>
-        <div class="f"><label for="s-m">Contanos algo más <small>(opcional)</small></label><textarea id="s-m" name="mensaje" rows="3" placeholder="Por ejemplo: tengo cámara y micrófono, o puedo los martes a la tarde."></textarea></div>
-        <label class="check"><input type="checkbox" name="ok" required><span>Entiendo que no es remunerado: me sumo por amor al marketing.</span></label>
-        <p class="err" role="alert"></p>
-        <button class="cta ink" type="submit">Quiero sumarme ${icon(P, 'arr')}</button>
-      </form>
-      <div class="aviso-ok" hidden tabindex="-1"></div>
-    </div>
-  </div>
-</section>
+${sumateForm(k, P)}
 ${band(k, P)}`,
     });
   },
@@ -640,6 +718,7 @@ ${band(k, P)}`,
     <div class="ch-head" style="margin:clamp(40px,6vw,64px) 0 1.5rem"><h3 style="font-size:clamp(1.8rem,4vw,2.6rem)">Mirá cómo es un capítulo</h3></div>
     <div class="hot">${hotEps(P)}</div>
     <div class="btns">${wa(P, `Quiero sponsorear el podcast`, 'cta', CONFIG.whatsappSponsor)}<a class="ghost" href="${rel(k, 'podcast')}">Ver todos los capítulos</a></div>
+    <div class="note"><strong>¿Sin ser sponsor?</strong><p>Si querés que tu marca participe de un capítulo, es gratis. <a href="${rel(k, 'podcast')}#invitado">Proponé tu capítulo</a>.</p></div>
   </div>
 </section>
 ${band(k, P, 'Además del podcast, hacemos contenido en la calle, videos, UGC y eventos.')}`,
@@ -731,7 +810,7 @@ ${band(k, P)}`,
       image: TEAM[0].src,
       body: `${pageHero(k, P, {
         num: 'Para marcas', h1: 'Armamos eventos que se llenan', trail: [['home', 'Inicio'], ['servicios', 'Servicios'], [null, 'Eventos']],
-        lead: 'El Marketing Fest lo hicimos de cero dos veces: +1200 personas en la 1ra edición, más de 2600 en la 2da y más de 60 speakers entre las dos. Si tu marca quiere un evento así, lo armamos con vos.',
+        lead: 'El Marketing Fest lo hicimos de cero dos veces: más de 3800 personas y más de 60 speakers entre las dos ediciones (+1200 en la 1ra y más de 2600 en la 2da). Si tu marca quiere un evento así, lo armamos con vos.',
         say: 'Del line up a la cobertura, nos encargamos de todo.',
       })}
 <section class="ch s-ink" aria-labelledby="t-ev" style="padding-top:0">

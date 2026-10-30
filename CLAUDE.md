@@ -50,9 +50,19 @@ En el menú, "Marketing Fest" y "Servicios" tienen un desplegable (en desktop) c
 
 Formulario (nombre y apellido, email, teléfono/WhatsApp) en el inicio, en `/marketing-fest/` y en las páginas de cada edición (`#tercera`); también hay botones "Avisame de la 3ra edición" en el hero del inicio y del Fest, y una respuesta en el chat de Manu. Hace POST a `CONFIG.avisoWebhook` con `{nombre, email, whatsapp, evento: 'Marketing Fest · 3ra edición', tipo: 'aviso-3ra-edicion', origen, fecha}` y empuja el evento `aviso_3ra_edicion` al `dataLayer` de GTM. Hoy usa el webhook de la pre-inscripción 2026 (`https://n8n.dtcomunicacion.com/webhook/preinscripcion-mkt-fest`, workflow `E6dF41wKNW31obCu`, data table `d7GBQXcVm9nlEQsh`). Ojo: ese workflow no duplica por email, así que quien ya estaba pre-inscripto en 2026 no se guarda de nuevo (igual ya está en la lista). Si se arma una tabla propia para la 3ra, cambiar solo `CONFIG.avisoWebhook`. En el navegador queda guardado con la clave `mktfest-aviso-3ra` para mostrar "¡Listo!" si vuelve.
 
-### Formulario "Sumate"
+### Formularios y avisos por mail
 
-Pide nombre y apellido, email, teléfono, roles (chips con los de `ROLES` en `data.js`), link opcional, mensaje opcional y la casilla "Entiendo que no es remunerado". Si `CONFIG.sumateWebhook` tiene URL, hace POST con `{nombre, email, whatsapp, roles, link, mensaje, tipo: 'sumate', fecha}`. **Hoy está vacío**: abre WhatsApp con los datos escritos para mandárselos al contacto de servicios (Juan Pedro). Para tener una base de verdad hay que crear un webhook de n8n con su propia data table y cargarlo en `CONFIG.sumateWebhook` (no usar el de la pre-inscripción: no repite emails y no tiene esas columnas). Evento de GTM: `sumate`.
+Todos los formularios avisan por mail a **Ro (rociovallbona@dtcomunicacion.com), Tomás (tomas@dtcomunicacion.com) y Sol (solciesc@gmail.com)**: hacen POST a `CONFIG.formsWebhook` (`https://n8n.dtcomunicacion.com/webhook/formularios-snfm`) con `{tipo, asunto, campos: [[etiqueta, valor]], datos, origen, fecha}`. El workflow está en **`n8n/formularios-web.json`** (webhook → arma el mail → Send Email por SMTP → responde a la web): hay que importarlo en n8n, elegir la credencial SMTP, completar `fromEmail` y activarlo. Si el webhook no responde (por ejemplo, porque todavía no se importó), el formulario muestra "¡Casi listo!" con un botón que manda lo mismo por WhatsApp a Juan Pedro, así no se pierde nada.
+
+| Formulario | Dónde | `tipo` | Qué pide |
+|---|---|---|---|
+| Avisame de la 3ra (`#tercera`) | Inicio, Marketing Fest y cada edición | `aviso-3ra-edicion` | Nombre, email, teléfono. Además guarda en la tabla de la pre-inscripción (`CONFIG.avisoWebhook`) |
+| Vení al podcast (`#invitado`) | `/podcast/` (y link desde el sponsor del podcast) | `capitulo-podcast` | Nombre, marca, cargo, email, teléfono y de qué quiere hablar. **Gratis, sin ser sponsor** |
+| Sé speaker en el Marketing Fest (`#speaker`) | `/marketing-fest/` (y links desde cada edición) | `speaker-fest` | Nombre, marca, cargo, email, teléfono, **propuesta de valor para la gente** (mínimo 40 caracteres) y LinkedIn opcional. **Gratis** |
+| Sumá tu marca como sponsor (`#sponsor-3ra`) | `/marketing-fest/` (y botón en "Gracias a las marcas" de 2026) | `sponsor-fest` | Nombre, marca, cargo, email, teléfono, qué le interesa (main sponsor, sponsor, stand, sorteo, todavía no sé) y mensaje opcional |
+| Sumate (`#anotate`) | `/sumate/` | `sumate` | Nombre, email, teléfono, roles (`ROLES`), link y mensaje opcionales y la casilla "no es remunerado" |
+
+Los formularios se arman con `formBlock()` en `build.js` y los maneja un solo bloque de `assets/site.js` (`form[data-form]`). Evento de GTM: `formulario` con `tipo` y `enviado`.
 
 ## Marca
 
@@ -75,7 +85,7 @@ Pide nombre y apellido, email, teléfono, roles (chips con los de `ROLES` en `da
 - **Los CTA dicen exactamente qué pasa:** "Descargar PDF", "Ver el capítulo", "Quiero contenido en la calle", "Escribile a Juan Pedro".
 - **Sin anglicismos innecesarios**, salvo los propios del rubro (speaker, sponsor, break, reel).
 - **Datos de speakers:** se respeta lo que viene de la planilla o del deck, solo con correcciones de tipeo. Nunca inventar títulos de charla.
-- **Números:** no inventar. 1ra edición: +1200 personas y 16 speakers. 2da edición: **más de 2600 personas** (dato de Ro, 30/10/2026) y +30 speakers. Entre las dos ediciones, **más de 60 speakers** (dato de Ro). La cantidad de charlas sale de `DATA`.
+- **Números:** no inventar. 1ra edición: +1200 personas y 16 speakers. 2da edición: **más de 2600 personas** (dato de Ro, 30/10/2026) y +30 speakers. Entre las dos ediciones, **más de 3800 personas** y **más de 60 speakers** (datos de Ro). La cantidad de charlas sale de `DATA`.
 - **No se anuncian marcas no confirmadas.** GenIA no se menciona.
 
 ### Reglas de diseño
@@ -122,7 +132,7 @@ Sitio estático. Las páginas se **generan** con un script de Node sin dependenc
 2. **Fotos de la 2da edición:** Ro las va a pasar. Van a `assets/img/ed2/` y a `GAL2`.
 4. **Link del capítulo #9** (Belu Fiora, Hacks Digital).
 6. **Logo de Mikhuna Nikkei** (sponsor de la 1ra edición), hoy como texto.
-7. **Base de "Sumate" en n8n:** crear el webhook y la data table y cargarlo en `CONFIG.sumateWebhook`.
+7. **Importar `n8n/formularios-web.json` en n8n** (credencial SMTP, `fromEmail`, activar) para que lleguen los mails de todos los formularios. Si además quieren una planilla con todo, sumar un nodo de data table o Google Sheets al mismo workflow.
 8. **Precios:** el único precio publicado es el del sponsoreo del podcast solo (2.000 USD, pedido de Ro el 30/10/2026), en `PODCAST_SPONSOR` de `data.js`. Los paquetes del Fest (main sponsor 6.000 USD, platinum, etc.) no se publican salvo que Ro lo pida. Confirmar con Ro qué incluye el de 2.000 (hoy: sponsor del podcast con transmisión en Gigared, set y menciones, activación o sorteo en la comunidad) y por cuánto tiempo.
 
 ## Checklist antes de cada entrega

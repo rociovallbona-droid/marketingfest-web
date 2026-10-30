@@ -55,6 +55,8 @@ if(chat && window.QA){
   chat.addEventListener('click',e=>{ if(e.target===chat||e.target.closest('a')) chat.close(); });
 }
 
+const notify=(hook,body)=>fetch(hook,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});
+
 /* Avisame de la 3ra edición: valida, manda los datos al webhook y muestra la confirmación.
    Si ya se anotó en este navegador, muestra la confirmación directo. */
 const KEY='mktfest-aviso-3ra';
@@ -79,6 +81,7 @@ $$('form[data-aviso]').forEach(form=>{
       const r=await fetch(form.dataset.aviso,{method:'POST',headers:{'Content-Type':'application/json'},
         body:JSON.stringify({nombre,email,whatsapp:tel,evento:'Marketing Fest · 3ra edición',tipo:'aviso-3ra-edicion',origen:location.pathname,fecha:new Date().toISOString()})});
       if(!r.ok) throw 0;
+      if(form.dataset.hook) notify(form.dataset.hook,{tipo:'aviso-3ra-edicion',asunto:'Alguien quiere que le avisen de la 3ra edición del Marketing Fest',campos:[['Nombre y apellido',nombre],['Email',email],['Teléfono (WhatsApp)',tel]],datos:{nombre,email,whatsapp:tel},origen:location.href,fecha:new Date().toISOString()}).catch(()=>{});
       try{ localStorage.setItem(KEY,JSON.stringify({nombre})); }catch(e){}
       window.dataLayer&&dataLayer.push({event:'aviso_3ra_edicion'});
       done(nombre,true);
@@ -89,41 +92,47 @@ $$('form[data-aviso]').forEach(form=>{
   });
 });
 
-/* Sumate: la base de gente que quiere dar una mano.
-   Con webhook guarda los datos; sin webhook abre WhatsApp con los datos escritos. */
-$$('form[data-sumate]').forEach(form=>{
-  const box=form.parentNode, ok=$('.aviso-ok',box), err=$('.err',form), btn=$('button[type=submit]',form);
-  const fail=(el,msg,target=el)=>{ err.textContent=msg; target.setAttribute('aria-invalid','true'); el.focus(); };
-  form.addEventListener('input',e=>{ $$('[aria-invalid]',form).forEach(x=>x.removeAttribute('aria-invalid')); err.textContent=''; });
+/* Formularios (capítulo del podcast, speaker, sponsor de la 3ra, Sumate):
+   validan, mandan todo al webhook de n8n (que avisa por mail al equipo) y muestran la confirmación.
+   Si el webhook no responde, ofrecen mandar lo mismo por WhatsApp, así no se pierde nada. */
+$$('form[data-form]').forEach(form=>{
+  const box=form.parentNode, ok=$('.aviso-ok',box), err=$('.err',form), btn=$('button[type=submit]',form), label=btn.firstChild.textContent;
+  form.addEventListener('input',()=>{ $$('[aria-invalid]',form).forEach(x=>x.removeAttribute('aria-invalid')); err.textContent=''; });
   form.addEventListener('submit',async e=>{
     e.preventDefault(); err.textContent='';
-    const f=form.elements;
-    const d={nombre:f.nombre.value.trim().replace(/\s+/g,' '), email:f.email.value.trim(), whatsapp:f.whatsapp.value.trim(),
-      roles:$$('input[name=roles]:checked',form).map(x=>x.value), link:f.link.value.trim(), mensaje:f.mensaje.value.trim()};
-    if(d.nombre.split(' ').length<2) return fail(f.nombre,'Escribí tu nombre y apellido.');
-    if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(d.email)) return fail(f.email,'Revisá el email: le falta algo (por ejemplo, la @ o el dominio).');
-    if(d.whatsapp.replace(/\D/g,'').length<10) return fail(f.whatsapp,'El teléfono tiene que tener al menos 10 números, con la característica (por ejemplo, 11 2345 6789).');
-    if(!d.roles.length) return fail($('input[name=roles]',form),'Elegí al menos una forma de ayudar.');
-    if(d.link && !/^https?:\/\/\S+\.\S+/.test(d.link)){ if(/^\S+\.\S+$/.test(d.link)) d.link='https://'+d.link; else return fail(f.link,'Revisá el link: tiene que ser una dirección web, por ejemplo https://instagram.com/tuusuario.'); }
-    if(!f.ok.checked) return fail(f.ok,'Marcá la casilla para confirmar que sabés que no es remunerado.',f.ok.closest('label'));
-    const first=d.nombre.split(' ')[0].replace(/[<>&"]/g,'');
-    if(form.dataset.sumate){
-      btn.disabled=true; btn.firstChild.textContent='Enviando… ';
-      try{
-        const r=await fetch(form.dataset.sumate,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({...d,roles:d.roles.join(', '),tipo:'sumate',fecha:new Date().toISOString()})});
-        if(!r.ok) throw 0;
-      }catch(x){
-        err.textContent='No pudimos guardar tus datos. Probá de nuevo en un rato o escribinos por Instagram a @senosfuedelasmanos.ok.';
-        btn.disabled=false; btn.firstChild.textContent='Quiero sumarme '; return;
+    const campos=[], datos={};
+    const fail=(el,focus=el)=>{ err.textContent=el.dataset.err; (el.closest('.check')||el).setAttribute('aria-invalid','true'); focus.focus(); };
+    for(const el of $$('input:not([type=checkbox]),textarea,fieldset[data-group],input[type=checkbox][data-label]',form)){
+      if(el.matches('fieldset')){
+        const v=$$('input:checked',el).map(x=>x.value);
+        if(el.hasAttribute('data-req')&&!v.length) return fail(el,$('input',el));
+        if(v.length){ campos.push([el.dataset.label,v.join(', ')]); datos[el.dataset.group]=v.join(', '); }
+        continue;
       }
-      ok.innerHTML=`<strong>¡Gracias, ${first}!</strong>Ya estás en la base. Cuando necesitemos una mano en lo tuyo, te escribimos.`;
-    } else {
-      const txt=`¡Hola! Quiero sumarme a Se Nos Fue de las Manos.\n\nNombre: ${d.nombre}\nEmail: ${d.email}\nTeléfono: ${d.whatsapp}\nPuedo ayudar con: ${d.roles.join(', ')}`+(d.link?`\nPortfolio: ${d.link}`:'')+(d.mensaje?`\n\n${d.mensaje}`:'')+`\n\nEntiendo que no es remunerado: me sumo por amor al marketing.`;
-      const url=form.dataset.waBase+'?text='+encodeURIComponent(txt);
-      window.open(url,'_blank','noopener');
-      ok.innerHTML=`<strong>¡Gracias, ${first}!</strong>Se abrió WhatsApp con tus datos ya escritos: mandá el mensaje y listo. Si no se abrió, <a href="${url}" target="_blank" rel="noopener">tocá acá</a>.`;
+      if(el.type==='checkbox'){ if(!el.checked) return fail(el); campos.push([el.dataset.label,'Sí']); datos[el.name]=true; continue; }
+      let v=el.value.trim().replace(/[ \t]+/g,' ');
+      if(el.type==='url'&&v&&!/^https?:\/\//.test(v)) v='https://'+v;
+      const bad=(el.required&&!v)
+        ||(el.name==='nombre'&&v.split(' ').length<2)
+        ||(el.type==='email'&&v&&!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v))
+        ||(el.type==='tel'&&v.replace(/\D/g,'').length<10)
+        ||(el.dataset.min&&v.length<+el.dataset.min)
+        ||(el.type==='url'&&v&&!/^https?:\/\/\S+\.\S+/.test(v));
+      if(bad) return fail(el);
+      if(v){ campos.push([el.dataset.label,v]); datos[el.name]=v; }
     }
-    window.dataLayer&&dataLayer.push({event:'sumate'});
+    const first=(datos.nombre||'').split(' ')[0].replace(/[<>&"]/g,'');
+    const wa=form.dataset.waBase+'?text='+encodeURIComponent(form.dataset.intro+'\n\n'+campos.map(([l,v])=>`${l}: ${v}`).join('\n'));
+    let sent=false;
+    if(form.dataset.hook){
+      btn.disabled=true; btn.firstChild.textContent='Enviando… ';
+      try{ const r=await notify(form.dataset.hook,{tipo:form.dataset.form,asunto:form.dataset.asunto,campos,datos,origen:location.href,fecha:new Date().toISOString()}); sent=r.ok; }catch(x){}
+      btn.disabled=false; btn.firstChild.textContent=label;
+    }
+    window.dataLayer&&dataLayer.push({event:'formulario',tipo:form.dataset.form,enviado:sent});
+    ok.innerHTML=sent
+      ? `<strong>¡Gracias, ${first}!</strong>${form.dataset.ok}`
+      : `<strong>¡Casi listo, ${first}!</strong>Tocá el botón para mandarnos tus datos por WhatsApp: ya van escritos.<div class="btns"><a class="cta ink" href="${wa}" target="_blank" rel="noopener">Mandar por WhatsApp</a></div>`;
     form.hidden=true; ok.hidden=false; ok.focus();
   });
 });

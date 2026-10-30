@@ -15,11 +15,11 @@ const CONFIG = {
      Hoy usa el webhook de n8n de la pre-inscripción 2026 (workflow E6dF41wKNW31obCu, data table d7GBQXcVm9nlEQsh);
      los registros nuevos llegan con tipo 'aviso-3ra-edicion'. */
   avisoWebhook: 'https://n8n.dtcomunicacion.com/webhook/preinscripcion-mkt-fest',
-  /* Formulario "Sumate": la base de gente que quiere dar una mano (UGC, filmmakers, cámaras, etc.).
-     Si sumateWebhook tiene una URL (ej. un webhook de n8n), hace POST con
-     {nombre, email, whatsapp, roles, link, mensaje, tipo: 'sumate', fecha}.
-     Mientras esté vacío, abre WhatsApp con los datos escritos para mandárselos al contacto de abajo. */
-  sumateWebhook: '',
+  /* Formularios de la web (capítulo del podcast, speaker y sponsor del Fest, Sumate y el aviso de la 3ra):
+     hacen POST a este webhook de n8n con {tipo, asunto, campos: [[etiqueta, valor]], datos, origen, fecha}.
+     El workflow (n8n/formularios-web.json) manda un mail con todo a Ro, Tomás y Sol.
+     Si no responde, el formulario ofrece mandar lo mismo por WhatsApp al contacto de abajo. */
+  formsWebhook: 'https://n8n.dtcomunicacion.com/webhook/formularios-snfm',
   /* Contacto para servicios (marcas): nombre, teléfono como se muestra y link de WhatsApp con el texto precargado */
   contacto: { nombre: 'Juan Pedro', tel: '11 3478-4373' },
   /* Mensaje precargado para marcas que quieren ser sponsors del podcast (mismo número que whatsapp) */

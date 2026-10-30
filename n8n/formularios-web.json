@@ -1,0 +1,62 @@
+{
+  "name": "Formularios web SNFM → mail al equipo",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "formularios-snfm",
+        "responseMode": "responseNode",
+        "options": { "allowedOrigins": "*" }
+      },
+      "id": "5f0c6b1e-1a2b-4c3d-8e9f-000000000001",
+      "name": "Formulario de la web",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [0, 0],
+      "webhookId": "b7d1c0f2-3e4a-4b5c-9d6e-snfmformularios"
+    },
+    {
+      "parameters": {
+        "jsCode": "const b = $input.first().json.body || {};\nconst esc = s => String(s ?? '').replace(/[&<>\"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','\"':'&quot;'}[c]));\nconst campos = Array.isArray(b.campos) ? b.campos : Object.entries(b.datos || {});\nconst filas = campos.map(([l, v]) => `<tr><td style=\"padding:6px 12px 6px 0;color:#5b5b5b;vertical-align:top\"><b>${esc(l)}</b></td><td style=\"padding:6px 0\">${esc(v).replace(/\\n/g, '<br>')}</td></tr>`).join('');\nconst fecha = new Date(b.fecha || Date.now()).toLocaleString('es-AR', { timeZone: 'America/Argentina/Buenos_Aires' });\nconst html = `<div style=\"font-family:Arial,sans-serif;font-size:15px;color:#202020\"><p style=\"background:#F3DA00;padding:12px 16px;border-radius:8px;font-weight:bold;margin:0 0 16px\">${esc(b.asunto || 'Nuevo formulario en la web')}</p><table style=\"border-collapse:collapse\">${filas}</table><p style=\"color:#5b5b5b;font-size:13px;margin-top:20px\">Formulario: ${esc(b.tipo)} · ${esc(fecha)}<br>Desde: ${esc(b.origen)}</p></div>`;\nreturn [{ json: { asunto: `[Web SNFM] ${b.asunto || 'Nuevo formulario'}${b.datos && b.datos.nombre ? ' · ' + b.datos.nombre : ''}`, html, replyTo: (b.datos && b.datos.email) || '' } }];"
+      },
+      "id": "5f0c6b1e-1a2b-4c3d-8e9f-000000000002",
+      "name": "Armar el mail",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [240, 0]
+    },
+    {
+      "parameters": {
+        "fromEmail": "COMPLETAR-con-el-mail-de-la-cuenta-SMTP@dtcomunicacion.com",
+        "toEmail": "rociovallbona@dtcomunicacion.com, tomas@dtcomunicacion.com, solciesc@gmail.com",
+        "subject": "={{ $json.asunto }}",
+        "emailFormat": "html",
+        "html": "={{ $json.html }}",
+        "options": { "replyTo": "={{ $json.replyTo }}" }
+      },
+      "id": "5f0c6b1e-1a2b-4c3d-8e9f-000000000003",
+      "name": "Mail a Ro, Tomás y Sol",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2.1,
+      "position": [480, 0]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={ \"ok\": true }",
+        "options": {}
+      },
+      "id": "5f0c6b1e-1a2b-4c3d-8e9f-000000000004",
+      "name": "Responder a la web",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [720, 0]
+    }
+  ],
+  "connections": {
+    "Formulario de la web": { "main": [[{ "node": "Armar el mail", "type": "main", "index": 0 }]] },
+    "Armar el mail": { "main": [[{ "node": "Mail a Ro, Tomás y Sol", "type": "main", "index": 0 }]] },
+    "Mail a Ro, Tomás y Sol": { "main": [[{ "node": "Responder a la web", "type": "main", "index": 0 }]] }
+  },
+  "settings": { "executionOrder": "v1" }
+}
