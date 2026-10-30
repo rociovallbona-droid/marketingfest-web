@@ -22,7 +22,7 @@ La web es un programa de SNFM y **Manu, el vocero con IA de SNFM, es el conducto
 - **Hero (#00):** "Se nos fue de las manos" gigante, chips con números y la tarjeta de Manu con su burbuja de bienvenida.
 - **Cada página tiene una línea de Manu** (`.says`) que la presenta.
 - **"Preguntale a Manu":** botón flotante que abre un `<dialog>` con preguntas y respuestas armadas (`QA` en el script). No es IA de verdad; si algún día se conecta a una IA, sería vía n8n.
-- **Manu todavía no tiene material:** `MANU` en `data.js` tiene `video`, `poster` e `img` vacíos y se muestra su inicial "M" sobre amarillo. Cuando Ro pase el video o la imagen, completar esos campos (el video va vertical, muteado, con botón "Activar sonido").
+- **Manu es una mano ilustrada** con gorra y zapatillas, que muestra un celular y señala (fondo amarillo propio `#FBE90B`). `MANU.img` (`assets/img/manu.webp`) va entera en la tarjeta del inicio y `MANU.avatar` (`assets/img/manu-cara.webp`, recorte de la cara) en los círculos chicos y en el botón "Preguntale a Manu". Si llega un video, va en `MANU.video` y reemplaza a la imagen en la tarjeta.
 
 ### Páginas
 
@@ -91,7 +91,7 @@ Sitio estático. Las páginas se **generan** con un script de Node sin dependenc
 ### Datos (`data.js`)
 
 - **`CONFIG`:** `site` (dominio, para SEO), `youtube`, `instagram` y `whatsapp` (wa.me al 11 5134-1115 de Ro, con mensaje precargado).
-- **`MANU`:** material de Manu (ver arriba).
+- **`MANU`:** `img`, `avatar`, `video` y `poster` de Manu (ver arriba).
 - **`EPISODES`:** capítulos del podcast, del más nuevo al más viejo: `{n, id, t, g, b, hot, fest}`. `id` es el código de YouTube; si está vacío, el capítulo lleva al canal y la miniatura se arma con el título (pasa con el #9 de Belu Fiora, que no tiene link todavía). Las miniaturas salen de `i.ytimg.com/vi/<id>/hqdefault.jpg`.
 - **`REELS`:** códigos de los reels de Instagram; el primero (`DYiW6gNxA1m`) va grande como destacado. Se muestran con el embed oficial de IG, que se carga recién cuando la sección está cerca.
 - **`DATA`:** cronograma del Fest 2026: `{d, t, n, c, tp, k, ph, pause, dl, pend, ep}`. `dl` es la ruta del PDF; `pend: true` muestra "La presentación llega pronto"; `ep` son los números de capítulos del podcast relacionados (botón "Podcast #N"). Los paneles no tienen presentación.
@@ -108,7 +108,6 @@ Sitio estático. Las páginas se **generan** con un script de Node sin dependenc
 
 1. **Presentaciones que faltan:** Sabrina Kolod (martes) y del miércoles Fernanda Rivera, ABN, Meta y Rappi (`pend: true`). Mariano Garibini y Tomás Cazalá no tienen presentación en la planilla. Cuando llegue cada una: copiarla a `assets/presentaciones/`, poner `dl` y sacar `pend`. Antes de publicar, que Ro confirme el OK de cada speaker.
 2. **Fotos de la 2da edición:** Ro las va a pasar. Van a `assets/img/ed2/` y a `GAL2`.
-3. **Material de Manu:** video o imagen.
 4. **Link del capítulo #9** (Belu Fiora, Hacks Digital).
 5. **Números reales de la 2da edición** (asistentes).
 6. **Logo de Mikhuna Nikkei** (sponsor de la 1ra edición), hoy como texto.

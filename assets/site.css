@@ -356,3 +356,8 @@ dialog.chat::backdrop{background:rgba(0,0,0,.45)}
 .svc-row li{display:flex;gap:.5rem;align-items:center}
 .svc-row li svg{width:.8rem;height:.8rem}
 .svc-row .cta{justify-self:start}
+
+/* Manu ilustrado: la imagen tiene fondo amarillo propio, así que la tarjeta toma ese color y no se recorta */
+.manu-frame:has(.manu-img){background:#FBE90B;aspect-ratio:4/5}
+.manu-frame .manu-img{object-fit:contain;object-position:50% 25%}
+.av img{background:#FBE90B}

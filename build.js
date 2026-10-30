@@ -40,7 +40,7 @@ const urlOf = k => CONFIG.site ? CONFIG.site.replace(/\/$/, '') + '/' + (dirOf(k
 
 /* ---------- piezas comunes ---------- */
 const icon = (P, id, cls = '', label = '') => `<svg${cls ? ` class="${cls}"` : ''} ${label ? `aria-label="${label}" role="img"` : 'aria-hidden="true"'}><use href="${P('assets/icons.svg')}#${id}"/></svg>`;
-const av = P => MANU.img ? `<span class="av" aria-hidden="true"><img src="${P(MANU.img)}" alt=""></span>` : '<span class="av" aria-hidden="true">M</span>';
+const av = P => (MANU.avatar || MANU.img) ? `<span class="av" aria-hidden="true"><img src="${P(MANU.avatar || MANU.img)}" alt=""></span>` : '<span class="av" aria-hidden="true">M</span>';
 const says = (P, text) => `<div class="says">${av(P)}<p><b>Manu</b>${text}</p></div>`;
 const wa = (P, label, cls = 'cta') => `<a class="${cls}" href="${esc(CONFIG.whatsapp)}" ${ext} data-wa>${label} ${icon(P, 'arr')}</a>`;
 
@@ -258,7 +258,7 @@ const BUILD = {
   home(k, P) {
     const manuMedia = MANU.video
       ? `<video src="${P(MANU.video)}" ${MANU.poster ? `poster="${P(MANU.poster)}"` : ''} muted loop playsinline autoplay aria-label="Manu se presenta"></video><button class="manu-sound" aria-pressed="false">Activar sonido</button>`
-      : MANU.img ? `<img src="${P(MANU.img)}" alt="">` : '';
+      : MANU.img ? `<img class="manu-img" src="${P(MANU.img)}" alt="Manu, una mano ilustrada con gorra y zapatillas, que muestra un celular y señala" width="900" height="900">` : '';
     const card = (to, num, h, p, go) => `<a class="card" href="${rel(k, to)}"><div><span class="num">${num}</span><h3>${h}</h3><p>${p}</p></div><span class="go">${go} ${icon(P, 'arr')}</span></a>`;
     return layout(k, {
       title: 'Se Nos Fue de las Manos · Podcast de marketing, Marketing Fest y contenido para marcas',

@@ -15,9 +15,10 @@ const CONFIG = {
   whatsapp: 'https://wa.me/5491151341115?text=' + encodeURIComponent('¡Hola Ro! Vi la web de Se Nos Fue de las Manos y quiero hacer algo con mi marca.')
 };
 
-/* Manu, el vocero con IA de SNFM. Cuando haya material, completá video (mp4 vertical) y/o img (retrato).
-   Mientras estén vacíos se muestra su inicial sobre amarillo. */
-const MANU = { video: '', poster: '', img: '' };
+/* Manu, el vocero con IA de SNFM.
+   img: la ilustración entera (va en la tarjeta del inicio) · avatar: recorte cuadrado de la cara (va en los círculos chicos)
+   video: mp4 vertical opcional; si está, reemplaza a img en la tarjeta (poster: su primer cuadro). */
+const MANU = { video: '', poster: '', img: 'assets/img/manu.webp', avatar: 'assets/img/manu-cara.webp' };
 
 /* Capítulos del podcast, del más nuevo al más viejo.
    id: el código del video de YouTube (lo que va después de youtu.be/). Si está vacío, el capítulo lleva al canal.
