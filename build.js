@@ -129,7 +129,7 @@ function formBlock(k, P, { id, tipo, num, h, lead, free, intro, asunto, fields, 
   <div class="wrap">
     <div class="aviso sumate">
       <div>
-        <p class="num${ribbon ? ' ribbon' : ''}">${num}</p>
+        ${num ? `<p class="num${ribbon ? ' ribbon' : ''}">${num}</p>` : ''}
         <h2 id="t-${id}">${h}</h2>
         <p class="lead">${lead}</p>
         ${free ? `<p class="free">${free}</p>` : ''}
@@ -156,7 +156,7 @@ const F = {
 const hola = q => `¡Hola, Juampe! ¿Cómo estás? Te escribo desde la web de Se Nos Fue de las Manos ${q}`;
 const podcastForm = (k, P) => formBlock(k, P, {
   id: 'invitado', tipo: 'capitulo-podcast', asunto: 'Quieren hacer un capítulo del podcast',
-  num: 'Gratis', h: 'Vení al podcast',
+  h: 'Vení al podcast',
   lead: '¿Tu marca tiene una historia para contar? Grabamos un capítulo con vos para mostrar la cocina de tu marketing. No hace falta ser sponsor.',
   free: 'Participar de un capítulo es gratuito.',
   intro: hola('porque quiero hacer un capítulo del podcast.'),
