@@ -242,6 +242,15 @@ h1,h2,h3{font-family:var(--display);font-weight:400;text-transform:uppercase;lin
 .reels-nav .next svg{transform:rotate(-45deg)}
 .reels-nav button:hover{background:var(--ink);color:var(--y)}
 
+/* ---------- videos y UGC ---------- */
+.svc{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+.svc article{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:1.5rem}
+.svc h3{font-size:clamp(1.7rem,3vw,2.2rem);margin-bottom:.6rem}
+.svc p{margin:0;color:var(--muted)}
+.svc .who{background:var(--y);border-color:var(--y);color:var(--ink)}
+.svc ul{margin:0;padding:0;list-style:none;display:grid;gap:.75rem;font-weight:600}
+.svc li b{display:block}
+
 /* ---------- eventos ---------- */
 .ev{display:grid;gap:clamp(28px,4vw,56px)}
 @media (min-width:900px){.ev{grid-template-columns:1fr 1fr;align-items:start}}
@@ -317,6 +326,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <a href="#descargas">Presentaciones</a>
       <a href="#fest-2025">1ra edición</a>
       <a href="#calle">Contenido en la calle</a>
+      <a href="#videos">Videos y UGC</a>
       <a href="#eventos">Eventos</a>
     </nav>
     <a class="cta" data-wa href="#" target="_blank" rel="noopener">Hablemos</a>
@@ -469,10 +479,39 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 </section>
 
-<section class="ch s-ink" id="eventos" aria-labelledby="t-ev">
+<section class="ch" id="videos" aria-labelledby="t-vid">
   <div class="wrap">
     <div class="ch-head">
       <p class="num">#05 · Para marcas</p>
+      <h2 id="t-vid">Videos y UGC para tu marca</h2>
+      <p class="lead">Contenido que parece hecho por la gente, porque lo hace gente. Lo pensamos, lo grabamos y lo editamos listo para tus redes y tus anuncios.</p>
+      <div class="says"><span class="av" data-av aria-hidden="true">M</span><p><b>Manu</b>¿Quién pone la cara? Elegís vos: nosotros o alguien de tu equipo.</p></div>
+    </div>
+    <div class="svc">
+      <article>
+        <h3>Contenido UGC</h3>
+        <p>Videos en primera persona, como los que la gente sube a sus redes: reseñas, unboxings, "un día con" y pruebas de producto. Ideales para anuncios en Instagram y TikTok.</p>
+      </article>
+      <article>
+        <h3>Producción de videos</h3>
+        <p>Del guion a la edición: entrevistas, cápsulas, videos institucionales y coberturas. Con el mismo pulso que el podcast.</p>
+      </article>
+      <article class="who">
+        <h3>¿Quién pone la cara?</h3>
+        <ul>
+          <li><b>Nosotros.</b> El equipo de SNFM conduce, pregunta y le pone onda a tu marca.</li>
+          <li><b>Alguien de tu empresa.</b> Te acompañamos para que se luzca frente a la cámara, aunque sea su primera vez.</li>
+        </ul>
+      </article>
+    </div>
+    <div class="btns"><a class="cta" data-wa href="#" target="_blank" rel="noopener">Quiero videos para mi marca <svg aria-hidden="true"><use href="#arr"/></svg></a></div>
+  </div>
+</section>
+
+<section class="ch s-ink" id="eventos" aria-labelledby="t-ev">
+  <div class="wrap">
+    <div class="ch-head">
+      <p class="num">#06 · Para marcas</p>
       <h2 id="t-ev">Armamos eventos que se llenan</h2>
       <p class="lead">El Marketing Fest lo hicimos de cero dos veces: +1200 personas en la 1ra edición y +30 speakers en la 2da. Si tu marca quiere un evento así, lo armamos con vos.</p>
     </div>
@@ -495,9 +534,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <section class="ch s-y" id="hablemos" aria-labelledby="t-hab">
   <div class="wrap talk-to">
     <div class="ch-head" style="margin:0">
-      <p class="num">#06</p>
+      <p class="num">#07</p>
       <h2 id="t-hab">¿Tenés una marca? Hablemos.</h2>
-      <p class="lead">Contenido en la calle, eventos o tu marca en el podcast o en el próximo Marketing Fest. Contanos qué tenés en mente.</p>
+      <p class="lead">Contenido en la calle, UGC, videos, eventos o tu marca en el podcast o en el próximo Marketing Fest. Contanos qué tenés en mente.</p>
     </div>
     <div>
       <a class="wa" data-wa href="#" target="_blank" rel="noopener">
@@ -643,7 +682,7 @@ $$('[data-reels]').forEach(b=>b.onclick=()=>{ const r=$('#reels'); r.scrollBy({l
 const QA=[
   {q:'¿Dónde bajo las presentaciones del Fest?',a:'Están en <a href="#descargas" data-go>Las presentaciones</a>, separadas por día. Tocá "Descargar PDF" en la charla que quieras.'},
   {q:'¿Dónde veo el podcast?',a:`En nuestro <a href="${CONFIG.youtube}" target="_blank" rel="noopener">canal de YouTube</a>. Si no sabés por cuál arrancar, andá por el de Con el Kora o el de McDonald's.`},
-  {q:'Tengo una marca, ¿qué pueden hacer conmigo?',a:'Tres cosas: contenido en la calle (preguntas y dinámicas con la gente), eventos como el Marketing Fest y tu marca en el podcast. Mirá los <a href="#calle" data-go>reels en la calle</a>.'},
+  {q:'Tengo una marca, ¿qué pueden hacer conmigo?',a:'Contenido en la calle (preguntas y dinámicas con la gente), <a href="#videos" data-go>videos y UGC</a> con nosotros o alguien de tu equipo como cara, eventos como el Marketing Fest y tu marca en el podcast. Mirá los <a href="#calle" data-go>reels en la calle</a>.'},
   {q:'¿Cuánto sale?',a:`Depende de la idea. Escribile a Ro por <a href="${CONFIG.whatsapp}" target="_blank" rel="noopener">WhatsApp</a>, contale qué tenés en mente y te pasa una propuesta.`},
   {q:'¿Quién sos?',a:'Soy Manu, el vocero con IA de Se Nos Fue de las Manos. Te ayudo a encontrar lo que buscás en la web. Para algo más, te paso con el equipo.'}
 ];

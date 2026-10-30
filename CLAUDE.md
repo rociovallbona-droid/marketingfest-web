@@ -13,7 +13,7 @@ La dueña del proyecto es **Ro (Rocío Vallbona)**, Responsable Comercial en DT 
 **Objetivos de la web:**
 1. Que la gente **descargue las presentaciones** del Marketing Fest 2026.
 2. Que vaya a **YouTube** a ver los capítulos del podcast.
-3. Que **las marcas contraten a SNFM**: contenido de marca en la calle y organización de eventos. El contacto es el WhatsApp de Ro.
+3. Que **las marcas contraten a SNFM**: contenido de marca en la calle, videos y UGC (con alguien de SNFM o de la empresa como cara) y organización de eventos. El contacto es el WhatsApp de Ro.
 
 ## Concepto: "El programa"
 
@@ -33,8 +33,9 @@ La web es un capítulo de SNFM y **Manu, el vocero con IA de SNFM, es el conduct
 | 02 | `fest-2026` | Así fue la 2da edición, **presentaciones para descargar** (`#descargas`, con pestañas Martes 27 / Miércoles 28), fotos (`GAL2`, oculta mientras esté vacía) y marcas que acompañaron |
 | 03 | `fest-2025` | La 1ra edición: video de la sala llena, números, fotos y sponsors |
 | 04 | `calle` | Para marcas: contenido en la calle, con reels de Instagram |
-| 05 | `eventos` | Para marcas: organización de eventos, con el Fest como caso |
-| 06 | `hablemos` | WhatsApp de Ro |
+| 05 | `videos` | Para marcas: contenido UGC y producción de videos, con nosotros o alguien de la empresa como cara |
+| 06 | `eventos` | Para marcas: organización de eventos, con el Fest como caso |
+| 07 | `hablemos` | WhatsApp de Ro |
 
 Los links viejos de la landing (`#inscripcion`, `#speakers`, `#cronograma`, `#primera-edicion`, etc.) redirigen a la sección nueva que corresponde (`OLD` al final del script).
 
@@ -97,7 +98,7 @@ Sitio estático, sin build ni dependencias:
 
 ## Pendientes
 
-1. **Presentaciones que faltan:** Sabrina Kolod (martes) y del miércoles Fernanda Rivera, Aldana Abadi, Carolina Geler, ABN, Meta y Rappi (`pend: true`). Cuando llegue cada una: copiarla a `assets/presentaciones/`, poner `dl` y sacar `pend`. Antes de publicar, que Ro confirme el OK de cada speaker.
+1. **Presentaciones que faltan:** Sabrina Kolod (martes) y del miércoles Fernanda Rivera, ABN, Meta y Rappi (`pend: true`). Mariano Garibini y Tomás Cazalá no tienen presentación en la planilla. Cuando llegue cada una: copiarla a `assets/presentaciones/`, poner `dl` y sacar `pend`. Antes de publicar, que Ro confirme el OK de cada speaker.
 2. **Fotos de la 2da edición:** Ro las va a pasar. Van a `assets/img/ed2/` y a `GAL2`.
 3. **Material de Manu:** video o imagen.
 4. **Link del capítulo #9** (Belu Fiora, Hacks Digital).
