@@ -22,6 +22,8 @@ const CONFIG = {
   sumateWebhook: '',
   /* Contacto para servicios (marcas): nombre, teléfono como se muestra y link de WhatsApp con el texto precargado */
   contacto: { nombre: 'Juan Pedro', tel: '11 3478-4373' },
+  /* Mensaje precargado para marcas que quieren ser sponsors del podcast (mismo número que whatsapp) */
+  whatsappSponsor: 'https://wa.me/5491134784373?text=' + encodeURIComponent('¡Hola, Juampe! ¿Cómo estás? Te escribo desde la web de Se Nos Fue de las Manos porque quiero que mi marca sea sponsor del podcast.'),
   whatsapp: 'https://wa.me/5491134784373?text=' + encodeURIComponent('¡Hola, Juampe! ¿Cómo estás? Te escribo desde la web de Se Nos Fue de las Manos para trabajar juntos.')
 };
 

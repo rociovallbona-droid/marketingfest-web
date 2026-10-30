@@ -28,6 +28,7 @@ const PAGES = {
   calle:  { file: 'servicios/contenido-en-la-calle/index.html' },
   videos: { file: 'servicios/videos-y-ugc/index.html' },
   eventos:{ file: 'servicios/eventos/index.html' },
+  sponsor:{ file: 'servicios/sponsor-del-podcast/index.html' },
   sumate: { file: 'sumate/index.html' },
 };
 const dirOf = k => path.posix.dirname(PAGES[k].file);
@@ -43,12 +44,12 @@ const urlOf = k => CONFIG.site ? CONFIG.site.replace(/\/$/, '') + '/' + (dirOf(k
 const icon = (P, id, cls = '', label = '') => `<svg${cls ? ` class="${cls}"` : ''} ${label ? `aria-label="${label}" role="img"` : 'aria-hidden="true"'}><use href="${P('assets/icons.svg')}#${id}"/></svg>`;
 const av = P => (MANU.avatar || MANU.img) ? `<span class="av" aria-hidden="true"><img src="${P(MANU.avatar || MANU.img)}" alt=""></span>` : '<span class="av" aria-hidden="true">M</span>';
 const says = (P, text) => `<div class="says">${av(P)}<p><b>Manu</b>${text}</p></div>`;
-const wa = (P, label, cls = 'cta') => `<a class="${cls}" href="${esc(CONFIG.whatsapp)}" ${ext} data-wa>${label} ${icon(P, 'arr')}</a>`;
+const wa = (P, label, cls = 'cta', href = CONFIG.whatsapp) => `<a class="${cls}" href="${esc(href)}" ${ext} data-wa>${label} ${icon(P, 'arr')}</a>`;
 
 function nav(k, P) {
   const a = (to, label) => `<a href="${rel(k, to)}"${k === to ? ' aria-current="page"' : ''}>${label}</a>`;
   const festOn = ['fest', 'f2026', 'f2025'].includes(k);
-  const svcOn = ['servicios', 'calle', 'videos', 'eventos'].includes(k);
+  const svcOn = ['servicios', 'calle', 'videos', 'eventos', 'sponsor'].includes(k);
   return `<header class="nav">
   <div class="wrap">
     <a class="home" href="${rel(k, 'home')}" aria-label="Se Nos Fue de las Manos, inicio">${icon(P, 'snfm', 'inv')}</a>
@@ -67,6 +68,7 @@ function nav(k, P) {
           <a href="${rel(k, 'calle')}">Contenido en la calle<small>Preguntas y dinámicas con la gente</small></a>
           <a href="${rel(k, 'videos')}">Videos y UGC<small>Con nosotros o tu equipo como cara</small></a>
           <a href="${rel(k, 'eventos')}">Eventos<small>Como el Marketing Fest</small></a>
+          <a href="${rel(k, 'sponsor')}">Sponsoreá el podcast<small>Tu marca en cada capítulo</small></a>
         </div>
       </div>
       ${a('sumate', 'Sumate')}
@@ -129,6 +131,7 @@ function qa(k) {
     { q: '¿Dónde veo el podcast?', a: `En nuestro <a href="${CONFIG.youtube}" ${ext}>canal de YouTube</a>. Si no sabés por cuál arrancar, andá por el de Con el Kora o el de McDonald's. Están todos en <a href="${rel(k, 'podcast')}">la página del podcast</a>.` },
     { q: 'Tengo una marca, ¿qué pueden hacer conmigo?', a: `Mirá <a href="${rel(k, 'servicios')}">nuestros servicios</a>: <a href="${rel(k, 'calle')}">Contenido en la calle</a>, <a href="${rel(k, 'videos')}">videos y UGC</a> con nosotros o alguien de tu equipo como cara, <a href="${rel(k, 'eventos')}">eventos</a> como el Marketing Fest y tu marca en el podcast.` },
     { q: '¿Cómo me sumo a Se Nos Fue?', a: `Anotate en <a href="${rel(k, 'sumate')}">Sumate</a> y contanos en qué podés ayudar. Ojo: no es remunerado, lo hacemos por amor al marketing.` },
+    { q: '¿Mi marca puede ser sponsor del podcast?', a: `¡Sí! Mirá <a href="${rel(k, 'sponsor')}">cómo sponsorear el podcast</a> o escribile directo a ${esc(CONFIG.contacto.nombre)} por <a href="${esc(CONFIG.whatsappSponsor)}" ${ext}>WhatsApp</a>.` },
     { q: '¿Cuánto sale?', a: `Depende de la idea. Escribile a ${esc(CONFIG.contacto.nombre)} por <a href="${esc(CONFIG.whatsapp)}" ${ext}>WhatsApp</a>, contale qué tenés en mente y te pasa una propuesta.` },
     { q: '¿Quién sos?', a: 'Soy Manu, el vocero con IA de Se Nos Fue de las Manos. Te ayudo a encontrar lo que buscás en la web. Para algo más, te paso con el equipo.' },
   ];
@@ -342,7 +345,7 @@ const BUILD = {
     <div class="cards">
       ${card('podcast', '#01', 'El podcast', `${EPISODES.length} capítulos con los que están detrás de McDonald's, CCU, Pepsico, Logitech y más.`, 'Ver los capítulos')}
       ${card('fest', '#02', 'Marketing Fest', 'El evento de marketing más grande de la FCE UBA. En la 2da edición vinieron más de 2600 personas.', 'Conocé el Fest')}
-      ${card('servicios', '#03', 'Nuestros servicios', 'Contenido en la calle, videos y UGC y eventos para tu marca.', 'Ver los servicios')}
+      ${card('servicios', '#03', 'Nuestros servicios', 'Contenido en la calle, videos y UGC, eventos y sponsoreo del podcast.', 'Ver los servicios')}
       ${card('sumate', '#04', 'Sumate', '¿Hacés UGC, filmás o editás? Anotate y te llamamos cuando necesitemos una mano.', 'Quiero sumarme')}
     </div>
   </div>
@@ -389,7 +392,13 @@ if(h in m){location.replace('${rel(k, 'f2026')}'+(m[h]?'#'+m[h]:''));}else if(h=
     </div>
   </div>
 </section>
-${band(k, P, '¿Querés que tu marca esté en el podcast? También hacemos contenido en la calle, videos, UGC y eventos.')}`,
+<section class="ch s-ink" aria-labelledby="t-spon" style="padding:clamp(40px,6vw,72px) 0">
+  <div class="wrap spon-strip">
+    <div><h2 id="t-spon">Tu marca en el podcast</h2><p class="lead">Sponsoreá los próximos capítulos y llegá a quienes aprenden marketing de los que lo hacen.</p></div>
+    <div class="btns" style="margin:0">${wa(P, `Hablá con ${esc(CONFIG.contacto.nombre)}`, 'cta', CONFIG.whatsappSponsor)}<a class="ghost" href="${rel(k, 'sponsor')}">Ver más info</a></div>
+  </div>
+</section>
+${band(k, P, 'También hacemos contenido en la calle, videos, UGC y eventos.')}`,
     });
   },
 
@@ -535,6 +544,7 @@ ${band(k, P, '¿Querés sumar tu marca a la 3ra edición del Marketing Fest u or
     ${svc('calle', '01', 'Contenido en la calle', 'Preguntas a la gente, dinámicas y desafíos en la vía pública, con tu marca en el centro.', ['Reels listos para Instagram y TikTok', 'Caras reales, contenido que se comparte'])}
     ${svc('videos', '02', 'Videos y UGC', 'Contenido UGC y producción de videos, con nosotros o alguien de tu equipo como cara.', ['Reseñas, unboxings y pruebas de producto', 'Entrevistas, cápsulas y videos institucionales'])}
     ${svc('eventos', '03', 'Eventos', 'Armamos eventos que se llenan, como el Marketing Fest: más de 2600 personas en la 2da edición y más de 60 speakers entre las dos.', ['Line up, sponsors y producción', 'Comunicación y cobertura'])}
+    ${svc('sponsor', '04', 'Sponsoreá el podcast', 'Tu marca presente en los capítulos de Se Nos Fue de las Manos, en YouTube, Spotify, TikTok y Gigared TV.', ['En el set, en las menciones y en los shorts', 'Hablás directo con ' + esc(CONFIG.contacto.nombre)])}
   </div>
 </section>
 ${band(k, P, 'También podés sumar tu marca al podcast o al próximo Marketing Fest. Contanos qué tenés en mente.')}`,
@@ -588,6 +598,38 @@ ${band(k, P, 'También podés sumar tu marca al podcast o al próximo Marketing 
   </div>
 </section>
 ${band(k, P)}`,
+    });
+  },
+
+  sponsor(k, P) {
+    const brands = ['McDonald\'s', 'CCU', 'Pepsico', 'Logitech', 'Kia', 'Mirgor', 'Hudson Kitchenware', 'Calm', 'Con el Kora'];
+    return layout(k, {
+      title: 'Sponsoreá el podcast de marketing · Se Nos Fue de las Manos',
+      description: `Sumá tu marca como sponsor del podcast de Se Nos Fue de las Manos: ${EPISODES.length} capítulos con gerentes de marketing de McDonald's, CCU, Pepsico y más, en YouTube, Spotify, TikTok y Gigared TV. Hablá directo con ${CONFIG.contacto.nombre}.`,
+      body: `${pageHero(k, P, {
+        num: 'Para marcas', h1: 'Sponsoreá el podcast', trail: [['home', 'Inicio'], ['servicios', 'Servicios'], [null, 'Sponsor del podcast']],
+        lead: 'Tu marca presente en las charlas con los que hacen marketing en las marcas más grandes del país, frente a estudiantes, profesionales y emprendedores que quieren aprender de verdad.',
+        say: `Para sponsorear, hablá directo con ${esc(CONFIG.contacto.nombre)}. Te arma la propuesta a medida.`,
+        extra: `<div class="btns">${wa(P, `Escribile a ${esc(CONFIG.contacto.nombre)}`, 'cta', CONFIG.whatsappSponsor)}</div>`,
+      })}
+<section class="ch" aria-labelledby="t-como">
+  <div class="wrap">
+    <h2 class="sr" id="t-como">Cómo aparece tu marca</h2>
+    <div class="svc">
+      <article><h3>En el set</h3><p>Tu marca o tu producto a la vista mientras charlamos con los invitados.</p></article>
+      <article><h3>En las menciones</h3><p>Te nombramos en los capítulos y en la descripción, con link a tu marca.</p></article>
+      <article class="who"><h3>Dónde se ve</h3><ul><li><b>YouTube</b> Los capítulos completos.</li><li><b>Spotify, TikTok y Gigared TV</b> El audio y los mejores momentos.</li></ul></article>
+    </div>
+    <div class="thanks">
+      <h3 style="font-size:clamp(1.8rem,4vw,2.6rem)">Ya pasaron por el podcast</h3>
+      <p class="lead" style="max-width:none">${brands.join(' · ')}</p>
+    </div>
+    <div class="ch-head" style="margin:clamp(40px,6vw,64px) 0 1.5rem"><h3 style="font-size:clamp(1.8rem,4vw,2.6rem)">Mirá cómo es un capítulo</h3></div>
+    <div class="hot">${hotEps(P)}</div>
+    <div class="btns">${wa(P, `Quiero sponsorear el podcast`, 'cta', CONFIG.whatsappSponsor)}<a class="ghost" href="${rel(k, 'podcast')}">Ver todos los capítulos</a></div>
+  </div>
+</section>
+${band(k, P, 'Además del podcast, hacemos contenido en la calle, videos, UGC y eventos.')}`,
     });
   },
 

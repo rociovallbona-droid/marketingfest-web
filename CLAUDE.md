@@ -15,7 +15,7 @@ La dueña del proyecto es **Ro (Rocío Vallbona)**, Responsable Comercial en DT 
 **Objetivos de la web:**
 1. Que la gente **descargue las presentaciones** del Marketing Fest 2026.
 2. Que vaya a **YouTube** a ver los capítulos del podcast.
-3. Que **las marcas contraten a SNFM**: contenido de marca en la calle, videos y UGC (con alguien de SNFM o de la empresa como cara) y organización de eventos. El contacto para servicios es el WhatsApp de **Juan Pedro** (+54 9 11 3478-4373).
+3. Que **las marcas contraten a SNFM**: contenido de marca en la calle, videos y UGC (con alguien de SNFM o de la empresa como cara) organización de eventos y **sponsoreo del podcast**. El contacto para servicios es el WhatsApp de **Juan Pedro** (+54 9 11 3478-4373).
 
 ## Concepto: "El programa"
 
@@ -41,6 +41,7 @@ Cada botón del menú es una página propia, con su título, descripción, Open 
 | `/servicios/contenido-en-la-calle/` | Contenido en la calle | Reels de Instagram |
 | `/servicios/videos-y-ugc/` | Videos y UGC | UGC y producción de videos, con SNFM o alguien de la empresa como cara |
 | `/servicios/eventos/` | Eventos | Qué hacemos al organizar un evento y marcas que confiaron en el Fest |
+| `/servicios/sponsor-del-podcast/` | Sponsoreá el podcast | Cómo aparece la marca (set, menciones, dónde se ve), marcas que pasaron por el podcast y capítulos de muestra. Todos los CTA van a `CONFIG.whatsappSponsor`: WhatsApp de Juan Pedro con mensaje de sponsoreo. También hay una franja "Tu marca en el podcast" al final de `/podcast/` |
 | `/sumate/` | Sumate | Base de gente que quiere dar una mano (UGC, filmmakers, cámaras, edición, etc.). **No es remunerado: es por amor al marketing**, y se aclara arriba, en un recuadro y en una casilla obligatoria del formulario |
 
 En el menú, "Marketing Fest" y "Servicios" tienen un desplegable (en desktop) con sus páginas internas. Los links viejos de la landing (`#inscripcion`, `#speakers`, `#cronograma`, `#primera-edicion`, `#organizan`, etc.) redirigen desde el inicio a la página nueva que corresponde.
@@ -101,7 +102,7 @@ Sitio estático. Las páginas se **generan** con un script de Node sin dependenc
 
 ### Datos (`data.js`)
 
-- **`CONFIG`:** `site` (dominio, para SEO), `youtube`, `instagram`, `contacto` (nombre y teléfono que se muestran) y `whatsapp` (wa.me al 11 3478-4373 de Juan Pedro, con mensaje precargado). Para cambiar el contacto de servicios se tocan solo `contacto` y `whatsapp`.
+- **`CONFIG`:** `site` (dominio, para SEO), `youtube`, `instagram`, `contacto` (nombre y teléfono que se muestran) `whatsapp` (wa.me al 11 3478-4373 de Juan Pedro, con mensaje precargado) y `whatsappSponsor` (mismo número, con el mensaje de sponsoreo del podcast). Para cambiar el contacto de servicios se tocan solo `contacto` y `whatsapp`.
 - **`MANU`:** `img`, `avatar`, `video` y `poster` de Manu (ver arriba).
 - **`EPISODES`:** capítulos del podcast, del más nuevo al más viejo: `{n, id, t, g, b, hot, fest}`. `id` es el código de YouTube; si está vacío, el capítulo lleva al canal y la miniatura se arma con el título (pasa con el #9 de Belu Fiora, que no tiene link todavía). Las miniaturas salen de `i.ytimg.com/vi/<id>/hqdefault.jpg`.
 - **`REELS`:** códigos de los reels de Instagram; el primero (`DYiW6gNxA1m`) va grande como destacado. Se muestran con el embed oficial de IG, que se carga recién cuando la sección está cerca.
