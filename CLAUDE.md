@@ -17,27 +17,30 @@ La dueña del proyecto es **Ro (Rocío Vallbona)**, Responsable Comercial en DT 
 
 ## Concepto: "El programa"
 
-La web es un capítulo de SNFM y **Manu, el vocero con IA de SNFM, es el conductor**. El look sale de las miniaturas del canal de YouTube: bloques planos amarillo `#F3DA00` y negro `#202020`, títulos enormes en Anton y el número de capítulo ("#01").
+La web es un programa de SNFM y **Manu, el vocero con IA de SNFM, es el conductor**. El look sale de las miniaturas del canal de YouTube: bloques planos amarillo `#F3DA00` y negro `#202020`, títulos enormes en Anton y el número de capítulo ("#01").
 
 - **Hero (#00):** "Se nos fue de las manos" gigante, chips con números y la tarjeta de Manu con su burbuja de bienvenida.
-- **Cada sección es un capítulo** con número, título y una línea de Manu (`.says`).
+- **Cada página tiene una línea de Manu** (`.says`) que la presenta.
 - **"Preguntale a Manu":** botón flotante que abre un `<dialog>` con preguntas y respuestas armadas (`QA` en el script). No es IA de verdad; si algún día se conecta a una IA, sería vía n8n.
 - **Manu todavía no tiene material:** `MANU` en `data.js` tiene `video`, `poster` e `img` vacíos y se muestra su inicial "M" sobre amarillo. Cuando Ro pase el video o la imagen, completar esos campos (el video va vertical, muteado, con botón "Activar sonido").
 
-### Secciones (en orden)
+### Páginas
 
-| # | id | Qué tiene |
+Cada botón del menú es una página propia, con su título, descripción, Open Graph y datos estructurados (JSON-LD) para SEO. Todas terminan con la banda "¿Tenés una marca? Hablemos." y tienen el botón de Manu.
+
+| URL | Página | Qué tiene |
 |---|---|---|
-| 00 | `inicio` | Hero con Manu |
-| 01 | `podcast` | Dos destacados grandes (Con el Kora y McDonald's, `hot: true`), grilla de capítulos y botón al canal |
-| 02 | `fest-2026` | Así fue la 2da edición, **presentaciones para descargar** (`#descargas`, con pestañas Martes 27 / Miércoles 28), fotos (`GAL2`, oculta mientras esté vacía) y marcas que acompañaron |
-| 03 | `fest-2025` | La 1ra edición: video de la sala llena, números, fotos y sponsors |
-| 04 | `calle` | Para marcas: contenido en la calle, con reels de Instagram |
-| 05 | `videos` | Para marcas: contenido UGC y producción de videos, con nosotros o alguien de la empresa como cara |
-| 06 | `eventos` | Para marcas: organización de eventos, con el Fest como caso |
-| 07 | `hablemos` | WhatsApp de Ro |
+| `/` | Inicio | Hero con Manu, "Qué hacemos" (tarjetas a Podcast, Marketing Fest y Servicios) y los dos capítulos destacados |
+| `/podcast/` | Podcast | Destacados (Con el Kora y McDonald's, `hot: true`) y todos los capítulos |
+| `/marketing-fest/` | Marketing Fest | Qué es el Fest y una tarjeta por edición |
+| `/marketing-fest/2026/` | 2da edición | Números, **presentaciones para descargar** (`#descargas`, pestañas por día), fotos (`GAL2`) y marcas |
+| `/marketing-fest/2025/` | 1ra edición | Video, números, fotos por momento (descargables) y sponsors |
+| `/servicios/` | Nuestros servicios | Cada servicio explicado en breve con "Ver más info" |
+| `/servicios/contenido-en-la-calle/` | Contenido en la calle | Reels de Instagram |
+| `/servicios/videos-y-ugc/` | Videos y UGC | UGC y producción de videos, con SNFM o alguien de la empresa como cara |
+| `/servicios/eventos/` | Eventos | Qué hacemos al organizar un evento y marcas que confiaron en el Fest |
 
-Los links viejos de la landing (`#inscripcion`, `#speakers`, `#cronograma`, `#primera-edicion`, etc.) redirigen a la sección nueva que corresponde (`OLD` al final del script).
+En el menú, "Marketing Fest" y "Servicios" tienen un desplegable (en desktop) con sus páginas internas. Los links viejos de la landing (`#inscripcion`, `#speakers`, `#cronograma`, `#primera-edicion`, `#organizan`, etc.) redirigen desde el inicio a la página nueva que corresponde.
 
 ## Marca
 
@@ -72,27 +75,32 @@ Los links viejos de la landing (`#inscripcion`, `#speakers`, `#cronograma`, `#pr
 
 ## Arquitectura técnica
 
-Sitio estático, sin build ni dependencias:
+Sitio estático. Las páginas se **generan** con un script de Node sin dependencias:
 
-- **`index.html`:** HTML, CSS y JS (~160 KB, casi todo es el SVG del logo SNFM).
-- **`data.js`:** todos los datos. **Para sumar contenido se edita este archivo**, no el HTML.
-- **`assets/img/`:** `speakers/` (fotos por slug), `ed1/` (fotos de la 1ra edición y del equipo), `logos/`. Las fotos de la 2da edición van en `assets/img/ed2/`.
-- **`assets/presentaciones/`:** los PDF de las charlas del Fest 2026, con nombre `dia-hora-speaker.pdf`.
-- **`assets/ed1-sala-llena.mp4` / `.webm` / `.jpg`:** video vertical de la sala vacía a la sala llena (1ra edición).
+- **`data.js`:** todos los datos. **Para sumar contenido se edita este archivo.**
+- **`build.js`:** la plantilla común (head con SEO, menú, footer, chat de Manu) y el contenido de cada página. Correr `node build.js` después de cualquier cambio en `data.js` o `build.js`: regenera los `index.html` de cada carpeta, `robots.txt` y (si está `CONFIG.site`) `sitemap.xml`. **No editar los `index.html` a mano**: se pisan en cada build. Los HTML generados se commitean, así el sitio funciona en cualquier hosting sin paso de build.
+- **`assets/site.css`** y **`assets/site.js`:** estilos y JS compartidos (pestañas, reels, chat). El contenido ya viene armado en el HTML, para que Google lo lea sin ejecutar JS.
+- **`assets/icons.svg`:** sprite con el logo SNFM (`#snfm`), la flecha (`#arr`) y WhatsApp (`#wa`). Se usa con `<use href="…/assets/icons.svg#snfm">`; en fondos oscuros, con la clase `.inv`. Necesita servirse por http (no anda abriendo el archivo con doble clic).
+- **Rutas relativas** en todos los links (`rel()` en `build.js`), así funciona en un dominio propio o en una subcarpeta.
+- **`assets/img/`:** `speakers/`, `ed1/`, `logos/`. Las fotos de la 2da edición van en `assets/img/ed2/`.
+- **`assets/presentaciones/`:** los PDF de las charlas del Fest 2026 (`dia-hora-speaker.pdf`). El peso que muestra el botón lo calcula el build.
+- **`assets/ed1-sala-llena.mp4` / `.webm` / `.jpg`:** video vertical de la 1ra edición.
+
+**SEO pendiente:** completar `CONFIG.site` con el dominio cuando esté definido y correr el build; eso agrega `canonical`, `og:url`, URLs absolutas en `og:image` y el `sitemap.xml`.
 
 ### Datos (`data.js`)
 
-- **`CONFIG`:** `youtube`, `instagram` y `whatsapp` (wa.me al 11 5134-1115 de Ro, con mensaje precargado).
+- **`CONFIG`:** `site` (dominio, para SEO), `youtube`, `instagram` y `whatsapp` (wa.me al 11 5134-1115 de Ro, con mensaje precargado).
 - **`MANU`:** material de Manu (ver arriba).
 - **`EPISODES`:** capítulos del podcast, del más nuevo al más viejo: `{n, id, t, g, b, hot, fest}`. `id` es el código de YouTube; si está vacío, el capítulo lleva al canal y la miniatura se arma con el título (pasa con el #9 de Belu Fiora, que no tiene link todavía). Las miniaturas salen de `i.ytimg.com/vi/<id>/hqdefault.jpg`.
 - **`REELS`:** códigos de los reels de Instagram; el primero (`DYiW6gNxA1m`) va grande como destacado. Se muestran con el embed oficial de IG, que se carga recién cuando la sección está cerca.
 - **`DATA`:** cronograma del Fest 2026: `{d, t, n, c, tp, k, ph, pause, dl, pend, ep}`. `dl` es la ruta del PDF; `pend: true` muestra "La presentación llega pronto"; `ep` son los números de capítulos del podcast relacionados (botón "Podcast #N"). Los paneles no tienen presentación.
 - **`PH`:** fotos de speakers por slug.
 - **`GAL2`:** fotos de la 2da edición (`{src, alt}`), vacía por ahora.
-- **`GAL` / `TEAM`:** fotos de la 1ra edición y del equipo.
+- **`GAL` / `GAL_CATS` / `TEAM`:** fotos de la 1ra edición (agrupadas por momento en el orden de `GAL_CATS`) y del equipo.
 - **`MF_LOGO`, `MAIN_SPONSORS`** (Heineken 0.0 y CCU), **`SPONSORS`, `MEDIA`, `LOGOS`** (apoyo institucional), **`SPONSORS_ED1`.** Si un logo no tiene `src`, se muestra el nombre en Anton.
 
-**Google Tag Manager:** contenedor `GTM-5Z65GSRG`, arriba de todo en el `<head>` y `<noscript>` al abrir el `<body>`. Los eventos se configuran desde GTM; los links útiles para medir tienen `data-dl` (descargas), `data-ep` (capítulos) y `data-wa` (WhatsApp).
+**Google Tag Manager:** contenedor `GTM-5Z65GSRG`, en todas las páginas, arriba de todo en el `<head>` y `<noscript>` al abrir el `<body>`. Los eventos se configuran desde GTM; los links útiles para medir tienen `data-dl` (descargas), `data-ep` (capítulos) y `data-wa` (WhatsApp).
 
 **Favicon:** `favicon.png` y `apple-touch-icon.png` en la raíz.
 
@@ -108,7 +116,8 @@ Sitio estático, sin build ni dependencias:
 
 ## Checklist antes de cada entrega
 
-- Probar desktop 1440×900 y mobile 390×844, en modo claro y oscuro.
+- Correr `node build.js` y probar con un servidor local (`python3 -m http.server`).
+- Probar desktop 1440×900 y mobile 390×844, en modo claro y oscuro, todas las páginas.
 - Que cada "Descargar PDF" baje el archivo correcto y que los capítulos abran el video correcto en YouTube.
 - Que los botones de WhatsApp abran el chat con Ro.
 - Que no aparezca ninguna marca no confirmada y que todo el copy esté en voseo.

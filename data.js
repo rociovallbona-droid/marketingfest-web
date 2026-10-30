@@ -1,10 +1,14 @@
 /* ==========================================================================
    Datos de la web de Se Nos Fue de las Manos.
    Para sumar algo nuevo (un capítulo, un reel, una presentación) editá este
-   archivo: index.html no hace falta tocarlo.
+   archivo y después corré  node build.js  para regenerar las páginas.
+   No edites los index.html a mano: se pisan en cada build.
    ========================================================================== */
 
 const CONFIG = {
+  /* URL pública del sitio, sin barra final (ej. 'https://senosfuedelasmanos.com').
+     Con esto se generan el canonical, og:url y sitemap.xml para Google. */
+  site: '',
   youtube: 'https://www.youtube.com/@SeNosFueDeLasManos',
   instagram: 'https://www.instagram.com/senosfuedelasmanos.ok/',
   /* Contacto de marcas: WhatsApp de Ro. El texto se precarga en el chat. */
@@ -142,6 +146,9 @@ const GAL = [
   {"src":"assets/img/ed1/13.jpg","alt":"Aldana Abadi y Sabrina Kolod con su certificado de disertantes","cat":"Speakers con su certificado"},
   {"src":"assets/img/ed1/14.jpg","alt":"Una selfie entre charla y charla","cat":"La gente"}
 ];
+
+/* Momentos de la galería de la 1ra edición, en orden (las categorías vacías no se muestran) */
+const GAL_CATS = ['Acreditaciones','Charlas','Paneles de IA y marketing','Speakers con su certificado','La gente','Photocall'];
 
 /* Fotos del equipo */
 const TEAM = [
