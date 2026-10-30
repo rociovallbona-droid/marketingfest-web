@@ -41,12 +41,17 @@ Cada botón del menú es una página propia, con su título, descripción, Open 
 | `/servicios/contenido-en-la-calle/` | Contenido en la calle | Reels de Instagram |
 | `/servicios/videos-y-ugc/` | Videos y UGC | UGC y producción de videos, con SNFM o alguien de la empresa como cara |
 | `/servicios/eventos/` | Eventos | Qué hacemos al organizar un evento y marcas que confiaron en el Fest |
+| `/sumate/` | Sumate | Base de gente que quiere dar una mano (UGC, filmmakers, cámaras, edición, etc.). **No es remunerado: es por amor al marketing**, y se aclara arriba, en un recuadro y en una casilla obligatoria del formulario |
 
 En el menú, "Marketing Fest" y "Servicios" tienen un desplegable (en desktop) con sus páginas internas. Los links viejos de la landing (`#inscripcion`, `#speakers`, `#cronograma`, `#primera-edicion`, `#organizan`, etc.) redirigen desde el inicio a la página nueva que corresponde.
 
 ### "Avisame cuando salga la 3ra"
 
 Formulario (nombre y apellido, email, teléfono/WhatsApp) en el inicio, en `/marketing-fest/` y en las páginas de cada edición (`#tercera`); también hay botones "Avisame de la 3ra edición" en el hero del inicio y del Fest, y una respuesta en el chat de Manu. Hace POST a `CONFIG.avisoWebhook` con `{nombre, email, whatsapp, evento: 'Marketing Fest · 3ra edición', tipo: 'aviso-3ra-edicion', origen, fecha}` y empuja el evento `aviso_3ra_edicion` al `dataLayer` de GTM. Hoy usa el webhook de la pre-inscripción 2026 (`https://n8n.dtcomunicacion.com/webhook/preinscripcion-mkt-fest`, workflow `E6dF41wKNW31obCu`, data table `d7GBQXcVm9nlEQsh`). Ojo: ese workflow no duplica por email, así que quien ya estaba pre-inscripto en 2026 no se guarda de nuevo (igual ya está en la lista). Si se arma una tabla propia para la 3ra, cambiar solo `CONFIG.avisoWebhook`. En el navegador queda guardado con la clave `mktfest-aviso-3ra` para mostrar "¡Listo!" si vuelve.
+
+### Formulario "Sumate"
+
+Pide nombre y apellido, email, teléfono, roles (chips con los de `ROLES` en `data.js`), link opcional, mensaje opcional y la casilla "Entiendo que no es remunerado". Si `CONFIG.sumateWebhook` tiene URL, hace POST con `{nombre, email, whatsapp, roles, link, mensaje, tipo: 'sumate', fecha}`. **Hoy está vacío**: abre WhatsApp con los datos escritos para mandárselos al contacto de servicios (Juan Pedro). Para tener una base de verdad hay que crear un webhook de n8n con su propia data table y cargarlo en `CONFIG.sumateWebhook` (no usar el de la pre-inscripción: no repite emails y no tiene esas columnas). Evento de GTM: `sumate`.
 
 ## Marca
 
@@ -116,7 +121,8 @@ Sitio estático. Las páginas se **generan** con un script de Node sin dependenc
 2. **Fotos de la 2da edición:** Ro las va a pasar. Van a `assets/img/ed2/` y a `GAL2`.
 4. **Link del capítulo #9** (Belu Fiora, Hacks Digital).
 6. **Logo de Mikhuna Nikkei** (sponsor de la 1ra edición), hoy como texto.
-7. **Precios:** no se muestran en la web salvo que Ro lo pida.
+7. **Base de "Sumate" en n8n:** crear el webhook y la data table y cargarlo en `CONFIG.sumateWebhook`.
+8. **Precios:** no se muestran en la web salvo que Ro lo pida.
 
 ## Checklist antes de cada entrega
 

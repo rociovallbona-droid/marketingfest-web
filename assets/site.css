@@ -391,3 +391,27 @@ dialog.chat::backdrop{background:rgba(0,0,0,.45)}
 .aviso-ok strong{display:block;font-family:var(--display);font-weight:400;text-transform:uppercase;font-size:clamp(2rem,4vw,2.8rem);line-height:1;margin-bottom:.5rem}
 .aviso-ok:focus{outline:none}
 .aviso-wrap+.band{padding-top:clamp(48px,7vw,88px)}
+
+/* página Sumate */
+.roles-list{list-style:none;margin:0;padding:0;display:grid;gap:12px;grid-template-columns:repeat(auto-fill,minmax(250px,1fr))}
+.roles-list li{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:1.1rem 1.2rem}
+.roles-list b{display:block;font-weight:700;font-size:1.05rem;margin-bottom:.25rem}
+.roles-list span{color:var(--muted)}
+.note{margin-top:clamp(28px,4vw,40px);display:grid;gap:.5rem;max-width:760px;border-left:6px solid var(--y);padding:.25rem 0 .25rem 1.25rem}
+.note strong{font-family:var(--display);font-weight:400;text-transform:uppercase;font-size:clamp(1.8rem,3.4vw,2.4rem);line-height:1}
+.note p{margin:0;font-size:1.08rem}
+.aviso.sumate{align-items:start}
+.aviso-form fieldset{border:0;margin:0;padding:0;min-width:0}
+.aviso-form legend{font-weight:700;padding:0;margin-bottom:.5rem}
+.aviso-form small{font-weight:600;opacity:.75}
+.roles{display:flex;flex-wrap:wrap;gap:.45rem}
+.role{position:relative;cursor:pointer}
+.role input{position:absolute;opacity:0;inset:0;cursor:pointer}
+.role span{display:block;border:2px solid var(--ink);border-radius:999px;padding:.45rem .85rem;font-weight:700;font-size:.9rem;background:var(--paper)}
+.role input:checked+span{background:var(--ink);color:var(--y)}
+.role input:focus-visible+span{outline:3px solid var(--ink);outline-offset:2px}
+.aviso-form textarea{font:inherit;font-weight:600;color:var(--ink);background:var(--paper);border:2px solid var(--ink);border-radius:14px;padding:.85rem 1rem;width:100%;resize:vertical}
+.aviso-form textarea:focus-visible{outline:3px solid var(--ink);outline-offset:2px}
+.check{display:flex;gap:.65rem;align-items:flex-start;font-weight:700;cursor:pointer}
+.check input{width:22px;height:22px;flex:none;margin:.1rem 0 0;accent-color:var(--ink)}
+.check[aria-invalid="true"] span{color:#9b1c0c}

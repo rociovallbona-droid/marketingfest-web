@@ -15,6 +15,11 @@ const CONFIG = {
      Hoy usa el webhook de n8n de la pre-inscripción 2026 (workflow E6dF41wKNW31obCu, data table d7GBQXcVm9nlEQsh);
      los registros nuevos llegan con tipo 'aviso-3ra-edicion'. */
   avisoWebhook: 'https://n8n.dtcomunicacion.com/webhook/preinscripcion-mkt-fest',
+  /* Formulario "Sumate": la base de gente que quiere dar una mano (UGC, filmmakers, cámaras, etc.).
+     Si sumateWebhook tiene una URL (ej. un webhook de n8n), hace POST con
+     {nombre, email, whatsapp, roles, link, mensaje, tipo: 'sumate', fecha}.
+     Mientras esté vacío, abre WhatsApp con los datos escritos para mandárselos al contacto de abajo. */
+  sumateWebhook: '',
   /* Contacto para servicios (marcas): nombre, teléfono como se muestra y link de WhatsApp con el texto precargado */
   contacto: { nombre: 'Juan Pedro', tel: '11 3478-4373' },
   whatsapp: 'https://wa.me/5491134784373?text=' + encodeURIComponent('¡Hola, Juampe! ¿Cómo estás? Te escribo desde la web de Se Nos Fue de las Manos para trabajar juntos.')
@@ -24,6 +29,18 @@ const CONFIG = {
    img: la ilustración entera (va en la tarjeta del inicio) · avatar: recorte cuadrado de Manu (va en los círculos chicos)
    video: mp4 vertical opcional; si está, reemplaza a img en la tarjeta (poster: su primer cuadro). */
 const MANU = { video: '', poster: '', img: 'assets/img/manu.webp', avatar: 'assets/img/manu-avatar.webp' };
+
+/* Roles de la página "Sumate": {t: título, d: qué hace} */
+const ROLES = [
+  {t:'Creador/a de contenido UGC', d:'Grabás en primera persona: reseñas, pruebas de producto y videos para marcas.'},
+  {t:'Filmmaker o cámara', d:'Tenés equipo o sabés usarlo: grabaciones del podcast, eventos y contenido en la calle.'},
+  {t:'Edición de video', d:'Cortás capítulos, armás reels y le das ritmo a lo que grabamos.'},
+  {t:'Fotografía', d:'Cubrís eventos y sesiones para que quede todo registrado.'},
+  {t:'Sonido y streaming', d:'Micrófonos, consola y transmisiones en vivo.'},
+  {t:'Diseño', d:'Piezas, miniaturas, placas y todo lo que se ve.'},
+  {t:'Redes y community', d:'Publicás, respondés y hacés crecer la comunidad.'},
+  {t:'Producción de eventos', d:'Acreditaciones, escenario, speakers y logística el día del Fest.'}
+];
 
 /* Capítulos del podcast, del más nuevo al más viejo.
    id: el código del video de YouTube (lo que va después de youtu.be/). Si está vacío, el capítulo lleva al canal.

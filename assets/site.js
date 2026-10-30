@@ -88,3 +88,42 @@ $$('form[data-aviso]').forEach(form=>{
     }
   });
 });
+
+/* Sumate: la base de gente que quiere dar una mano.
+   Con webhook guarda los datos; sin webhook abre WhatsApp con los datos escritos. */
+$$('form[data-sumate]').forEach(form=>{
+  const box=form.parentNode, ok=$('.aviso-ok',box), err=$('.err',form), btn=$('button[type=submit]',form);
+  const fail=(el,msg,target=el)=>{ err.textContent=msg; target.setAttribute('aria-invalid','true'); el.focus(); };
+  form.addEventListener('input',e=>{ $$('[aria-invalid]',form).forEach(x=>x.removeAttribute('aria-invalid')); err.textContent=''; });
+  form.addEventListener('submit',async e=>{
+    e.preventDefault(); err.textContent='';
+    const f=form.elements;
+    const d={nombre:f.nombre.value.trim().replace(/\s+/g,' '), email:f.email.value.trim(), whatsapp:f.whatsapp.value.trim(),
+      roles:$$('input[name=roles]:checked',form).map(x=>x.value), link:f.link.value.trim(), mensaje:f.mensaje.value.trim()};
+    if(d.nombre.split(' ').length<2) return fail(f.nombre,'Escribí tu nombre y apellido.');
+    if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(d.email)) return fail(f.email,'Revisá el email: le falta algo (por ejemplo, la @ o el dominio).');
+    if(d.whatsapp.replace(/\D/g,'').length<10) return fail(f.whatsapp,'El teléfono tiene que tener al menos 10 números, con la característica (por ejemplo, 11 2345 6789).');
+    if(!d.roles.length) return fail($('input[name=roles]',form),'Elegí al menos una forma de ayudar.');
+    if(d.link && !/^https?:\/\/\S+\.\S+/.test(d.link)){ if(/^\S+\.\S+$/.test(d.link)) d.link='https://'+d.link; else return fail(f.link,'Revisá el link: tiene que ser una dirección web, por ejemplo https://instagram.com/tuusuario.'); }
+    if(!f.ok.checked) return fail(f.ok,'Marcá la casilla para confirmar que sabés que no es remunerado.',f.ok.closest('label'));
+    const first=d.nombre.split(' ')[0].replace(/[<>&"]/g,'');
+    if(form.dataset.sumate){
+      btn.disabled=true; btn.firstChild.textContent='Enviando… ';
+      try{
+        const r=await fetch(form.dataset.sumate,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({...d,roles:d.roles.join(', '),tipo:'sumate',fecha:new Date().toISOString()})});
+        if(!r.ok) throw 0;
+      }catch(x){
+        err.textContent='No pudimos guardar tus datos. Probá de nuevo en un rato o escribinos por Instagram a @senosfuedelasmanos.ok.';
+        btn.disabled=false; btn.firstChild.textContent='Quiero sumarme '; return;
+      }
+      ok.innerHTML=`<strong>¡Gracias, ${first}!</strong>Ya estás en la base. Cuando necesitemos una mano en lo tuyo, te escribimos.`;
+    } else {
+      const txt=`¡Hola! Quiero sumarme a Se Nos Fue de las Manos.\n\nNombre: ${d.nombre}\nEmail: ${d.email}\nTeléfono: ${d.whatsapp}\nPuedo ayudar con: ${d.roles.join(', ')}`+(d.link?`\nPortfolio: ${d.link}`:'')+(d.mensaje?`\n\n${d.mensaje}`:'')+`\n\nEntiendo que no es remunerado: me sumo por amor al marketing.`;
+      const url=form.dataset.waBase+'?text='+encodeURIComponent(txt);
+      window.open(url,'_blank','noopener');
+      ok.innerHTML=`<strong>¡Gracias, ${first}!</strong>Se abrió WhatsApp con tus datos ya escritos: mandá el mensaje y listo. Si no se abrió, <a href="${url}" target="_blank" rel="noopener">tocá acá</a>.`;
+    }
+    window.dataLayer&&dataLayer.push({event:'sumate'});
+    form.hidden=true; ok.hidden=false; ok.focus();
+  });
+});

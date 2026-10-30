@@ -11,8 +11,8 @@ const ROOT = __dirname;
 const ctx = {};
 vm.createContext(ctx);
 vm.runInContext(fs.readFileSync(path.join(ROOT, 'data.js'), 'utf8') +
-  '\nObject.assign(this,{CONFIG,MANU,EPISODES,REELS,DATA,PH,GAL2,GAL,GAL_CATS,TEAM,MF_LOGO,MAIN_SPONSORS,SPONSORS,MEDIA,LOGOS,SPONSORS_ED1});', ctx);
-const { CONFIG, MANU, EPISODES, REELS, DATA, PH, GAL2, GAL, GAL_CATS, TEAM, MF_LOGO, MAIN_SPONSORS, SPONSORS, MEDIA, LOGOS, SPONSORS_ED1 } = ctx;
+  '\nObject.assign(this,{CONFIG,MANU,ROLES,EPISODES,REELS,DATA,PH,GAL2,GAL,GAL_CATS,TEAM,MF_LOGO,MAIN_SPONSORS,SPONSORS,MEDIA,LOGOS,SPONSORS_ED1});', ctx);
+const { CONFIG, MANU, ROLES, EPISODES, REELS, DATA, PH, GAL2, GAL, GAL_CATS, TEAM, MF_LOGO, MAIN_SPONSORS, SPONSORS, MEDIA, LOGOS, SPONSORS_ED1 } = ctx;
 
 const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 const ext = 'target="_blank" rel="noopener"';
@@ -28,6 +28,7 @@ const PAGES = {
   calle:  { file: 'servicios/contenido-en-la-calle/index.html' },
   videos: { file: 'servicios/videos-y-ugc/index.html' },
   eventos:{ file: 'servicios/eventos/index.html' },
+  sumate: { file: 'sumate/index.html' },
 };
 const dirOf = k => path.posix.dirname(PAGES[k].file);
 /* link relativo de una página a otra (o a un archivo), para que funcione en cualquier hosting */
@@ -68,6 +69,7 @@ function nav(k, P) {
           <a href="${rel(k, 'eventos')}">Eventos<small>Como el Marketing Fest</small></a>
         </div>
       </div>
+      ${a('sumate', 'Sumate')}
     </nav>
     <a class="cta" href="${esc(CONFIG.whatsapp)}" ${ext} data-wa>Hablemos</a>
   </div>
@@ -126,6 +128,7 @@ function qa(k) {
     { q: '¿Cuándo es la 3ra edición del Fest?', a: `Todavía no tiene fecha. Dejá tus datos en <a href="${rel(k, 'fest')}#tercera">Avisame cuando salga la 3ra</a> y te escribimos apenas abra la inscripción.` },
     { q: '¿Dónde veo el podcast?', a: `En nuestro <a href="${CONFIG.youtube}" ${ext}>canal de YouTube</a>. Si no sabés por cuál arrancar, andá por el de Con el Kora o el de McDonald's. Están todos en <a href="${rel(k, 'podcast')}">la página del podcast</a>.` },
     { q: 'Tengo una marca, ¿qué pueden hacer conmigo?', a: `Mirá <a href="${rel(k, 'servicios')}">nuestros servicios</a>: <a href="${rel(k, 'calle')}">Contenido en la calle</a>, <a href="${rel(k, 'videos')}">videos y UGC</a> con nosotros o alguien de tu equipo como cara, <a href="${rel(k, 'eventos')}">eventos</a> como el Marketing Fest y tu marca en el podcast.` },
+    { q: '¿Cómo me sumo a Se Nos Fue?', a: `Anotate en <a href="${rel(k, 'sumate')}">Sumate</a> y contanos en qué podés ayudar. Ojo: no es remunerado, lo hacemos por amor al marketing.` },
     { q: '¿Cuánto sale?', a: `Depende de la idea. Escribile a ${esc(CONFIG.contacto.nombre)} por <a href="${esc(CONFIG.whatsapp)}" ${ext}>WhatsApp</a>, contale qué tenés en mente y te pasa una propuesta.` },
     { q: '¿Quién sos?', a: 'Soy Manu, el vocero con IA de Se Nos Fue de las Manos. Te ayudo a encontrar lo que buscás en la web. Para algo más, te paso con el equipo.' },
   ];
@@ -186,6 +189,7 @@ ${body}
       <a href="${rel(k, 'podcast')}">Podcast</a>
       <a href="${rel(k, 'fest')}">Marketing Fest</a>
       <a href="${rel(k, 'servicios')}">Servicios</a>
+      <a href="${rel(k, 'sumate')}">Sumate</a>
       <a href="${CONFIG.youtube}" ${ext}>YouTube</a>
       <a href="${CONFIG.instagram}" ${ext}>Instagram</a>
     </nav>
@@ -339,6 +343,7 @@ const BUILD = {
       ${card('podcast', '#01', 'El podcast', `${EPISODES.length} capítulos con los que están detrás de McDonald's, CCU, Pepsico, Logitech y más.`, 'Ver los capítulos')}
       ${card('fest', '#02', 'Marketing Fest', 'El evento de marketing más grande de la FCE UBA. En la 2da edición vinieron más de 2600 personas.', 'Conocé el Fest')}
       ${card('servicios', '#03', 'Nuestros servicios', 'Contenido en la calle, videos y UGC y eventos para tu marca.', 'Ver los servicios')}
+      ${card('sumate', '#04', 'Sumate', '¿Hacés UGC, filmás o editás? Anotate y te llamamos cuando necesitemos una mano.', 'Quiero sumarme')}
     </div>
   </div>
 </section>
@@ -533,6 +538,56 @@ ${band(k, P, '¿Querés sumar tu marca a la 3ra edición del Marketing Fest u or
   </div>
 </section>
 ${band(k, P, 'También podés sumar tu marca al podcast o al próximo Marketing Fest. Contanos qué tenés en mente.')}`,
+    });
+  },
+
+  sumate(k, P) {
+    const roles = ROLES.map((r, i) => `<label class="role"><input type="checkbox" name="roles" value="${esc(r.t)}"><span>${esc(r.t)}</span></label>`).join('');
+    return layout(k, {
+      title: 'Sumate a Se Nos Fue de las Manos · UGC, filmmakers, cámaras y más',
+      description: '¿Hacés UGC, filmás, editás o sacás fotos? Sumate a la base de Se Nos Fue de las Manos y te llamamos cuando necesitemos una mano para el podcast, el Marketing Fest o un proyecto. No es remunerado: es por amor al marketing.',
+      body: `${pageHero(k, P, {
+        yellow: true, num: 'Sumate', h1: 'Sumate a Se Nos Fue', trail: [['home', 'Inicio'], [null, 'Sumate']],
+        lead: 'Estamos armando una base de gente con ganas de hacer: creadores de UGC, filmmakers, cámaras, editores y más. Cuando necesitemos una mano para el podcast, el Marketing Fest o un proyecto, te llamamos.',
+        say: 'Antes de anotarte: no es remunerado. Lo hacemos por amor al marketing.',
+      })}
+<section class="ch" aria-labelledby="t-roles">
+  <div class="wrap">
+    <div class="ch-head">
+      <h2 id="t-roles">Cómo podés ayudar</h2>
+    </div>
+    <ul class="roles-list">${ROLES.map(r => `<li><b>${esc(r.t)}</b><span>${esc(r.d)}</span></li>`).join('')}</ul>
+    <div class="note">
+      <strong>No es remunerado</strong>
+      <p>Se Nos Fue de las Manos lo hacemos docentes, ayudantes y estudiantes por amor al marketing, y quien se suma lo hace igual. Lo que te llevás: experiencia en proyectos reales, material para tu portfolio y un equipo con las mismas ganas que vos.</p>
+    </div>
+  </div>
+</section>
+
+<section class="ch aviso-wrap" id="anotate" aria-labelledby="t-anotate" style="padding-top:0">
+  <div class="wrap">
+    <div class="aviso sumate">
+      <div>
+        <p class="num">La base de SNFM</p>
+        <h2 id="t-anotate">Anotate</h2>
+        <p class="lead">Contanos quién sos y en qué te gustaría ayudar. No hace falta experiencia profesional: hacen falta ganas.</p>
+      </div>
+      <form class="aviso-form" data-sumate="${esc(CONFIG.sumateWebhook)}" data-wa-base="${esc(CONFIG.whatsapp.split('?')[0])}" novalidate>
+        <div class="f"><label for="s-n">Nombre y apellido</label><input id="s-n" name="nombre" autocomplete="name" required></div>
+        <div class="f"><label for="s-e">Email</label><input id="s-e" name="email" type="email" autocomplete="email" required></div>
+        <div class="f"><label for="s-t">Teléfono (WhatsApp)</label><input id="s-t" name="whatsapp" type="tel" inputmode="tel" autocomplete="tel" placeholder="11 2345 6789" required></div>
+        <fieldset class="f"><legend>¿En qué podés ayudar? <small>Elegí uno o más</small></legend><div class="roles">${roles}</div></fieldset>
+        <div class="f"><label for="s-l">Link a tu portfolio, Instagram o TikTok <small>(opcional)</small></label><input id="s-l" name="link" type="url" inputmode="url" placeholder="https://"></div>
+        <div class="f"><label for="s-m">Contanos algo más <small>(opcional)</small></label><textarea id="s-m" name="mensaje" rows="3" placeholder="Por ejemplo: tengo cámara y micrófono, o puedo los martes a la tarde."></textarea></div>
+        <label class="check"><input type="checkbox" name="ok" required><span>Entiendo que no es remunerado: me sumo por amor al marketing.</span></label>
+        <p class="err" role="alert"></p>
+        <button class="cta ink" type="submit">Quiero sumarme ${icon(P, 'arr')}</button>
+      </form>
+      <div class="aviso-ok" hidden tabindex="-1"></div>
+    </div>
+  </div>
+</section>
+${band(k, P)}`,
     });
   },
 
