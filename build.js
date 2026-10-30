@@ -271,9 +271,9 @@ const BUILD = {
       <p class="lead">Somos docentes, ayudantes y estudiantes de la UBA que enseñamos marketing desde otro lado: fuera del aula, en la cocina de cada marca.</p>
       <ul class="chips" aria-label="En números">
         <li><b>${EPISODES.length}</b>capítulos del podcast</li>
-        <li><b>2</b>ediciones del Marketing Fest</li>
+        <li><b>+60</b>speakers en dos ediciones del Fest</li>
         <li><b>+1200</b>personas en la 1ra</li>
-        <li><b>+30</b>speakers en la 2da</li>
+        <li><b>+2600</b>personas en la 2da</li>
       </ul>
       <div class="btns">
         <a class="cta" href="${rel(k, 'f2026')}#descargas">Descargá las presentaciones ${icon(P, 'arr')}</a>
@@ -312,7 +312,7 @@ const BUILD = {
     </div>
     <div class="cards">
       ${card('podcast', '#01', 'El podcast', `${EPISODES.length} capítulos con los que están detrás de McDonald's, CCU, Pepsico, Logitech y más.`, 'Ver los capítulos')}
-      ${card('fest', '#02', 'Marketing Fest', 'El evento de marketing más grande de la FCE UBA. Ya van dos ediciones.', 'Conocé el Fest')}
+      ${card('fest', '#02', 'Marketing Fest', 'El evento de marketing más grande de la FCE UBA. En la 2da edición vinieron más de 2600 personas.', 'Conocé el Fest')}
       ${card('servicios', '#03', 'Nuestros servicios', 'Contenido en la calle, videos y UGC y eventos para tu marca.', 'Ver los servicios')}
     </div>
   </div>
@@ -369,7 +369,7 @@ ${band(k, P, '¿Querés que tu marca esté en el podcast? También hacemos conte
       body: `${pageHero(k, P, {
         num: '#02', h1: 'Marketing Fest', trail: [['home', 'Inicio'], [null, 'Marketing Fest']],
         lead: 'El evento de marketing más grande de la Facultad de Ciencias Económicas de la UBA, abierto a todo el mundo, libre y gratuito. Lo hacemos para democratizar el conocimiento: que no tengas que pagar una fortuna para ver a los capos del rubro contar lo que hacen bien y entender cómo hacer crecer tu negocio o tu carrera profesional.',
-        say: 'Ya van dos ediciones. Elegí cuál querés ver.',
+        say: 'Ya van dos ediciones y más de 60 speakers. Elegí cuál querés ver.',
         extra: `<img class="mf-logo" style="margin-top:2rem" src="${P(MF_LOGO.dark)}" alt="Marketing Fest, segunda edición">`,
       })}
 <section class="ch" aria-labelledby="t-eds">
@@ -377,7 +377,7 @@ ${band(k, P, '¿Querés que tu marca esté en el podcast? También hacemos conte
     <h2 class="sr" id="t-eds">Ediciones</h2>
     <div class="cards two">
       <a class="card" href="${rel(k, 'f2026')}"><div><span class="num">27 y 28 de octubre de 2026</span><h3>2da edición</h3><p>Meta, McDonald's, Pepsico, Rappi, CCU, Tiendanube y más. Las presentaciones están para descargar.</p>
-        <div class="mini"><div><b>+30</b><span>speakers</span></div><div><b>${nTalks}</b><span>charlas y paneles</span></div></div></div>
+        <div class="mini"><div><b>+2600</b><span>personas</span></div><div><b>+30</b><span>speakers</span></div><div><b>${nTalks}</b><span>charlas y paneles</span></div></div></div>
         <span class="go">Ver la 2da edición ${icon(P, 'arr')}</span></a>
       <a class="card" href="${rel(k, 'f2025')}"><div><span class="num">25 y 26 de septiembre de 2025</span><h3>1ra edición</h3><p>Donde empezó todo: el salón lleno y una fila que daba la vuelta.</p>
         <div class="mini"><div><b>+1200</b><span>personas</span></div><div><b>16</b><span>speakers</span></div></div></div>
@@ -398,16 +398,16 @@ ${band(k, P, '¿Querés sumar tu marca al próximo Marketing Fest u organizar un
     return layout(k, {
       title: 'Marketing Fest 2026 · 2da edición: presentaciones para descargar',
       description: `Así fue la 2da edición del Marketing Fest en la FCE UBA, el 27 y 28 de octubre de 2026. Descargá en PDF las presentaciones de McDonald's, Tiendanube, Agens, Go For y más.`,
-      jsonld: [festEvent(k, 'Marketing Fest 2026 · 2da edición', '2026-10-27T14:00:00-03:00', '2026-10-28T21:00:00-03:00', 'Dos días de charlas y paneles de marketing en la FCE UBA, libres y gratuitos.')],
+      jsonld: [festEvent(k, 'Marketing Fest 2026 · 2da edición', '2026-10-27T14:00:00-03:00', '2026-10-28T21:00:00-03:00', 'Dos días de charlas y paneles de marketing en la FCE UBA, libres y gratuitos, con más de 2600 personas y +30 speakers.')],
       body: `${pageHero(k, P, {
         num: '27 y 28 de octubre de 2026', h1: 'Marketing Fest 2026', trail: [['home', 'Inicio'], ['fest', 'Marketing Fest'], [null, '2da edición']],
-        lead: 'El 27 y 28 de octubre de 2026 la FCE UBA fue el lugar del marketing. Dos días de charlas y paneles con Meta, McDonald\'s, Pepsico, Rappi, CCU, Tiendanube, Bayer, Logitech y muchas más. Gracias por venir.',
+        lead: 'El 27 y 28 de octubre de 2026 la FCE UBA fue el lugar del marketing. Vinieron más de 2600 personas a dos días de charlas y paneles con Meta, McDonald\'s, Pepsico, Rappi, CCU, Tiendanube, Bayer, Logitech y muchas más. Gracias por venir.',
         extra: `<img class="mf-logo" style="margin-top:2rem" src="${P(MF_LOGO.dark)}" alt="Marketing Fest, segunda edición">`,
       })}
 <section class="ch s-ink" aria-labelledby="t-dl" style="padding-top:0">
   <div class="wrap">
     <dl class="facts">
-      <div><dt>2</dt><dd>días, de 14 a 21 hs</dd></div>
+      <div><dt>+2600</dt><dd>personas</dd></div>
       <div><dt>+30</dt><dd>speakers</dd></div>
       <div><dt>${nTalks}</dt><dd>charlas y paneles</dd></div>
       <div><dt>${dls}</dt><dd>presentaciones para descargar</dd></div>
@@ -500,7 +500,7 @@ ${band(k, P, '¿Querés sumar tu marca a la 3ra edición del Marketing Fest u or
   <div class="wrap svc-list">
     ${svc('calle', '01', 'Contenido en la calle', 'Preguntas a la gente, dinámicas y desafíos en la vía pública, con tu marca en el centro.', ['Reels listos para Instagram y TikTok', 'Caras reales, contenido que se comparte'])}
     ${svc('videos', '02', 'Videos y UGC', 'Contenido UGC y producción de videos, con nosotros o alguien de tu equipo como cara.', ['Reseñas, unboxings y pruebas de producto', 'Entrevistas, cápsulas y videos institucionales'])}
-    ${svc('eventos', '03', 'Eventos', 'Armamos eventos que se llenan, como el Marketing Fest: +1200 personas en la 1ra edición.', ['Line up, sponsors y producción', 'Comunicación y cobertura'])}
+    ${svc('eventos', '03', 'Eventos', 'Armamos eventos que se llenan, como el Marketing Fest: más de 2600 personas en la 2da edición y más de 60 speakers entre las dos.', ['Line up, sponsors y producción', 'Comunicación y cobertura'])}
   </div>
 </section>
 ${band(k, P, 'También podés sumar tu marca al podcast o al próximo Marketing Fest. Contanos qué tenés en mente.')}`,
@@ -588,11 +588,11 @@ ${band(k, P)}`,
     const brands = [...MAIN_SPONSORS, ...SPONSORS_ED1, ...SPONSORS].filter((s, i, a) => s.src && a.findIndex(x => x.alt === s.alt) === i).map(s => ({ ...s, main: false }));
     return layout(k, {
       title: 'Organización de eventos para marcas · Se Nos Fue de las Manos',
-      description: 'Armamos eventos que se llenan: el Marketing Fest de la FCE UBA reunió +1200 personas en su 1ra edición y +30 speakers en la 2da. Organizá tu evento con nosotros.',
+      description: 'Armamos eventos que se llenan: el Marketing Fest de la FCE UBA pasó de +1200 personas en su 1ra edición a más de 2600 en la 2da, con más de 60 speakers. Organizá tu evento con nosotros.',
       image: TEAM[0].src,
       body: `${pageHero(k, P, {
         num: 'Para marcas', h1: 'Armamos eventos que se llenan', trail: [['home', 'Inicio'], ['servicios', 'Servicios'], [null, 'Eventos']],
-        lead: 'El Marketing Fest lo hicimos de cero dos veces: +1200 personas en la 1ra edición y +30 speakers en la 2da. Si tu marca quiere un evento así, lo armamos con vos.',
+        lead: 'El Marketing Fest lo hicimos de cero dos veces: +1200 personas en la 1ra edición, más de 2600 en la 2da y más de 60 speakers entre las dos. Si tu marca quiere un evento así, lo armamos con vos.',
         say: 'Del line up a la cobertura, nos encargamos de todo.',
       })}
 <section class="ch s-ink" aria-labelledby="t-ev" style="padding-top:0">

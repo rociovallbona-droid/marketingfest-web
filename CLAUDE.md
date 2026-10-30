@@ -65,7 +65,7 @@ En el menú, "Marketing Fest" y "Servicios" tienen un desplegable (en desktop) c
 - **Los CTA dicen exactamente qué pasa:** "Descargar PDF", "Ver el capítulo", "Quiero contenido en la calle", "Escribile a Ro".
 - **Sin anglicismos innecesarios**, salvo los propios del rubro (speaker, sponsor, break, reel).
 - **Datos de speakers:** se respeta lo que viene de la planilla o del deck, solo con correcciones de tipeo. Nunca inventar títulos de charla.
-- **Números:** no inventar. De la 2da edición todavía no hay cantidad de asistentes; se muestra "+30 speakers" y la cantidad de charlas sale de `DATA`.
+- **Números:** no inventar. 1ra edición: +1200 personas y 16 speakers. 2da edición: **más de 2600 personas** (dato de Ro, 30/10/2026) y +30 speakers. Entre las dos ediciones, **más de 60 speakers** (dato de Ro). La cantidad de charlas sale de `DATA`.
 - **No se anuncian marcas no confirmadas.** GenIA no se menciona.
 
 ### Reglas de diseño
@@ -111,7 +111,6 @@ Sitio estático. Las páginas se **generan** con un script de Node sin dependenc
 1. **Presentaciones que faltan:** Sabrina Kolod (martes) y del miércoles Fernanda Rivera, ABN, Meta y Rappi (`pend: true`). Mariano Garibini y Tomás Cazalá no tienen presentación en la planilla. Cuando llegue cada una: copiarla a `assets/presentaciones/`, poner `dl` y sacar `pend`. Antes de publicar, que Ro confirme el OK de cada speaker.
 2. **Fotos de la 2da edición:** Ro las va a pasar. Van a `assets/img/ed2/` y a `GAL2`.
 4. **Link del capítulo #9** (Belu Fiora, Hacks Digital).
-5. **Números reales de la 2da edición** (asistentes).
 6. **Logo de Mikhuna Nikkei** (sponsor de la 1ra edición), hoy como texto.
 7. **Precios:** no se muestran en la web salvo que Ro lo pida.
 
