@@ -486,7 +486,7 @@ if(h in m){location.replace(m[h]==='descargas'?'${rel(k, 'p2026')}':'${rel(k, 'f
       jsonld: [{ '@context': 'https://schema.org', '@type': 'PodcastSeries', name: 'Se Nos Fue de las Manos', inLanguage: 'es-AR', url: CONFIG.youtube, description: 'El canal donde el marketing se convierte en experiencias reales. Entrevistas a referentes, gerentes de marketing, creativos y docentes.' }],
       body: `${pageHero(k, P, {
         deco: ['mano-chasquido', 'var(--paper)'], num: '#01', h1: 'El podcast', trail: [['home', 'Inicio'], [null, 'Podcast']],
-        lead: 'Charlamos con gerentes de marketing de marcas referentes para ver lo que no se ve desde el aula: el verdadero detrás de cada empresa, la cocina del marketing. Lo hacemos junto a Tomás Cazalá y un equipo de docentes, ayudantes y estudiantes de la UBA.',
+        lead: 'Charlamos con gerentes de marketing de marcas referentes para ver lo que no se ve desde el aula: el verdadero detrás de cada empresa, la cocina del marketing. Lo conduce Tomás Cazalá y detrás de cámara está todo el equipo: docentes, ayudantes y estudiantes de la UBA.',
         say: 'Si tenés 40 minutos, mirá estos dos episodios que la rompen: McDonald\'s, la empresa n.º 1 en el mundo, y Con el Kora, con Male y Facu, que empezaron de cero y no paran de crecer en redes.',
         extra: `<div class="btns"><a class="cta" href="${CONFIG.youtube}" ${ext}>Ver el canal en YouTube ${icon(P, 'arr')}</a></div>`,
       })}
