@@ -88,7 +88,7 @@ Ro pasó el manual y los archivos en alta el 30/10/2026. Están en `assets/img/s
   - Logo compacto "MKT FEST": `logo-mkt-fest.webp` y `logo-mkt-fest-blanco.webp`.
   - Recursos: estrellas sueltas y de a tres (`estrella-*`, `estrellas-*`, en naranja, amarillo, celeste y azul), bandas (`banda-naranja`, `banda-azul`), destellos de puntos (`destello-naranja`, `destello-amarillo`) y línea con punto (`linea-naranja`). Los originales en alta (PNG, también en gris, negro y un degradé) los tiene Ro en el Drive.
   - Rutas en `MF_LOGO` de `data.js` (`light`, `dark`, `mini`, `miniDark`).
-- **Dónde se usan:** las páginas del Marketing Fest tienen el hero con `fest: true` (logo arriba, destello naranja y tres estrellas amarillas de fondo); en `/marketing-fest/` el logo es el título (`logoTitle`). Las tarjetas de cada edición llevan una estrella, la tarjeta del Marketing Fest en el inicio lleva el "MKT FEST", las etiquetas de los formularios del Marketing Fest van sobre la banda naranja (`.num.ribbon`) y "Gracias a las marcas" lleva tres estrellas naranjas.
+- **Dónde se usan:** las páginas del Marketing Fest tienen el hero con `fest: true` (logo arriba, destello naranja y tres estrellas amarillas de fondo); en `/marketing-fest/` el logo es el título (`logoTitle`). Las tarjetas de cada edición llevan una estrella, la tarjeta del Marketing Fest en el inicio lleva solo el logo "MKT FEST" como título (sin la frase "Marketing Fest" abajo, pedido de Ro), las etiquetas de los formularios del Marketing Fest van sobre la banda naranja (`.num.ribbon`) y "Gracias a las marcas" lleva tres estrellas naranjas.
 - Reemplaza al logo anterior con la bajada "SEGUNDA EDICIÓN" (426 px), que se sacó.
 - Las fotos de speakers son retratos en B&N sobre naranja `#E95D3A` (`--fest`).
 

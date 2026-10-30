@@ -398,7 +398,7 @@ const BUILD = {
     const manuMedia = MANU.video
       ? `<video src="${P(MANU.video)}" ${MANU.poster ? `poster="${P(MANU.poster)}"` : ''} muted loop playsinline autoplay aria-label="Manu se presenta"></video><button class="manu-sound" aria-pressed="false">Activar sonido</button>`
       : MANU.img ? `<img class="manu-img" src="${P(MANU.img)}" alt="Manu, una mano ilustrada con gorra y zapatillas, que muestra un celular y señala" width="900" height="900">` : '';
-    const card = (to, num, h, p, go, logo) => `<a class="card" href="${rel(k, to)}"><div><span class="num">${num}</span>${logo ? `<img class="card-logo" src="${P(logo)}" alt="" aria-hidden="true">` : ''}<h3>${h}</h3><p>${p}</p></div><span class="go">${go} ${icon(P, 'arr')}</span></a>`;
+    const card = (to, num, h, p, go, logo) => `<a class="card" href="${rel(k, to)}"><div><span class="num">${num}</span>${logo ? `<h3 class="card-logo-title"><img class="card-logo" src="${P(logo)}" alt="${h}"></h3>` : `<h3>${h}</h3>`}<p>${p}</p></div><span class="go">${go} ${icon(P, 'arr')}</span></a>`;
     return layout(k, {
       title: 'Se Nos Fue de las Manos · Podcast de marketing, Marketing Fest y contenido para marcas',
       description: 'Docentes, ayudantes y estudiantes de la UBA que enseñamos marketing fuera del aula: un podcast con gerentes de marcas referentes, el Marketing Fest libre y gratuito y contenido para marcas. Descargá las presentaciones del Marketing Fest 2026.',

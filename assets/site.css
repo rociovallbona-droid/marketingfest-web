@@ -502,3 +502,5 @@ h2.gal-cat:first-child{margin-top:0}
 /* bloque "Las presentaciones" en la página de la 2da edición (la lista completa está en /presentaciones/) */
 .dl-card{display:flex;flex-wrap:wrap;gap:1.5rem 3rem;align-items:center;justify-content:space-between;margin:clamp(40px,6vw,72px) 0 0;padding:clamp(24px,4vw,40px);border:1px solid var(--deep-line);border-radius:22px}
 .dl-card h2{font-size:clamp(2.4rem,6vw,4.4rem);color:var(--y)}
+.card h3.card-logo-title{margin:.8rem 0 1rem}
+.card h3.card-logo-title .card-logo{width:210px;margin:0}
