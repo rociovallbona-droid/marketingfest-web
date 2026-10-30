@@ -43,6 +43,8 @@ const urlOf = k => CONFIG.site ? CONFIG.site.replace(/\/$/, '') + '/' + (dirOf(k
 /* ---------- piezas comunes ---------- */
 const icon = (P, id, cls = '', label = '') => `<svg${cls ? ` class="${cls}"` : ''} ${label ? `aria-label="${label}" role="img"` : 'aria-hidden="true"'}><use href="${P('assets/icons.svg')}#${id}"/></svg>`;
 const av = P => (MANU.avatar || MANU.img) ? `<span class="av" aria-hidden="true"><img src="${P(MANU.avatar || MANU.img)}" alt=""></span>` : '<span class="av" aria-hidden="true">M</span>';
+/* Recursos gráficos de SNFM (manos y formas del manual): son siluetas que se pintan con el color que se pase */
+const shape = (P, name, color, cls) => `<span class="shape ${cls}" aria-hidden="true" style="background:${color};-webkit-mask-image:url(${P('assets/img/snfm/' + name + '.webp')});mask-image:url(${P('assets/img/snfm/' + name + '.webp')})"></span>`;
 const says = (P, text) => `<div class="says">${av(P)}<p><b>Manu</b>${text}</p></div>`;
 const wa = (P, label, cls = 'cta', href = CONFIG.whatsapp) => `<a class="${cls}" href="${esc(href)}" ${ext} data-wa>${label} ${icon(P, 'arr')}</a>`;
 
@@ -52,7 +54,7 @@ function nav(k, P) {
   const svcOn = ['servicios', 'calle', 'videos', 'eventos', 'sponsor'].includes(k);
   return `<header class="nav">
   <div class="wrap">
-    <a class="home" href="${rel(k, 'home')}" aria-label="Se Nos Fue de las Manos, inicio">${icon(P, 'snfm', 'inv')}</a>
+    <a class="home" href="${rel(k, 'home')}" aria-label="Se Nos Fue de las Manos, inicio"><img src="${P('assets/img/snfm/logo-snfm.webp')}" alt="" width="600" height="236"></a>
     <nav class="nav-links" aria-label="Secciones">
       ${a('podcast', 'Podcast')}
       <div class="dd">
@@ -282,7 +284,7 @@ ${body}
 
 <footer class="foot">
   <div class="wrap">
-    ${icon(P, 'snfm', 'logo inv', 'Se Nos Fue de las Manos')}
+    <img class="logo" src="${P('assets/img/snfm/logo-se-nos-fue.webp')}" alt="Se Nos Fue de las Manos" width="900" height="421" loading="lazy">
     <p>El Marketing Fest lo organizan Se Nos Fue de las Manos, Tomás Cazalá, el cuerpo docente de Marketing Digital, el Centro de Estudiantes, la Secretaría de Graduados y la FCE UBA.</p>
     <nav aria-label="Más">
       <a href="${rel(k, 'podcast')}">Podcast</a>
@@ -356,8 +358,9 @@ function talkRow(P, r) {
     <div class="talk-a">${act}</div></li>`;
 }
 
-function pageHero(k, P, { num, h1, lead, say, trail, yellow, fest, logoTitle, extra = '' }) {
-  return `<section class="page-hero${yellow ? ' s-y' : ''}${fest ? ' fest-hero' : ''}">
+function pageHero(k, P, { num, h1, lead, say, trail, yellow, fest, logoTitle, deco, extra = '' }) {
+  return `<section class="page-hero${yellow ? ' s-y' : ''}${fest ? ' fest-hero' : ''}${deco ? ' deco-hero' : ''}">
+  ${deco ? shape(P, deco[0], deco[1], 'hero-shape') : ''}
   ${fest ? `<img class="deco destello" src="${P('assets/img/fest/destello-naranja.webp')}" alt="" aria-hidden="true"><img class="deco estrellas" src="${P('assets/img/fest/estrellas-amarillo.webp')}" alt="" aria-hidden="true">` : ''}
   <div class="wrap">
     ${crumbs(k, trail)}
@@ -397,7 +400,7 @@ const BUILD = {
   <div class="wrap">
     <div>
       <p class="num">#00</p>
-      <h1 id="t-hero"><span>Se nos fue</span><span>de las manos</span></h1>
+      <h1 id="t-hero"><span>Se nos fue</span><span>de las manos</span><span class="pill p-red" aria-hidden="true">Podcast</span><span class="pill p-violet" aria-hidden="true">Mkt Fest</span></h1>
       <p class="lead">Somos docentes, ayudantes y estudiantes de la UBA que enseñamos marketing desde otro lado: fuera del aula, en la cocina de cada marca.</p>
       <ul class="chips" aria-label="En números">
         <li><b>${EPISODES.length}</b>capítulos del podcast</li>
@@ -411,6 +414,7 @@ const BUILD = {
       </div>
     </div>
     <figure class="manu" aria-label="Manu, el vocero con IA de Se Nos Fue de las Manos">
+      <img class="sticker" src="${P('assets/img/snfm/sticker.webp')}" alt="" aria-hidden="true" width="420" height="422">
       <div class="manu-frame">
         ${manuMedia || '<div class="manu-mono" aria-hidden="true"><span>M</span></div>'}
         <span class="manu-tag"><i aria-hidden="true"></i>Manu · vocero con IA</span>
@@ -424,7 +428,8 @@ const BUILD = {
   </div>
 </section>
 
-<section class="ch" aria-labelledby="t-quienes">
+<section class="ch about-wrap" aria-labelledby="t-quienes">
+  ${shape(P, 'mano-ok', 'var(--y)', 'about-hand')}
   <div class="wrap about">
     <h2 id="t-quienes">Salimos del aula</h2>
     <div>
@@ -474,7 +479,7 @@ if(h in m){location.replace('${rel(k, 'f2026')}'+(m[h]?'#'+m[h]:''));}else if(h=
       image: EPISODES.find(e => e.hot && e.id) ? `https://i.ytimg.com/vi/${EPISODES.find(e => e.hot && e.id).id}/hqdefault.jpg` : undefined,
       jsonld: [{ '@context': 'https://schema.org', '@type': 'PodcastSeries', name: 'Se Nos Fue de las Manos', inLanguage: 'es-AR', url: CONFIG.youtube, description: 'El canal donde el marketing se convierte en experiencias reales. Entrevistas a referentes, gerentes de marketing, creativos y docentes.' }],
       body: `${pageHero(k, P, {
-        num: '#01', h1: 'El podcast', trail: [['home', 'Inicio'], [null, 'Podcast']],
+        deco: ['mano-chasquido', 'var(--y)'], num: '#01', h1: 'El podcast', trail: [['home', 'Inicio'], [null, 'Podcast']],
         lead: 'Charlamos con gerentes de marketing de marcas referentes para ver lo que no se ve desde el aula: el verdadero detrás de cada empresa, la cocina del marketing. Lo hacemos junto a Tomás Cazalá y un equipo de docentes, ayudantes y estudiantes de la UBA.',
         say: 'Si tenés 40 minutos, arrancá por estos dos. Los de Con el Kora también pasaron por el Fest.',
         extra: `<div class="btns"><a class="cta" href="${CONFIG.youtube}" ${ext}>Ver el canal en YouTube ${icon(P, 'arr')}</a></div>`,
@@ -638,7 +643,7 @@ ${band(k, P, '¿Querés sumar tu marca a la 3ra edición del Marketing Fest u or
       title: 'Servicios para marcas · Se Nos Fue de las Manos',
       description: 'Contenido de marca en la calle, producción de videos y UGC, y organización de eventos. Lo que Se Nos Fue de las Manos puede hacer con tu marca.',
       body: `${pageHero(k, P, {
-        yellow: true, num: 'Para marcas', h1: 'Nuestros servicios', trail: [['home', 'Inicio'], [null, 'Servicios']],
+        deco: ['mano-ok', 'var(--ink)'], yellow: true, num: 'Para marcas', h1: 'Nuestros servicios', trail: [['home', 'Inicio'], [null, 'Servicios']],
         lead: 'Lo que aprendimos haciendo el podcast y el Marketing Fest, puesto al servicio de tu marca. Elegí uno o combinalos.',
         say: 'Tocá "Ver más info" en el que te interese y te cuento todo.',
       })}
@@ -659,7 +664,7 @@ ${band(k, P, 'También podés sumar tu marca al podcast o al próximo Marketing 
       title: 'Sumate a Se Nos Fue de las Manos · UGC, filmmakers, cámaras y más',
       description: '¿Hacés UGC, filmás, editás o sacás fotos? Sumate a la base de Se Nos Fue de las Manos y te llamamos cuando necesitemos una mano para el podcast, el Marketing Fest o un proyecto. No es remunerado: es por amor al marketing.',
       body: `${pageHero(k, P, {
-        yellow: true, num: 'Sumate', h1: 'Sumate a Se Nos Fue', trail: [['home', 'Inicio'], [null, 'Sumate']],
+        deco: ['mano-saludo', 'var(--ink)'], yellow: true, num: 'Sumate', h1: 'Sumate a Se Nos Fue', trail: [['home', 'Inicio'], [null, 'Sumate']],
         lead: 'Estamos armando una base de gente con ganas de hacer: creadores de UGC, filmmakers, cámaras, editores y más. Cuando necesitemos una mano para el podcast, el Marketing Fest o un proyecto, te llamamos.',
         say: 'Antes de anotarte: no es remunerado. Lo hacemos por amor al marketing.',
       })}
@@ -687,7 +692,7 @@ ${band(k, P)}`,
       title: 'Sponsoreá el podcast de marketing · Se Nos Fue de las Manos',
       description: `Sumá tu marca como sponsor del podcast de Se Nos Fue de las Manos: ${EPISODES.length} capítulos con gerentes de marketing de McDonald's, CCU, Pepsico y más, en YouTube, Spotify, TikTok y Gigared TV. Hablá directo con ${CONFIG.contacto.nombre}.`,
       body: `${pageHero(k, P, {
-        num: 'Para marcas', h1: 'Sponsoreá el podcast', trail: [['home', 'Inicio'], ['servicios', 'Servicios'], [null, 'Sponsor del podcast']],
+        deco: ['forma-flor', 'var(--purple)'], num: 'Para marcas', h1: 'Sponsoreá el podcast', trail: [['home', 'Inicio'], ['servicios', 'Servicios'], [null, 'Sponsor del podcast']],
         lead: 'Tu marca presente en las charlas con los que hacen marketing en las marcas más grandes del país, frente a estudiantes, profesionales y emprendedores que quieren aprender de verdad.',
         say: `Para sponsorear, hablá directo con ${esc(CONFIG.contacto.nombre)}. Te arma la propuesta a medida.`,
         extra: `<div class="btns">${wa(P, `Escribile a ${esc(CONFIG.contacto.nombre)}`, 'cta', CONFIG.whatsappSponsor)}</div>`,
@@ -732,7 +737,7 @@ ${band(k, P, 'Además del podcast, hacemos contenido en la calle, videos, UGC y 
       title: 'Contenido de marca en la calle · Se Nos Fue de las Manos',
       description: 'Preguntas a la gente, dinámicas y desafíos en la vía pública con tu marca en el centro. Mirá los reels que hicimos y escribinos para hacer el tuyo.',
       body: `${pageHero(k, P, {
-        yellow: true, num: 'Para marcas', h1: 'Salimos a la calle con tu marca', trail: [['home', 'Inicio'], ['servicios', 'Servicios'], [null, 'Contenido en la calle']],
+        deco: ['forma-sol', 'var(--red)'], yellow: true, num: 'Para marcas', h1: 'Salimos a la calle con tu marca', trail: [['home', 'Inicio'], ['servicios', 'Servicios'], [null, 'Contenido en la calle']],
         lead: 'Preguntas a la gente, dinámicas y desafíos en la vía pública. Contenido real, con caras reales, pensado para que se comparta.',
         say: 'Mirá el primero: es nuestro favorito.',
       })}
@@ -769,7 +774,7 @@ ${band(k, P)}`,
       title: 'Videos y contenido UGC para marcas · Se Nos Fue de las Manos',
       description: 'Producción de videos y contenido UGC para tu marca, con el equipo de SNFM o alguien de tu empresa como cara. Del guion a la edición, listo para redes y anuncios.',
       body: `${pageHero(k, P, {
-        num: 'Para marcas', h1: 'Videos y UGC para tu marca', trail: [['home', 'Inicio'], ['servicios', 'Servicios'], [null, 'Videos y UGC']],
+        deco: ['forma-destello', 'var(--cyan)'], num: 'Para marcas', h1: 'Videos y UGC para tu marca', trail: [['home', 'Inicio'], ['servicios', 'Servicios'], [null, 'Videos y UGC']],
         lead: 'Contenido que parece hecho por la gente, porque lo hace gente. Lo pensamos, lo grabamos y lo editamos listo para tus redes y tus anuncios.',
         say: '¿Quién pone la cara? Elegís vos: nosotros o alguien de tu equipo.',
       })}
@@ -811,7 +816,7 @@ ${band(k, P)}`,
       description: 'Armamos eventos que se llenan: el Marketing Fest de la FCE UBA pasó de +1200 personas en su 1ra edición a más de 2600 en la 2da, con más de 60 speakers. Organizá tu evento con nosotros.',
       image: TEAM[0].src,
       body: `${pageHero(k, P, {
-        num: 'Para marcas', h1: 'Armamos eventos que se llenan', trail: [['home', 'Inicio'], ['servicios', 'Servicios'], [null, 'Eventos']],
+        deco: ['forma-asterisco', 'var(--green)'], num: 'Para marcas', h1: 'Armamos eventos que se llenan', trail: [['home', 'Inicio'], ['servicios', 'Servicios'], [null, 'Eventos']],
         lead: 'El Marketing Fest lo hicimos de cero dos veces: más de 3800 personas y más de 60 speakers entre las dos ediciones (+1200 en la 1ra y más de 2600 en la 2da). Si tu marca quiere un evento así, lo armamos con vos.',
         say: 'Del line up a la cobertura, nos encargamos de todo.',
       })}

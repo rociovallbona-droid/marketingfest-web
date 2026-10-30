@@ -68,10 +68,16 @@ Los formularios se arman con `formBlock()` en `build.js` y los maneja un solo bl
 
 ### SNFM (manual de marca de julio 2025, por Lila Sans)
 
+Ro pasó el manual y los archivos en alta el 30/10/2026. Están en `assets/img/snfm/` (webp); los originales en PNG los tiene Ro en el Drive.
+
 - **Primarios:** `#F3DA00` amarillo · `#E4E4A8` crema · `#202020` oscuro · `#F2F2F2` claro.
-- **Secundarios:** `#F9A900` naranja · `#EB462E` rojo · `#A68ADE` violeta · `#44BDDE` cian · `#2EA866` verde.
+- **Secundarios** (para recursos gráficos): `#F9A900` naranja · `#EB462E` rojo · `#A68ADE` violeta · `#44BDDE` cian · `#2EA866` verde. El manual prohíbe colores flúo (verde, rojo puro, violeta eléctrico, lima).
 - **Tipografía:** **Anton** para títulos (siempre en mayúsculas) y **Quicksand** para el cuerpo (500 a 700), de Google Fonts.
-- **Logo:** isologo SNFM inline como `<symbol id="snfm">`, se usa con `<use href="#snfm">`; en fondos oscuros, con la clase `.inv`. La flecha ↘ del manual es `<symbol id="arr">` y va en los CTA.
+- **Logos:** `logo-se-nos-fue.webp` (isologo completo, va en el footer), `logo-snfm.webp` (imagotipo "SNFM", va en el menú) y `chasquido.webp` (la mano sola con contorno). Siempre en sus colores originales (letras blancas con contorno negro), también sobre el negro del menú y el footer: no invertirlos.
+- **Recursos gráficos principales:** las tres manos (`mano-chasquido`, `mano-ok`, `mano-saludo`). **Secundarios:** formas (`forma-destello`, `forma-estrella`, `forma-flor`, `forma-sol`, `forma-engranaje`, `forma-asterisco`), la flecha ↘ (`#arr` en `assets/icons.svg`) y el sticker redondo (`sticker.webp`). Manos y formas son siluetas blancas: se pintan con cualquier color de la paleta con `shape(P, nombre, color, clase)` en `build.js` (usa `mask-image`).
+- **Texturas:** papel arrugado claro y oscuro (`textura-clara`, `textura-oscura`), sutiles de fondo en el hero del inicio, los heros de cada página y las bandas amarillas.
+- **Pastillas tipo sticker** (como en el manual: "SE VIENE", "SOON"): `.pill` con `.p-red` / `.p-violet`, rotadas sobre el título del inicio ("Podcast", "Mkt Fest").
+- **Dónde está cada recurso:** sticker pegado en la tarjeta de Manu; mano OK amarilla en "Salimos del aula"; en los heros: podcast (chasquido amarillo), servicios (OK negra), sumate (saludo negra), sponsor del podcast (flor violeta), calle (sol rojo), videos (destello cian), eventos (asterisco verde). Se pasan con `deco: [nombre, color]` en `pageHero`.
 
 ### Marketing Fest
 
@@ -108,7 +114,7 @@ Sitio estático. Las páginas se **generan** con un script de Node sin dependenc
 - **`data.js`:** todos los datos. **Para sumar contenido se edita este archivo.**
 - **`build.js`:** la plantilla común (head con SEO, menú, footer, chat de Manu) y el contenido de cada página. Correr `node build.js` después de cualquier cambio en `data.js` o `build.js`: regenera los `index.html` de cada carpeta, `robots.txt` y (si está `CONFIG.site`) `sitemap.xml`. **No editar los `index.html` a mano**: se pisan en cada build. Los HTML generados se commitean, así el sitio funciona en cualquier hosting sin paso de build.
 - **`assets/site.css`** y **`assets/site.js`:** estilos y JS compartidos (pestañas, reels, chat). El contenido ya viene armado en el HTML, para que Google lo lea sin ejecutar JS.
-- **`assets/icons.svg`:** sprite con el logo SNFM (`#snfm`), la flecha (`#arr`) y WhatsApp (`#wa`). Se usa con `<use href="…/assets/icons.svg#snfm">`; en fondos oscuros, con la clase `.inv`. Necesita servirse por http (no anda abriendo el archivo con doble clic).
+- **`assets/icons.svg`:** sprite con la flecha (`#arr`) y WhatsApp (`#wa`), se usa con `<use href="…/assets/icons.svg#arr">`. Necesita servirse por http (no anda abriendo el archivo con doble clic). Los logos de SNFM son imágenes en `assets/img/snfm/`.
 - **Rutas relativas** en todos los links (`rel()` en `build.js`), así funciona en un dominio propio o en una subcarpeta.
 - **`assets/img/`:** `speakers/`, `ed1/`, `logos/`. Las fotos de la 2da edición van en `assets/img/ed2/`.
 - **`assets/presentaciones/`:** los PDF de las charlas del Fest 2026 (`dia-hora-speaker.pdf`). El peso que muestra el botón lo calcula el build.

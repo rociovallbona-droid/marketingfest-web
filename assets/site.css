@@ -46,7 +46,6 @@ h1,h2,h3{font-family:var(--display);font-weight:400;text-transform:uppercase;lin
 .nav{position:sticky;top:0;z-index:20;background:var(--deep);color:var(--deep-fg);padding-top:env(safe-area-inset-top,0px);border-bottom:1px solid var(--deep-line)}
 .nav .wrap{display:flex;align-items:center;gap:1rem;min-height:60px}
 .nav .home{display:block;flex:none}
-.nav .home svg{width:96px;height:48px}
 .nav-links{display:flex;gap:.25rem;margin-left:auto;overflow-x:auto;scrollbar-width:none}
 .nav-links::-webkit-scrollbar{display:none}
 .nav-links a{padding:.5rem .75rem;border-radius:999px;text-decoration:none;font-weight:600;white-space:nowrap;font-size:.95rem}
@@ -251,7 +250,6 @@ h1,h2,h3{font-family:var(--display);font-weight:400;text-transform:uppercase;lin
 /* ---------- footer ---------- */
 .foot{background:var(--deep);color:var(--deep-muted);padding:48px 0 calc(40px + env(safe-area-inset-bottom,0px))}
 .foot .wrap{display:flex;flex-wrap:wrap;gap:1.5rem 3rem;align-items:flex-end;justify-content:space-between}
-.foot svg.logo{width:140px;height:70px}
 .foot p{margin:0;max-width:56ch}
 .foot nav{display:flex;flex-wrap:wrap;gap:.5rem 1.25rem;font-weight:700;color:var(--deep-fg)}
 
@@ -453,3 +451,37 @@ dialog.chat::backdrop{background:rgba(0,0,0,.45)}
 .thanks .stars{width:150px;height:auto}
 .page-hero h1.logo-title{max-width:none;margin:.4rem 0 .2rem}
 .page-hero h1.logo-title img{display:block;width:min(760px,100%);height:auto}
+
+/* ==========================================================================
+   Marca SNFM (manual de julio 2025): logos en alta, manos, formas, stickers y textura de papel
+   ========================================================================== */
+.nav .home img{display:block;width:auto;height:40px}
+.foot img.logo{display:block;width:200px;height:auto}
+
+/* pastillas tipo sticker sobre el título (como en el manual) */
+.hero h1{position:relative}
+.pill{position:absolute;display:inline-block;font-family:var(--body);font-weight:700;text-transform:uppercase;font-size:clamp(.8rem,1.3vw,1.05rem);letter-spacing:.02em;line-height:1;padding:.5em 1.1em;border-radius:999px;color:var(--ink);white-space:nowrap}
+.pill.p-red{background:var(--red);transform:rotate(4deg);right:8%;top:-.4em}
+.pill.p-violet{background:var(--purple);transform:rotate(-6deg);left:2%;bottom:-.7em}
+@media (max-width:600px){.pill.p-red{right:0}}
+
+/* sticker redondo pegado en la tarjeta de Manu */
+.manu .sticker{position:absolute;z-index:2;width:118px;height:auto;right:-34px;top:-34px;transform:rotate(12deg);pointer-events:none}
+@media (max-width:899px){.manu .sticker{width:88px;right:-12px;top:-26px}}
+
+/* manos y formas: siluetas pintadas con color de la paleta */
+.shape{display:block;position:absolute;pointer-events:none;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-size:contain;mask-size:contain;-webkit-mask-position:center;mask-position:center}
+.deco-hero{position:relative;overflow:hidden}
+.deco-hero .wrap{position:relative;z-index:1}
+.hero-shape{right:clamp(-40px,4vw,80px);top:50%;transform:translateY(-50%) rotate(-8deg);width:min(300px,30vw);aspect-ratio:3/4}
+@media (max-width:899px){.hero-shape{width:150px;right:-30px;top:auto;bottom:-20px;transform:rotate(-8deg);opacity:.35}}
+.about-wrap{position:relative;overflow:hidden}
+.about-wrap .wrap{position:relative;z-index:1}
+.about-hand{left:-30px;bottom:-40px;width:200px;aspect-ratio:2/3;transform:rotate(12deg);opacity:.9}
+@media (max-width:899px){.about-hand{display:none}}
+
+/* textura de papel arrugado del manual, sutil */
+.hero,.band,.page-hero{position:relative;isolation:isolate}
+.hero::before,.page-hero::before{content:"";position:absolute;inset:0;z-index:-1;background:url(img/snfm/textura-oscura.webp) center/cover;opacity:.55;pointer-events:none}
+.band::before,.page-hero.s-y::before{content:"";position:absolute;inset:0;z-index:-1;background:url(img/snfm/textura-clara.webp) center/cover;mix-blend-mode:multiply;opacity:.5;pointer-events:none}
+.hero>.wrap,.band>.wrap{position:relative}
