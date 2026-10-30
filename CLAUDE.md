@@ -78,7 +78,7 @@ Ro pasó el manual y los archivos en alta el 30/10/2026. Están en `assets/img/s
 - **Logos:** `logo-se-nos-fue.webp` (isologo completo, va en el footer), `logo-snfm.webp` (imagotipo "SNFM", va en el menú) y `chasquido.webp` (la mano sola con contorno). Siempre en sus colores originales (letras blancas con contorno negro), también sobre el negro del menú y el footer: no invertirlos.
 - **Recursos gráficos principales:** las tres manos (`mano-chasquido`, `mano-ok`, `mano-saludo`). **Secundarios:** formas (`forma-destello`, `forma-estrella`, `forma-flor`, `forma-sol`, `forma-engranaje`, `forma-asterisco`), la flecha ↘ (`#arr` en `assets/icons.svg`) y el sticker redondo (`sticker.webp`). Manos y formas son siluetas blancas: se pintan con cualquier color de la paleta con `shape(P, nombre, color, clase)` en `build.js` (usa `mask-image`).
 - **Texturas:** papel arrugado claro y oscuro (`textura-clara`, `textura-oscura`), sutiles de fondo en el hero del inicio, los heros de cada página y las bandas amarillas.
-- **Pastillas tipo sticker** (como en el manual: "SE VIENE", "SOON"): `.pill` con `.p-red` / `.p-violet`, rotadas sobre el título del inicio ("Podcast", "Mkt Fest").
+- **Pastillas tipo sticker sobre el título: se probaron y se sacaron** (Ro: tapaban las letras y quedaba raro). No volver a ponerlas encima de títulos.
 - **Dónde está cada recurso:** sticker pegado en la tarjeta de Manu; mano OK amarilla en "Salimos del aula"; en los heros: podcast (chasquido blanco: sobre fondo oscuro las manos van en blanco, como en el manual), servicios (OK negra), sumate (saludo negra), sponsor del podcast (flor violeta), calle (sol rojo), videos (destello cian), eventos (asterisco verde). Se pasan con `deco: [nombre, color]` en `pageHero`.
 
 ### Marketing Fest

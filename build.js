@@ -406,7 +406,7 @@ const BUILD = {
   <div class="wrap">
     <div>
       <p class="num">#00</p>
-      <h1 id="t-hero"><span>Se nos fue</span><span>de las manos</span><span class="pill p-red" aria-hidden="true">Podcast</span><span class="pill p-violet" aria-hidden="true">Marketing Fest</span></h1>
+      <h1 id="t-hero"><span>Se nos fue</span><span>de las manos</span></h1>
       <p class="lead">Somos docentes, ayudantes y estudiantes de la UBA que enseñamos marketing desde otro lado: fuera del aula, en la cocina de cada marca.</p>
       <ul class="chips" aria-label="En números">
         <li><b>${EPISODES.length}</b>capítulos del podcast</li>

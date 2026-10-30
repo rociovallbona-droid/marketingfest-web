@@ -458,13 +458,6 @@ dialog.chat::backdrop{background:rgba(0,0,0,.45)}
 .nav .home img{display:block;width:auto;height:40px}
 .foot img.logo{display:block;width:200px;height:auto}
 
-/* pastillas tipo sticker sobre el título (como en el manual) */
-.hero h1{position:relative}
-.pill{position:absolute;display:inline-block;font-family:var(--body);font-weight:700;text-transform:uppercase;font-size:clamp(.8rem,1.3vw,1.05rem);letter-spacing:.02em;line-height:1;padding:.5em 1.1em;border-radius:999px;color:var(--ink);white-space:nowrap}
-.pill.p-red{background:var(--red);transform:rotate(4deg);right:8%;top:-.4em}
-.pill.p-violet{background:var(--purple);transform:rotate(-6deg);left:2%;bottom:-.7em}
-@media (max-width:600px){.pill.p-red{right:0}}
-
 /* sticker redondo pegado en la tarjeta de Manu */
 .manu .sticker{position:absolute;z-index:2;width:118px;height:auto;right:-34px;top:-34px;transform:rotate(12deg);pointer-events:none}
 @media (max-width:899px){.manu .sticker{width:88px;right:-12px;top:-26px}}
