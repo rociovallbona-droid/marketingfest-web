@@ -62,7 +62,7 @@ Todos los formularios avisan por mail a **Ro (rociovallbona@dtcomunicacion.com),
 | Sumá tu marca como sponsor (`#sponsor-3ra`) | `/marketing-fest/` (y botón en "Gracias a las marcas" de 2026) | `sponsor-fest` | Nombre, marca, cargo, email, teléfono, qué le interesa (main sponsor, sponsor, stand, sorteo, todavía no sé) y mensaje opcional |
 | Sumate (`#anotate`) | `/sumate/` | `sumate` | Nombre, email, teléfono, roles (`ROLES`), link y mensaje opcionales y la casilla "no es remunerado" |
 
-Los formularios se arman con `formBlock()` en `build.js` y los maneja un solo bloque de `assets/site.js` (`form[data-form]`). Evento de GTM: `formulario` con `tipo` y `enviado`.
+**Todos los formularios arrancan plegados** (pedido de Ro: si no, la página es eterna): se ve la etiqueta, el título, el texto y un botón ("Quiero ser speaker", "Quiero ser sponsor", "Avisame", etc.) que despliega el formulario. Se abren solos si se llega con el link directo (`#speaker`, `#sponsor-3ra`, `#tercera`, `#invitado`, `#anotate`) o desde un botón de la misma página que apunte ahí. Sin JS se ven abiertos. Los formularios se arman con `formBlock()` en `build.js` y los maneja un solo bloque de `assets/site.js` (`form[data-form]`). Evento de GTM: `formulario` con `tipo` y `enviado`.
 
 ## Marca
 

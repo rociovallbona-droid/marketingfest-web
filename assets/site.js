@@ -136,3 +136,17 @@ $$('form[data-form]').forEach(form=>{
     form.hidden=true; ok.hidden=false; ok.focus();
   });
 });
+
+/* Formularios plegables: arrancan cerrados (título, texto y un botón) para que la página no sea eterna.
+   Se abren al tocar el botón o si se llega con el link directo (#speaker, #sponsor-3ra, etc.).
+   Sin JS se ven abiertos. */
+$$('.aviso').forEach(box=>{
+  const form=$('form',box), t=$('.open-form',box), sec=box.closest('section');
+  if(!form||!t||form.hidden) return;   // ya enviado (por ejemplo, "Avisame" guardado): no hay nada que plegar
+  const open=focus=>{ box.classList.remove('closed'); form.hidden=false; t.hidden=true; t.setAttribute('aria-expanded','true'); if(focus) $('input,textarea',form).focus(); };
+  box.classList.add('closed'); form.hidden=true; t.hidden=false; t.setAttribute('aria-expanded','false');
+  t.onclick=()=>open(true);
+  const fromHash=()=>{ if(sec&&location.hash==='#'+sec.id) open(false); };
+  fromHash(); addEventListener('hashchange',fromHash);
+  document.addEventListener('click',e=>{ const a=e.target.closest('a[href*="#"]'); if(a&&sec&&a.hash==='#'+sec.id&&a.pathname===location.pathname) open(false); });
+});

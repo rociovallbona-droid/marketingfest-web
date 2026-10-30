@@ -485,3 +485,16 @@ dialog.chat::backdrop{background:rgba(0,0,0,.45)}
 .hero::before,.page-hero::before{content:"";position:absolute;inset:0;z-index:-1;background:url(img/snfm/textura-oscura.webp) center/cover;opacity:.55;pointer-events:none}
 .band::before,.page-hero.s-y::before{content:"";position:absolute;inset:0;z-index:-1;background:url(img/snfm/textura-clara.webp) center/cover;mix-blend-mode:multiply;opacity:.5;pointer-events:none}
 .hero>.wrap,.band>.wrap{position:relative}
+
+/* formularios plegados */
+.aviso.closed{grid-template-columns:1fr;padding:clamp(24px,4vw,44px)}
+.aviso.closed h2{font-size:clamp(2.2rem,5vw,3.6rem)}
+.aviso.closed .lead{max-width:62ch}
+.open-form{margin-top:1.25rem;cursor:pointer;font:inherit;font-weight:700}
+.aviso-wrap+.aviso-wrap{padding-top:0}
+.aviso-wrap:has(+ .aviso-wrap){padding-bottom:20px}
+@media (min-width:900px){
+  .aviso.closed>div:first-child{display:grid;grid-template-columns:1fr auto;column-gap:3rem;align-items:center}
+  .aviso.closed>div:first-child>*{grid-column:1;justify-self:start}
+  .aviso.closed>div:first-child>.open-form{grid-column:2;grid-row:1/span 5;margin:0;align-self:center}
+}

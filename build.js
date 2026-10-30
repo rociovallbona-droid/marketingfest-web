@@ -111,7 +111,7 @@ const ERR = {
   email: 'Revisá el email: le falta algo (por ejemplo, la @ o el dominio).',
   tel: 'El teléfono tiene que tener al menos 10 números, con la característica (por ejemplo, 11 2345 6789).',
 };
-function formBlock(k, P, { id, tipo, num, h, lead, free, intro, asunto, fields, btn, ok, fine, ribbon, style = '' }) {
+function formBlock(k, P, { id, tipo, num, h, lead, free, intro, asunto, fields, btn, open, ok, fine, ribbon, style = '' }) {
   const field = ([name, label, o = {}]) => {
     const req = o.req !== false;
     const err = o.err || ERR[name] || (o.type === 'email' ? ERR.email : o.type === 'tel' ? ERR.tel : 'Completá este campo.');
@@ -131,8 +131,9 @@ function formBlock(k, P, { id, tipo, num, h, lead, free, intro, asunto, fields, 
         <h2 id="t-${id}">${h}</h2>
         <p class="lead">${lead}</p>
         ${free ? `<p class="free">${free}</p>` : ''}
+        <button class="cta ink open-form" type="button" aria-controls="${id}-form" aria-expanded="true" hidden>${open || btn} ${icon(P, 'arr')}</button>
       </div>
-      <form class="aviso-form" data-form="${tipo}" data-hook="${esc(CONFIG.formsWebhook)}" data-asunto="${esc(asunto)}" data-intro="${esc(intro)}" data-ok="${esc(ok)}" data-wa-base="${esc(CONFIG.whatsapp.split('?')[0])}" novalidate>
+      <form class="aviso-form" id="${id}-form" data-form="${tipo}" data-hook="${esc(CONFIG.formsWebhook)}" data-asunto="${esc(asunto)}" data-intro="${esc(intro)}" data-ok="${esc(ok)}" data-wa-base="${esc(CONFIG.whatsapp.split('?')[0])}" novalidate>
         ${fields.map(field).join('\n        ')}
         <p class="err" role="alert"></p>
         <button class="cta ink" type="submit">${btn} ${icon(P, 'arr')}</button>
@@ -167,7 +168,7 @@ const speakerForm = (k, P) => formBlock(k, P, {
   lead: '¿Querés que tu marca suba al escenario? Contanos qué le vas a dejar a la gente: qué aprende, qué se lleva para su negocio o su carrera. Elegimos las charlas por lo que suman, no por quién paga.',
   free: 'Ser speaker es gratuito.',
   intro: hola('porque quiero proponer una charla para el Marketing Fest.'),
-  btn: 'Mandar mi propuesta', ok: 'Recibimos tu propuesta de charla. La leemos con el equipo y te escribimos.',
+  btn: 'Mandar mi propuesta', open: 'Quiero ser speaker', ok: 'Recibimos tu propuesta de charla. La leemos con el equipo y te escribimos.',
   fields: [F.nombre, F.marca, F.cargo, F.email, F.tel,
     ['propuesta', 'Tu propuesta de valor: ¿qué se lleva la gente de tu charla?', { rows: 4, min: 40, ph: 'Por ejemplo: cómo armamos una comunidad de 100 mil personas sin pauta, con los números reales.', err: 'Contanos tu propuesta de valor en al menos un par de frases: qué aprende la gente con tu charla.' }],
     ['link', 'LinkedIn o web de la marca', { req: false, type: 'url', ph: 'https://' }]],
@@ -204,8 +205,9 @@ function aviso(k, P, id = 'tercera') {
         <p class="num ribbon">Marketing Fest · 3ra edición</p>
         <h2 id="t-${id}">Avisame cuando salga la 3ra</h2>
         <p class="lead">Dejanos tus datos y te escribimos apenas abra la inscripción. Es libre y gratuita, pero los cupos vuelan.</p>
+        <button class="cta ink open-form" type="button" aria-controls="${id}-form" aria-expanded="true" hidden>Avisame ${icon(P, 'arr')}</button>
       </div>
-      <form class="aviso-form" data-aviso="${esc(CONFIG.avisoWebhook)}" data-hook="${esc(CONFIG.formsWebhook)}" novalidate>
+      <form class="aviso-form" id="${id}-form" data-aviso="${esc(CONFIG.avisoWebhook)}" data-hook="${esc(CONFIG.formsWebhook)}" novalidate>
         <div class="f"><label for="${id}-n">Nombre y apellido</label><input id="${id}-n" name="nombre" autocomplete="name" required></div>
         <div class="f"><label for="${id}-e">Email</label><input id="${id}-e" name="email" type="email" autocomplete="email" required></div>
         <div class="f"><label for="${id}-t">Teléfono (WhatsApp)</label><input id="${id}-t" name="whatsapp" type="tel" inputmode="tel" autocomplete="tel" placeholder="11 2345 6789" required></div>
