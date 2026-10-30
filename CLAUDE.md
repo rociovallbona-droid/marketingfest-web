@@ -8,6 +8,8 @@ Web de **Se Nos Fue de las Manos (SNFM)**: el podcast, el **Marketing Fest** (el
 
 Hasta el 30/10/2026 esta web era la landing del Marketing Fest 2da edición ("La cuadra": una calle con anuncios que abrían paneles). El evento terminó y Ro pidió sacar la calle y pasar a una web de SNFM. La versión vieja queda en el historial de git.
 
+**Quiénes somos (en palabras de Ro):** en SNFM son docentes, ayudantes y estudiantes de la UBA con ganas de enseñar desde otro lado: salir del aula y ver la verdad de cada empresa, el verdadero detrás, la cocina del marketing. Para eso hacen el podcast con gerentes de marketing de marcas referentes y el Marketing Fest, un evento para todo el mundo que busca **democratizar el conocimiento**: que no tengas que pagar una fortuna para ver a los capos del rubro hacer lo que hacen bien y entender cómo escalar tu negocio o tu carrera profesional. Este es el mensaje central de la web (sección "Salimos del aula" del inicio).
+
 La dueña del proyecto es **Ro (Rocío Vallbona)**, Responsable Comercial en DT Comunicación, cofundadora de Doble Dosis y docente de Marketing Digital en la FCE. Trabaja siempre en español rioplatense, con voseo.
 
 **Objetivos de la web:**

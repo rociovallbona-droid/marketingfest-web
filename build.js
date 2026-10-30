@@ -111,7 +111,7 @@ function layout(k, { title, description, image, body, jsonld = [], extraHead = '
   const url = urlOf(k);
   const img = image || 'assets/img/ed1/01.jpg';
   const imgUrl = CONFIG.site ? CONFIG.site.replace(/\/$/, '') + '/' + img : P(img);
-  const ld = [{ '@context': 'https://schema.org', '@type': 'Organization', name: 'Se Nos Fue de las Manos', alternateName: 'SNFM', ...(CONFIG.site ? { url: urlOf('home') } : {}), sameAs: [CONFIG.youtube, CONFIG.instagram] }, ...jsonld];
+  const ld = [{ '@context': 'https://schema.org', '@type': 'Organization', name: 'Se Nos Fue de las Manos', alternateName: 'SNFM', description: 'Docentes, ayudantes y estudiantes de la UBA que enseñan marketing fuera del aula: podcast con gerentes de marketing de marcas referentes y el Marketing Fest, libre y gratuito.', ...(CONFIG.site ? { url: urlOf('home') } : {}), sameAs: [CONFIG.youtube, CONFIG.instagram] }, ...jsonld];
   return `<!DOCTYPE html>
 <html lang="es-AR">
 <head>
@@ -262,13 +262,13 @@ const BUILD = {
     const card = (to, num, h, p, go) => `<a class="card" href="${rel(k, to)}"><div><span class="num">${num}</span><h3>${h}</h3><p>${p}</p></div><span class="go">${go} ${icon(P, 'arr')}</span></a>`;
     return layout(k, {
       title: 'Se Nos Fue de las Manos · Podcast de marketing, Marketing Fest y contenido para marcas',
-      description: 'El podcast donde el marketing se convierte en experiencias reales, el Marketing Fest de la FCE UBA y contenido de marca en la calle, videos y UGC. Descargá las presentaciones del Marketing Fest 2026.',
+      description: 'Docentes, ayudantes y estudiantes de la UBA que enseñamos marketing fuera del aula: un podcast con gerentes de marcas referentes, el Marketing Fest libre y gratuito y contenido para marcas. Descargá las presentaciones del Marketing Fest 2026.',
       body: `<section class="hero" aria-labelledby="t-hero">
   <div class="wrap">
     <div>
       <p class="num">#00</p>
       <h1 id="t-hero"><span>Se nos fue</span><span>de las manos</span></h1>
-      <p class="lead">El marketing contado por los que lo hacen. Entrevistamos a referentes, gerentes, creativos y docentes en el podcast, armamos el Marketing Fest de la FCE UBA y salimos a la calle con tu marca.</p>
+      <p class="lead">Somos docentes, ayudantes y estudiantes de la UBA que enseñamos marketing desde otro lado: fuera del aula, en la cocina de cada marca.</p>
       <ul class="chips" aria-label="En números">
         <li><b>${EPISODES.length}</b>capítulos del podcast</li>
         <li><b>2</b>ediciones del Marketing Fest</li>
@@ -294,7 +294,17 @@ const BUILD = {
   </div>
 </section>
 
-<section class="ch" aria-labelledby="t-que">
+<section class="ch" aria-labelledby="t-quienes">
+  <div class="wrap about">
+    <h2 id="t-quienes">Salimos del aula</h2>
+    <div>
+      <p class="lead">En Se Nos Fue de las Manos somos docentes, ayudantes y estudiantes de la UBA con ganas de enseñar desde otro lado. Salimos del aula para ver la verdad de cada empresa: lo que pasa detrás, la cocina del marketing.</p>
+      <p class="lead">Por eso hacemos el <a href="${rel(k, 'podcast')}">podcast</a>, donde charlamos con gerentes de marketing de marcas referentes, y el <a href="${rel(k, 'fest')}">Marketing Fest</a>, un evento abierto a todo el mundo para democratizar el conocimiento: que no tengas que pagar una fortuna para ver a los capos del rubro contar lo que hacen bien y entender cómo hacer crecer tu negocio o tu carrera.</p>
+    </div>
+  </div>
+</section>
+
+<section class="ch" aria-labelledby="t-que" style="padding-top:0">
   <div class="wrap">
     <div class="ch-head">
       <h2 id="t-que">Qué hacemos</h2>
@@ -333,7 +343,7 @@ if(h in m){location.replace('${rel(k, 'f2026')}'+(m[h]?'#'+m[h]:''));}else if(h=
       jsonld: [{ '@context': 'https://schema.org', '@type': 'PodcastSeries', name: 'Se Nos Fue de las Manos', inLanguage: 'es-AR', url: CONFIG.youtube, description: 'El canal donde el marketing se convierte en experiencias reales. Entrevistas a referentes, gerentes de marketing, creativos y docentes.' }],
       body: `${pageHero(k, P, {
         num: '#01', h1: 'El podcast', trail: [['home', 'Inicio'], [null, 'Podcast']],
-        lead: 'Charlas completas con los que están detrás de cada marca. Junto a Tomás Cazalá y un equipo de ayudantes y locos apasionados, entrevistamos a referentes, gerentes de marketing, creativos y docentes para mostrar la posta detrás de cada marca.',
+        lead: 'Charlamos con gerentes de marketing de marcas referentes para ver lo que no se ve desde el aula: el verdadero detrás de cada empresa, la cocina del marketing. Lo hacemos junto a Tomás Cazalá y un equipo de docentes, ayudantes y estudiantes de la UBA.',
         say: 'Si tenés 40 minutos, arrancá por estos dos. Los de Con el Kora también pasaron por el Fest.',
         extra: `<div class="btns"><a class="cta" href="${CONFIG.youtube}" ${ext}>Ver el canal en YouTube ${icon(P, 'arr')}</a></div>`,
       })}
@@ -358,7 +368,7 @@ ${band(k, P, '¿Querés que tu marca esté en el podcast? También hacemos conte
       description: 'El Marketing Fest es el evento de marketing más grande de la Facultad de Ciencias Económicas de la UBA. Mirá cómo fueron la 1ra edición (2025) y la 2da (2026) y descargá las presentaciones.',
       body: `${pageHero(k, P, {
         num: '#02', h1: 'Marketing Fest', trail: [['home', 'Inicio'], [null, 'Marketing Fest']],
-        lead: 'El evento de marketing más grande de la Facultad de Ciencias Económicas de la UBA. Libre y gratuito, con speakers de las marcas que todos conocen. Lo organiza Se Nos Fue de las Manos junto con Tomás Cazalá, el cuerpo docente de Marketing Digital, el CECE, la Secretaría de Graduados y la FCE UBA.',
+        lead: 'El evento de marketing más grande de la Facultad de Ciencias Económicas de la UBA, abierto a todo el mundo, libre y gratuito. Lo hacemos para democratizar el conocimiento: que no tengas que pagar una fortuna para ver a los capos del rubro contar lo que hacen bien y entender cómo hacer crecer tu negocio o tu carrera profesional.',
         say: 'Ya van dos ediciones. Elegí cuál querés ver.',
         extra: `<img class="mf-logo" style="margin-top:2rem" src="${P(MF_LOGO.dark)}" alt="Marketing Fest, segunda edición">`,
       })}
