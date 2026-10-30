@@ -200,7 +200,12 @@ const TEAM = [
 ];
 
 /* Logos ({src, alt, url}) */
-const MF_LOGO = {"light":"assets/img/logos/marketing-fest-oscuro.png","dark":"assets/img/logos/marketing-fest-blanco.png"};
+/* Logos y recursos del Marketing Fest (los que pasó Ro, en buena calidad; están en assets/img/fest).
+   light: para fondos claros · dark: para fondos oscuros · mini / miniDark: versión compacta "MKT FEST" */
+const MF_LOGO = {
+  light: 'assets/img/fest/logo-marketing-fest.webp', dark: 'assets/img/fest/logo-marketing-fest-blanco.webp',
+  mini: 'assets/img/fest/logo-mkt-fest.webp', miniDark: 'assets/img/fest/logo-mkt-fest-blanco.webp'
+};
 const MAIN_SPONSORS = [
   {"src":"assets/img/logos/main-heineken-0-0.webp","alt":"Heineken 0.0","url":"https://www.heineken.com"},
   {"src":"assets/img/logos/main-ccu.webp","alt":"CCU","url":"https://www.ccu.com.ar","h":84}

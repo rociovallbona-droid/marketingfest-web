@@ -437,3 +437,19 @@ dialog.chat::backdrop{background:rgba(0,0,0,.45)}
 .free{display:inline-block;margin:1.25rem 0 0;background:var(--ink);color:var(--y);border-radius:999px;padding:.45rem 1rem;font-weight:700}
 .spon-strip .lead a{color:var(--y);font-weight:700}
 .note a{font-weight:700}
+
+/* Marketing Fest: logo y recursos gráficos de la marca del Fest */
+.fest-hero{position:relative;overflow:hidden}
+.fest-hero .wrap{position:relative;z-index:1}
+.fest-hero .deco{position:absolute;pointer-events:none;user-select:none}
+.fest-hero .destello{right:-80px;top:-40px;width:min(560px,52vw);opacity:.95}
+.fest-hero .estrellas{right:clamp(16px,6vw,120px);bottom:clamp(24px,4vw,56px);width:min(220px,30vw)}
+@media (max-width:899px){.fest-hero .destello{opacity:.35;right:-120px;top:-60px;width:420px}.fest-hero .estrellas{display:none}}
+.mf-logo{display:block;width:min(420px,78%);height:auto;margin:0 0 1.5rem}
+.card{position:relative;overflow:hidden}
+.card .star{position:absolute;right:-18px;top:-18px;width:120px;opacity:.95;pointer-events:none}
+.card-logo{display:block;width:150px;height:auto;margin:.6rem 0 .2rem}
+.num.ribbon{display:inline-block;background:url(img/fest/banda-naranja.webp) center/100% 100% no-repeat;color:#fff;padding:.45rem 1.6rem .4rem;font-size:1.05rem;letter-spacing:.02em}
+.thanks .stars{width:150px;height:auto}
+.page-hero h1.logo-title{max-width:none;margin:.4rem 0 .2rem}
+.page-hero h1.logo-title img{display:block;width:min(760px,100%);height:auto}
