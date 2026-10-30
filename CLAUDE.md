@@ -36,7 +36,8 @@ Cada botón del menú es una página propia, con su título, descripción, Open 
 | `/podcast/` | Podcast | Destacados (Con el Kora y McDonald's, `hot: true`) y todos los capítulos |
 | `/marketing-fest/` | Marketing Fest | Qué es el Marketing Fest y una tarjeta por edición |
 | `/marketing-fest/2026/` | 2da edición | Números, **presentaciones para descargar** (`#descargas`, pestañas por día), fotos (`GAL2`) y marcas |
-| `/marketing-fest/2025/` | 1ra edición | Video, números, fotos por momento (descargables) y sponsors |
+| `/marketing-fest/2025/` | 1ra edición | Video, números, una muestra de 4 fotos (`GAL_TEASER` en `build.js`), botón "Ver la galería" y sponsors |
+| `/marketing-fest/2025/fotos/` | Galería de la 1ra edición | Todas las fotos por momento (`GAL_CATS`) y del equipo, descargables. Pedido de Ro: la página de la edición no tiene que ser larga; el que quiere, entra a la galería |
 | `/servicios/` | Nuestros servicios | Cada servicio explicado en breve con "Ver más info" |
 | `/servicios/contenido-en-la-calle/` | Contenido en la calle | Reels de Instagram |
 | `/servicios/videos-y-ugc/` | Videos y UGC | UGC y producción de videos, con SNFM o alguien de la empresa como cara |

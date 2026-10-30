@@ -24,6 +24,7 @@ const PAGES = {
   fest:   { file: 'marketing-fest/index.html' },
   f2026:  { file: 'marketing-fest/2026/index.html' },
   f2025:  { file: 'marketing-fest/2025/index.html' },
+  g2025:  { file: 'marketing-fest/2025/fotos/index.html' },
   servicios:{ file: 'servicios/index.html' },
   calle:  { file: 'servicios/contenido-en-la-calle/index.html' },
   videos: { file: 'servicios/videos-y-ugc/index.html' },
@@ -380,6 +381,8 @@ const reelBox = id => `<blockquote class="instagram-media" data-instgrm-permalin
   <a class="ig-fallback" href="https://www.instagram.com/reel/${id}/" ${ext}><strong>Ver el reel</strong><span>Se abre en Instagram</span></a>`;
 
 const nTalks = DATA.filter(r => !r.pause).length;
+/* Fotos de muestra de la 1ra edición en su página (índices de GAL); el resto está en la galería */
+const GAL_TEASER = [5, 10, 12, 3];
 const festEvent = (k, name, start, end, desc) => ({
   '@context': 'https://schema.org', '@type': 'Event', name, startDate: start, endDate: end, description: desc,
   eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode', eventStatus: 'https://schema.org/EventScheduled', isAccessibleForFree: true,
@@ -595,7 +598,6 @@ ${band(k, P, '¿Querés sumar tu marca a la 3ra edición del Marketing Fest u or
   },
 
   f2025(k, P) {
-    const cats = GAL_CATS.map(c => [c, GAL.filter(g => g.cat === c)]).filter(([, l]) => l.length);
     return layout(k, {
       title: 'Marketing Fest 2025 · Así fue la 1ra edición en la FCE UBA',
       description: 'El 25 y 26 de septiembre de 2025 hicimos el primer Marketing Fest en la FCE UBA: más de 1200 personas y 16 speakers. Mirá el video, las fotos y las marcas que nos acompañaron.',
@@ -604,7 +606,7 @@ ${band(k, P, '¿Querés sumar tu marca a la 3ra edición del Marketing Fest u or
       body: `${pageHero(k, P, {
         fest: true, num: '25 y 26 de septiembre de 2025', h1: 'Donde empezó todo', trail: [['home', 'Inicio'], ['fest', 'Marketing Fest'], [null, '1ra edición']],
         lead: 'El 25 y 26 de septiembre de 2025 hicimos el primer Marketing Fest en la FCE UBA. Vinieron más de 1200 personas, pasaron 16 speakers por el escenario y no quedó una silla libre.',
-        say: 'Las fotos se pueden descargar. Si estás en alguna, es tuya.',
+        say: 'Mirá el video y, si querés más, entrá a la galería. Si estás en alguna foto, es tuya.',
       })}
 <section class="ch" aria-labelledby="t-e1">
   <div class="wrap">
@@ -620,9 +622,8 @@ ${band(k, P, '¿Querés sumar tu marca a la 3ra edición del Marketing Fest u or
           <div><b>16</b><span>speakers</span></div>
           <div><b>2</b><span>días</span></div>
         </div>
-        ${cats.map(([c, l]) => `<h3 class="gal-cat">${esc(c)}</h3>${gallery(P, l)}`).join('\n')}
-        <h3 class="gal-cat">El equipo</h3>
-        ${gallery(P, TEAM)}
+        <div class="gal-teaser">${GAL_TEASER.map(i => GAL[i]).map(g => `<figure><img src="${P(g.src)}" alt="${esc(g.alt)}" loading="lazy"></figure>`).join('')}</div>
+        <div class="btns"><a class="cta" href="${rel(k, 'g2025')}">Ver la galería · ${GAL.length + TEAM.length} fotos ${icon(P, 'arr')}</a></div>
         <p class="label" style="margin-top:2.5rem">Nos acompañaron</p>
         ${logoRow(P, SPONSORS_ED1)}
         <div class="next-links"><a class="ghost" href="${rel(k, 'f2026')}">Mirá cómo fue la 2da edición</a><a class="ghost" href="${rel(k, 'fest')}#speaker">Quiero ser speaker en la 3ra</a></div>
@@ -631,6 +632,29 @@ ${band(k, P, '¿Querés sumar tu marca a la 3ra edición del Marketing Fest u or
   </div>
 </section>
 ${aviso(k, P)}
+${band(k, P, '¿Querés sumar tu marca a la 3ra edición del Marketing Fest u organizar un evento propio? Escribinos.')}`,
+    });
+  },
+
+  g2025(k, P) {
+    const cats = GAL_CATS.map(c => [c, GAL.filter(g => g.cat === c)]).filter(([, l]) => l.length);
+    return layout(k, {
+      title: 'Fotos del Marketing Fest 2025 · Galería de la 1ra edición',
+      description: `Las ${GAL.length + TEAM.length} fotos de la 1ra edición del Marketing Fest en la FCE UBA: acreditaciones, charlas, paneles, speakers, la gente y el equipo. Se pueden descargar.`,
+      image: GAL[0].src,
+      body: `${pageHero(k, P, {
+        fest: true, num: 'Marketing Fest 2025 · 1ra edición', h1: 'La galería', trail: [['home', 'Inicio'], ['fest', 'Marketing Fest'], ['f2025', '1ra edición'], [null, 'Galería']],
+        lead: 'Las fotos del 25 y 26 de septiembre de 2025, ordenadas por momento. Tocá "Descargar" en la que quieras.',
+        say: 'Si estás en alguna, es tuya. Etiquetanos en @senosfuedelasmanos.ok.',
+      })}
+<section class="ch" aria-label="Fotos">
+  <div class="wrap">
+    ${cats.map(([c, l]) => `<h2 class="gal-cat">${esc(c)}</h2>${gallery(P, l)}`).join('\n')}
+    <h2 class="gal-cat">El equipo</h2>
+    ${gallery(P, TEAM)}
+    <div class="next-links"><a class="ghost" href="${rel(k, 'f2025')}">Volver a la 1ra edición</a><a class="ghost" href="${rel(k, 'f2026')}">Mirá cómo fue la 2da edición</a></div>
+  </div>
+</section>
 ${band(k, P, '¿Querés sumar tu marca a la 3ra edición del Marketing Fest u organizar un evento propio? Escribinos.')}`,
     });
   },
