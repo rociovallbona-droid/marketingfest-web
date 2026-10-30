@@ -1,64 +1,42 @@
-# Marketing Fest 2026 · Landing "La cuadra"
+# Se Nos Fue de las Manos · Web "El programa"
 
-Contexto completo para seguir desarrollando la landing del Marketing Fest 2da edición. Leelo entero antes de tocar código.
+Contexto para seguir desarrollando la web de SNFM. Leelo entero antes de tocar código.
 
 ## Qué es el proyecto
 
-Landing del **Marketing Fest 2da edición**, el evento de marketing más grande de la Facultad de Ciencias Económicas de la UBA. Lo organiza **Se Nos Fue de las Manos (SNFM)** junto con Tomás Cazalá, el cuerpo docente de Marketing Digital, el Centro de Estudiantes (CECE), la Secretaría de Graduados y la FCE UBA.
+Web de **Se Nos Fue de las Manos (SNFM)**: el podcast, el **Marketing Fest** (el evento de marketing más grande de la FCE UBA, que SNFM organiza con Tomás Cazalá, el cuerpo docente de Marketing Digital, el CECE, la Secretaría de Graduados y la FCE UBA) y los servicios para marcas.
+
+Hasta el 30/10/2026 esta web era la landing del Marketing Fest 2da edición ("La cuadra": una calle con anuncios que abrían paneles). El evento terminó y Ro pidió sacar la calle y pasar a una web de SNFM. La versión vieja queda en el historial de git.
 
 La dueña del proyecto es **Ro (Rocío Vallbona)**, Responsable Comercial en DT Comunicación, cofundadora de Doble Dosis y docente de Marketing Digital en la FCE. Trabaja siempre en español rioplatense, con voseo.
 
-Objetivo de la web: que la gente **se inscriba** (gratis, cupos limitados), conozca speakers y cronograma, y que **marcas se sumen como sponsors**. Todos los CTA de mails y redes apuntan acá.
+**Objetivos de la web:**
+1. Que la gente **descargue las presentaciones** del Marketing Fest 2026.
+2. Que vaya a **YouTube** a ver los capítulos del podcast.
+3. Que **las marcas contraten a SNFM**: contenido de marca en la calle y organización de eventos. El contacto es el WhatsApp de Ro.
 
-### Datos del evento
+## Concepto: "El programa"
 
-- **Fechas:** martes 27 y miércoles 28 de octubre de 2026, de 14 a 21 hs. Acreditación desde las 14, primera charla 14:20.
-- **Lugar:** Salón Principal, Edificio Nuevo, FCE UBA, Uriburu 781, CABA. ⚠️ El deck de Canva dice "Salón de Actos"; la planilla dice "Salón Principal". Pendiente de confirmar.
-- **Costo:** libre y gratuito, cupos limitados, requiere inscripción.
-- **Números:** 1ra edición +1200 personas, 16 speakers (25 y 26 de septiembre de 2025). Meta 2da edición: 2000 personas, +30 speakers confirmados. ⚠️ El deck de sponsors dice +1500 asistentes y +25 speakers; Ro todavía no definió cuáles mostrar.
-- **Contacto sponsors:** Tomás Cazalá, tomascazala@economicas.uba.ar.
-- **Redes:** IG @senosfuedelasmanos.ok. El podcast SNFM está en YouTube, Spotify, TikTok y Gigared TV.
-- **Propiedades sponsoreables de SNFM:** Marketing Fest y el podcast SNFM. GenIA se sacó de la web a pedido de Ro: no mencionarlo.
+La web es un capítulo de SNFM y **Manu, el vocero con IA de SNFM, es el conductor**. El look sale de las miniaturas del canal de YouTube: bloques planos amarillo `#F3DA00` y negro `#202020`, títulos enormes en Anton y el número de capítulo ("#01").
 
-## Concepto: "La cuadra del Marketing Fest"
+- **Hero (#00):** "Se nos fue de las manos" gigante, chips con números y la tarjeta de Manu con su burbuja de bienvenida.
+- **Cada sección es un capítulo** con número, título y una línea de Manu (`.says`).
+- **"Preguntale a Manu":** botón flotante que abre un `<dialog>` con preguntas y respuestas armadas (`QA` en el script). No es IA de verdad; si algún día se conecta a una IA, sería vía n8n.
+- **Manu todavía no tiene material:** `MANU` en `data.js` tiene `video`, `poster` e `img` vacíos y se muestra su inicial "M" sobre amarillo. Cuando Ro pase el video o la imagen, completar esos campos (el video va vertical, muteado, con botón "Activar sonido").
 
-La idea de Ro: *el corazón del marketing es la publicidad en la calle, en los celulares, en la ropa*. La web tiene que sentirse como una experiencia del futuro donde ves anuncios en las paredes, los tocás y se abren secciones.
+### Secciones (en orden)
 
-Cómo se resolvió:
+| # | id | Qué tiene |
+|---|---|---|
+| 00 | `inicio` | Hero con Manu |
+| 01 | `podcast` | Dos destacados grandes (Con el Kora y McDonald's, `hot: true`), grilla de capítulos y botón al canal |
+| 02 | `fest-2026` | Así fue la 2da edición, **presentaciones para descargar** (`#descargas`, con pestañas Martes 27 / Miércoles 28), fotos (`GAL2`, oculta mientras esté vacía) y marcas que acompañaron |
+| 03 | `fest-2025` | La 1ra edición: video de la sala llena, números, fotos y sponsors |
+| 04 | `calle` | Para marcas: contenido en la calle, con reels de Instagram |
+| 05 | `eventos` | Para marcas: organización de eventos, con el Fest como caso |
+| 06 | `hablemos` | WhatsApp de Ro |
 
-- **El hero es una calle.** Un sticky de 100vh donde el scroll vertical se traduce en caminar horizontalmente por una pared llena de anuncios. Hay cielo (iridiscente de día, noche en dark mode), skyline con carteles en las terrazas (parallax 0.25), vereda en perspectiva y un HUD con barra de progreso, el texto "Bienvenido al Marketing Fest. Scrolleá y clickeá lo que te llame la atención." y "Faltan N días". No usar "cuadra" ni "calle" en textos visibles: los botones de cerrar dicen "Volver al evento".
-- **Cada anuncio es un formato distinto de publicidad callejera** y abre una sección como takeover: el anuncio se expande con `clip-path` desde su rectángulo hasta pantalla completa, y al cerrar vuelve al anuncio.
-- **Futurismo sutil:** retícula amarilla que "fija" el anuncio en hover (solo con pointer fine), tilt 3D, brillo holográfico, textura de papel pegado y animación de "pegado" al cargar (una sola orquestación, no efectos sueltos).
-- **Después de la calle:** cuenta regresiva, datos prácticos (cuándo, dónde, cuánto), sponsors, apoyo institucional y footer.
-
-### Recorrido de la pared (orden actual en `.track`)
-
-| # | Anuncio | Formato | Abre |
-|---|---|---|---|
-| 1 | Tríptico (logo MKT Fest + "Conectá, innová y aprendé." / "2da edición" / "27 y 28 de octubre") | 3 afiches estilo Kaktus, amarillo / negro / rojo | `p-fest` |
-| 2 | Pantalla LED en poste | Reel 9:16 que cicla marcas y "Faltan N días" | `p-speakers` |
-| 2a | Heladera de Heineken 0.0 con porrones (main sponsor) | Heladera de kiosco | al tocarla caen porrones y aparece "¡Salud!" (`cheers()`) |
-| 2b | Mosaico de 9 caras + "+30 speakers" | Afiche con fotos en B&N, color en hover | `p-speakers` |
-| 3 | "Dos días. 14 a 21 hs." con horarios | Afiche tipo tabla de horarios | `p-crono` |
-| 3b | Gigantografía de CCU (main sponsor) | Cartel gigante con banda verde | `p-sponsors` |
-| 4 | "GRATIS" con tiritas para arrancar | Flyer callejero con tiras, una arrancada | link a la inscripción |
-| 5 | "¿Y si voy un solo día?" | Afiche cian | `p-faq` |
-| 6 | Puerta entreabierta con neón "Detrás de escena", cartel "Solo personal autorizado" y credencial STAFF | Puerta de backstage | `p-organizan` |
-| 6b | Fotos pegadas con cinta + "Así se vivió la 1ra edición" | Collage de fotos impresas | `p-ed1` |
-| 7 | Un anuncio por cada sponsor de `SPONSORS`, generado por JS antes del final. Formatos rotativos (`SP_FORMATS`): chapa, afiche pegado, sticker, toldo, caja de luz y volante | Varios | `p-sponsors` |
-| — | "Fin del recorrido" en stencil + CTA | Pared | link a la inscripción |
-
-**Heineken 0.0 tiene visibilidad extra** (pedido de Ro): carteles en las terrazas del skyline (`buildSkyline`; en mobile van más seguidos y el mensaje de bienvenida del HUD se esconde al empezar a scrollear, porque si no tapa el skyline), "Presentado por Heineken 0.0" en el HUD y en la cuenta regresiva, la heladera de la pared y la lluvia de porrones (`BOTTLE`, con la foto del porrón que pasó Ro). La lluvia respeta `prefers-reduced-motion`: en ese caso solo aparece el cartel "¡Salud!".
-
-**El cartel "Este espacio está libre" se sacó de la pared** a pedido de Ro (falta poco para el evento). El panel `p-sponsors` se sigue abriendo desde la nav y desde "¿Querés sumarte?".
-
-### Paneles (takeovers)
-
-Son `section.panel[role=dialog]`, cada uno con `data-hash` para deep links (`#speakers` abre directo ese panel):
-
-`el-fest` · `speakers` · `cronograma` · `primera-edicion` · `preguntas` · `organizan` · `sponsors`
-
-Cada panel tiene su color de fondo plano de la paleta. La regla visual: la calle es lo audaz, los paneles son disciplinados (tipografía grande, listas limpias, sin decoración extra).
+Los links viejos de la landing (`#inscripcion`, `#speakers`, `#cronograma`, `#primera-edicion`, etc.) redirigen a la sección nueva que corresponde (`OLD` al final del script).
 
 ## Marca
 
@@ -66,114 +44,70 @@ Cada panel tiene su color de fondo plano de la paleta. La regla visual: la calle
 
 - **Primarios:** `#F3DA00` amarillo · `#E4E4A8` crema · `#202020` oscuro · `#F2F2F2` claro.
 - **Secundarios:** `#F9A900` naranja · `#EB462E` rojo · `#A68ADE` violeta · `#44BDDE` cian · `#2EA866` verde.
-- **Tipografía:** **Anton** para títulos (siempre en mayúsculas en la web) y **Quicksand** para el cuerpo (500 a 700). Las dos se cargan de Google Fonts.
-- **Logo:** isologo SNFM negro con la mano; en fondos oscuros va invertido (blanco). Está inline como `<symbol id="snfm">`, se usa con `<use href="#snfm">` y en fondos oscuros con la clase `.inv`.
-- **Recurso gráfico:** la flecha ↘ del manual está como `<symbol id="arr">` y se usa en todos los CTA.
+- **Tipografía:** **Anton** para títulos (siempre en mayúsculas) y **Quicksand** para el cuerpo (500 a 700), de Google Fonts.
+- **Logo:** isologo SNFM inline como `<symbol id="snfm">`, se usa con `<use href="#snfm">`; en fondos oscuros, con la clase `.inv`. La flecha ↘ del manual es `<symbol id="arr">` y va en los CTA.
 
 ### Marketing Fest
 
-- **Logo: siempre la versión con la bajada "SEGUNDA EDICIÓN"** (pedido de Ro, según manual de marca): "MARKETING" con la etiqueta naranja "FEST" y abajo "SEGUNDA EDICIÓN". Versión oscura sobre fondos claros (`.mf-l`) y blanca sobre fondos oscuros (`.mf-d`); se usa en la nav, el tríptico y el footer. El archivo que pasó Ro es de 426 px de ancho: si llega una versión más grande o SVG, reemplazar.
-- El deck usa naranja `#E85C2E` + teal + amarillo. Las fotos de speakers vienen así: retrato en B&N sobre naranja. Se mantuvo ese look en las fotos.
-- Tagline del deck: "Conectá, innová y aprendé."
-
-### Referencias visuales que dio Ro
-
-1. Una landing de conferencia con gradientes iridiscentes, cuenta regresiva y chips de info.
-2. La campaña de **Kaktus** (gaseosa de cactus): tríptico en vía pública, bloques planos de dos colores (rosa y verde), tipografía condensada enorme, mucha actitud.
+- **Logo: siempre la versión con la bajada "SEGUNDA EDICIÓN"**: `assets/img/logos/marketing-fest-oscuro.png` (fondos claros) y `marketing-fest-blanco.png` (fondos oscuros). Son de 426 px; si llega una versión más grande o SVG, reemplazar.
+- Las fotos de speakers son retratos en B&N sobre naranja `#E95D3A` (`--fest`).
 
 ## Tono y copy
 
-- **Español rioplatense con voseo, siempre:** "Inscribite", "Tocá", "Scrolleá", "Mirá", "Reservá tu lugar", "Llegá 13:45 y evitá la fila".
-- **Directo, cercano y con humor de calle**, sin solemnidad institucional: "Arrancá una tirita.", "Este espacio está libre.", "Ellos van a estar. ¿Y vos?", "Fin del recorrido", "Pasá sin permiso".
-- **Los CTA dicen exactamente qué pasa:** "Inscribite gratis", "Ver cronograma", "Agendar el martes 27", "Escribile a Tomás Cazala".
-- **Los errores dicen qué falló y cómo arreglarlo, sin pedir perdón:** "El DNI tiene que tener 7 u 8 números."
-- **Sin anglicismos innecesarios**, salvo los propios del rubro (speaker, sponsor, break).
-- **Datos de speakers:** se respeta lo que viene de la planilla o del deck, solo con correcciones de tipeo ("Mac donalds" → "McDonald's"). Nunca inventar títulos de charla. Si dice "XXX" o "a definir", se omite.
-- **Emilia Vrancic no está confirmada:** no mostrarla en el panel de influencers hasta que Ro avise.
-- **Amé Amor no está confirmada:** se sacó del panel de influencers; no mostrarla hasta que Ro avise.
-- **No se anuncian marcas no confirmadas.** Por eso Google, L'Oréal, PedidosYa, Campari y Mercado Libre no aparecen. Rappi entró con Tamara Stronguin (miércoles 20:00). Los huecos de agenda se muestran como "Speaker a confirmar".
+- **Español rioplatense con voseo, siempre:** "Descargá", "Mirá", "Escribile a Ro", "Bajalas en PDF".
+- **Directo, cercano y con humor de calle**, sin solemnidad institucional.
+- **Los CTA dicen exactamente qué pasa:** "Descargar PDF", "Ver el capítulo", "Quiero contenido en la calle", "Escribile a Ro".
+- **Sin anglicismos innecesarios**, salvo los propios del rubro (speaker, sponsor, break, reel).
+- **Datos de speakers:** se respeta lo que viene de la planilla o del deck, solo con correcciones de tipeo. Nunca inventar títulos de charla.
+- **Números:** no inventar. De la 2da edición todavía no hay cantidad de asistentes; se muestra "+30 speakers" y la cantidad de charlas sale de `DATA`.
+- **No se anuncian marcas no confirmadas.** GenIA no se menciona.
 
-### Reglas de diseño que se vienen respetando
+### Reglas de diseño
 
-- Una sola cosa audaz (la calle); el resto, calmo.
-- No usar eyebrows en mayúsculas sobre cada título, ni "A · B · C" como relleno, ni sombras grises genéricas tipo kit SaaS.
-- Movimiento solo como respuesta a una acción del usuario (abrir, hover, pegar al cargar). `prefers-reduced-motion` respetado.
-- Responsive hasta 390px. Dark mode con tokens (`:root`, `prefers-color-scheme`, `[data-theme]`). Foco visible amarillo. Safe areas de iOS (`viewport-fit=cover` + `env(safe-area-inset-*)`).
+- Una sola cosa audaz (el hero con los títulos gigantes); el resto, calmo.
+- No usar eyebrows en mayúsculas sobre cada título (el "#01" es el recurso de las miniaturas, no un eyebrow), ni sombras grises genéricas tipo kit SaaS.
+- Movimiento solo como respuesta a una acción del usuario, salvo el tipeo de la burbuja de Manu al cargar. `prefers-reduced-motion` respetado.
+- Responsive hasta 390px. Dark mode con tokens (`:root`, `prefers-color-scheme`, `[data-theme]`): las secciones `.s-y` siguen amarillas, las `.s-ink` se oscurecen y las claras pasan a `#171717`. Foco visible amarillo (negro sobre amarillo). Safe areas de iOS.
 
 ## Arquitectura técnica
 
-**Assets externos:** `assets/ed1-sala-llena.mp4` (H.264) + `.webm` (VP9, respaldo) + `.jpg` (poster): video vertical de la sala vacía a la sala llena, en `p-ed1`. Se reproduce muteado en loop al abrir el panel (salvo `prefers-reduced-motion`) y se pausa al cerrar.
+Sitio estático, sin build ni dependencias:
 
-**Google Tag Manager:** contenedor `GTM-5Z65GSRG` (de SNFM). El script va arriba de todo en el `<head>` y el `<noscript>` justo después de abrir el `<body>`. Los tags y eventos (clicks en inscripción, calendario, WPP) se configuran desde GTM, no en el código.
+- **`index.html`:** HTML, CSS y JS (~160 KB, casi todo es el SVG del logo SNFM).
+- **`data.js`:** todos los datos. **Para sumar contenido se edita este archivo**, no el HTML.
+- **`assets/img/`:** `speakers/` (fotos por slug), `ed1/` (fotos de la 1ra edición y del equipo), `logos/`. Las fotos de la 2da edición van en `assets/img/ed2/`.
+- **`assets/presentaciones/`:** los PDF de las charlas del Fest 2026, con nombre `dia-hora-speaker.pdf`.
+- **`assets/ed1-sala-llena.mp4` / `.webm` / `.jpg`:** video vertical de la sala vacía a la sala llena (1ra edición).
 
-**Favicon:** el chasquido de SNFM en `favicon.png` (64 px, fondo transparente) y `apple-touch-icon.png` (180 px, fondo amarillo `#F3DA00`), en la raíz junto al `index.html`.
+### Datos (`data.js`)
 
-**Hoy es un solo archivo:** `index.html`, de unos 1.8 MB, con HTML, CSS, JS e imágenes en base64. Sin build ni dependencias, solo Google Fonts.
+- **`CONFIG`:** `youtube`, `instagram` y `whatsapp` (wa.me al 11 5134-1115 de Ro, con mensaje precargado).
+- **`MANU`:** material de Manu (ver arriba).
+- **`EPISODES`:** capítulos del podcast, del más nuevo al más viejo: `{n, id, t, g, b, hot, fest}`. `id` es el código de YouTube; si está vacío, el capítulo lleva al canal y la miniatura se arma con el título (pasa con el #9 de Belu Fiora, que no tiene link todavía). Las miniaturas salen de `i.ytimg.com/vi/<id>/hqdefault.jpg`.
+- **`REELS`:** códigos de los reels de Instagram; el primero (`DYiW6gNxA1m`) va grande como destacado. Se muestran con el embed oficial de IG, que se carga recién cuando la sección está cerca.
+- **`DATA`:** cronograma del Fest 2026: `{d, t, n, c, tp, k, ph, pause, dl, pend, ep}`. `dl` es la ruta del PDF; `pend: true` muestra "La presentación llega pronto"; `ep` son los números de capítulos del podcast relacionados (botón "Podcast #N"). Los paneles no tienen presentación.
+- **`PH`:** fotos de speakers por slug.
+- **`GAL2`:** fotos de la 2da edición (`{src, alt}`), vacía por ahora.
+- **`GAL` / `TEAM`:** fotos de la 1ra edición y del equipo.
+- **`MF_LOGO`, `MAIN_SPONSORS`** (Heineken 0.0 y CCU), **`SPONSORS`, `MEDIA`, `LOGOS`** (apoyo institucional), **`SPONSORS_ED1`.** Si un logo no tiene `src`, se muestra el nombre en Anton.
 
-### Datos (al principio del `<script>`)
+**Google Tag Manager:** contenedor `GTM-5Z65GSRG`, arriba de todo en el `<head>` y `<noscript>` al abrir el `<body>`. Los eventos se configuran desde GTM; los links útiles para medir tienen `data-dl` (descargas), `data-ep` (capítulos) y `data-wa` (WhatsApp).
 
-- **`CONFIG`**: tiene `inscripcion` con la URL de la inscripción oficial (`https://mi.econ.uba.ar/marketingfest`, sistema de la FCE).
-- **`EVENT`**: fecha objetivo de la cuenta regresiva (`2026-10-27T14:00:00-03:00`).
-- **`DATA`**: el cronograma completo. Cada ítem es `{d, t, n, c, tp, k, w, ph, pause, tbc}`:
-  - `d`: día (1 o 2).
-  - `t`: hora.
-  - `n`: nombres.
-  - `c`: empresa o cargo.
-  - `tp`: tema o moderador.
-  - `k`: tipo de panel.
-  - `w`: palabra de marca de agua cuando no hay foto.
-  - `ph`: array de slugs de fotos.
-  - `pause`: acreditación, break o cierre.
-  - `tbc`: speaker a confirmar.
+**Favicon:** `favicon.png` y `apple-touch-icon.png` en la raíz.
 
-  De `DATA` salen la grilla de speakers y el cronograma.
-- **`PH`**: fotos de speakers en base64 por slug (`catalina-smidt`, `mariano-felix-rica`, etc.). Están recortadas del deck.
-- **`GAL`**: fotos de la 1ra edición (`{src, alt, cat}`). Las 5 primeras se usan en el collage de la pared (no cambiar su orden). En `p-ed1` se muestran agrupadas por `cat` en el orden de `GAL_CATS` (Acreditaciones, Charlas, Paneles de IA y marketing, Speakers con su certificado, La gente, Photocall; las vacías no se muestran); para sumar un momento nuevo, agregalo a `GAL_CATS`. Las fotos nuevas van al final, a ~1000 px de ancho en JPEG.
-- **`TEAM`**: fotos del equipo para "Detrás de escena" en `p-organizan` (`{src, alt}`); también se muestran las fotos de `GAL` con `team: true`.
-- **`LOGOS`**: los logos del apoyo institucional: CACE, DMA, Academia Argentina de la Publicidad, Secretaría de Graduados, CECE y UBA Económicas Posgrado (ENAP).
-- **`SPONSORS`**: los sponsors de esta edición (`{src, alt, url}`): DT Comunicación, Doble Dosis, FlashTag, Sushi Burger, Bengala, Dismaser y Chiquijuegos.
-- **`MAIN_SPONSORS`**: los main sponsors de la 2da edición, **Heineken 0.0** (solo esa versión del logo, a pedido de Ro) y **CCU** (`{src, alt, url}`). Van lado a lado en el bloque "Main sponsor" de la página y de `p-sponsors`, y en la pantalla LED.
-- **`MEDIA`**: los media partners (`{src, alt, url}`): Radio Simphony 91.3 y Radio UBA 87.9. Se muestran en la página (debajo de Sponsors) y en `p-sponsors`.
-- **`SPONSORS_ED1`**: los sponsors de la 1ra edición (`{src, alt, url, main}`). Se muestran en `p-sponsors` ("Nos acompañaron en la 1ra edición") y en `p-ed1`. Si `src` está vacío, `logoCell` muestra el nombre en Anton; `main: true` agrega la etiqueta "Main sponsor" (Tiendanube).
-- **`COLORS` / `DAYNAME`**: helpers.
+## Pendientes
 
-### Piezas clave del JS
-
-- **`layout()` / `onScroll()`:** calculan el ancho de la pared, la altura del sticky y el `translate3d` del track, el skyline y la vereda. Se recalculan en resize y cuando cargan las fuentes.
-- **`open(id, src)` / `close()`:** takeover con `clip-path` desde el rect del anuncio. Manejan foco, Esc y `history.replaceState` con el hash.
-- **Accesibilidad de la calle:** cuando un anuncio recibe foco por teclado, se scrollea para centrarlo. `.scene` usa `overflow: clip` para que el navegador no la desplace sola (era un bug).
-- **Retícula, tilt y holo:** solo con `pointer: fine`.
-- **Pantalla LED:** `reel()` + `frame()` cada 820 ms, con el tamaño de fuente ajustado según el largo de la palabra.
-- **Inscripción:** la hace la FCE en `https://mi.econ.uba.ar/marketingfest`, no la web. Todos los CTA de inscripción (nav, menú mobile, flyer "GRATIS", "Fin del recorrido" y los paneles) son `<a data-inscripcion>` que abren esa URL en otra pestaña. El deep link `#inscripcion` redirige ahí, así los links viejos de mails y redes siguen funcionando. Ya no hay formulario propio ni panel `p-inscripcion`. La pre-inscripción se cerró: los datos siguen en la data table de n8n "Pre-inscripción MKT Fest 2026" (id `d7GBQXcVm9nlEQsh`) y en el Google Sheet "Pre-inscripción Marketing Fest 2026".
-- **Google Calendar:** links por día, 14 a 21 hs ART.
-
-## Pendientes y cosas a confirmar con Ro
-
-1. **Avisar a la lista de pre-inscripción** (mail + WhatsApp) que ya abrió la inscripción oficial en mi.econ.uba.ar/marketingfest, y marcar `avisado` en la data table.
-2. **Sponsors de la 1ra edición:** cargados en `SPONSORS_ED1` (Tiendanube como main, Heineken 0.0, Gigared, DT Comunicación, Doble Dosis, FlashTag, Óptica Lof, Prometheo y Mikhuna Nikkei; 9 marcas). Falta el archivo del logo de Mikhuna: hoy se muestra como texto.
-3. **Line up:** actualizado con la planilla del 22/10 (todos los horarios tienen speaker; ya no hay "Speaker a confirmar"). Todos están confirmados (las filas en rosa de la planilla no significan nada). Nombres confirmados por Ro: Sebastián Lutz (la planilla dice "Kutz") y Norman Ventre (no "Vietre"). Cargos tomados de las placas de redes del 22/10; las placas escriben "Gorfinkel" (la planilla, "Gofinkel").
-4. **Fotos que faltan:** Mariano Garibini y los moderadores. Las fotos de Porfa y Kora en dúo (como en las placas nuevas) todavía no llegaron como archivo; hoy se usan las anteriores. Las placas de redes están en el Drive (carpeta de Tomás, archivos `SM0x-…`/`SW0x-…`): las fotos se recortan de ahí, se les saca el fondo y se ponen en B&N sobre naranja `#E95D3A`.
-5. **Discrepancias entre deck y planilla:**
-   - el nombre del salón;
-   - el horario del panel gamer: el deck dice 19:00, se usa 17:10 de la planilla;
-   - el cargo de Mariano Félix Rica;
-   - los números (+1500 / +25 contra 2000 / +30).
-6. **El link de FlashTag** para su logo de sponsor.
-7. **Títulos de charla "a definir":** Mariano Garibini, Aldana Abadi y Carolina Dubiansky, y Tomás Cazalá.
-8. **Precios de sponsorship:** están en el deck (Silver USD 1.500, Gold 2.500, Platinum 5.000, podcast 2.000, main 6.000). Se decidió **no** mostrarlos en la web pública salvo que Ro lo pida.
-
-## Próximos pasos técnicos sugeridos
-
-- **Separar assets:** pasar imágenes de base64 a `/assets` (webp) y datos a `data.js` o JSON. Eso baja el HTML de 1.8 MB a menos de 100 KB y facilita editar speakers.
-- **Deploy en Vercel** como sitio estático. Dominio sugerido en el plan: `marketingfest.fce.uba.ar`, a definir.
-- **QR personal en el Mail 1:** lo arma el flujo de n8n, no la web.
-- **Metadatos para compartir:** `og:image` (afiche del tríptico) y metadatos para WhatsApp e IG.
-- **Analytics** para medir lo que pide el plan: clicks en inscripción, calendario y WPP.
+1. **Presentaciones que faltan:** Sabrina Kolod (martes) y del miércoles Fernanda Rivera, Aldana Abadi, Carolina Geler, ABN, Meta y Rappi (`pend: true`). Cuando llegue cada una: copiarla a `assets/presentaciones/`, poner `dl` y sacar `pend`. Antes de publicar, que Ro confirme el OK de cada speaker.
+2. **Fotos de la 2da edición:** Ro las va a pasar. Van a `assets/img/ed2/` y a `GAL2`.
+3. **Material de Manu:** video o imagen.
+4. **Link del capítulo #9** (Belu Fiora, Hacks Digital).
+5. **Números reales de la 2da edición** (asistentes).
+6. **Logo de Mikhuna Nikkei** (sponsor de la 1ra edición), hoy como texto.
+7. **Precios:** no se muestran en la web salvo que Ro lo pida.
 
 ## Checklist antes de cada entrega
 
-- Probar desktop 1440×900 y mobile 390×844: caminar la cuadra, abrir y cerrar cada panel, y navegar con teclado (Tab sobre los anuncios no debe descuadrar la escena).
-- Probar dark mode.
-- Que los CTA "Inscribite" y `#inscripcion` lleven a la inscripción oficial.
-- Que no aparezca ninguna marca no confirmada.
-- Que todo el copy esté en voseo.
+- Probar desktop 1440×900 y mobile 390×844, en modo claro y oscuro.
+- Que cada "Descargar PDF" baje el archivo correcto y que los capítulos abran el video correcto en YouTube.
+- Que los botones de WhatsApp abran el chat con Ro.
+- Que no aparezca ninguna marca no confirmada y que todo el copy esté en voseo.
