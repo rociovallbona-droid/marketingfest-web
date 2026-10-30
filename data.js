@@ -11,6 +11,10 @@ const CONFIG = {
   site: '',
   youtube: 'https://www.youtube.com/@SeNosFueDeLasManos',
   instagram: 'https://www.instagram.com/senosfuedelasmanos.ok/',
+  /* Formulario "Avisame de la 3ra edición": hace POST con {nombre, email, whatsapp, evento, tipo, fecha}.
+     Hoy usa el webhook de n8n de la pre-inscripción 2026 (workflow E6dF41wKNW31obCu, data table d7GBQXcVm9nlEQsh);
+     los registros nuevos llegan con tipo 'aviso-3ra-edicion'. */
+  avisoWebhook: 'https://n8n.dtcomunicacion.com/webhook/preinscripcion-mkt-fest',
   /* Contacto para servicios (marcas): nombre, teléfono como se muestra y link de WhatsApp con el texto precargado */
   contacto: { nombre: 'Juan Pedro', tel: '11 3478-4373' },
   whatsapp: 'https://wa.me/5491134784373?text=' + encodeURIComponent('¡Hola, Juampe! ¿Cómo estás? Te escribo desde la web de Se Nos Fue de las Manos para trabajar juntos.')

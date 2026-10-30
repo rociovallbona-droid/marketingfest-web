@@ -96,9 +96,34 @@ function band(k, P, text = 'Contenido en la calle, videos y UGC, eventos o tu ma
 </section>`;
 }
 
+/* Formulario para que te avisen cuando abra la 3ra edición del Marketing Fest */
+function aviso(k, P, id = 'tercera') {
+  return `<section class="ch aviso-wrap" id="${id}" aria-labelledby="t-${id}">
+  <div class="wrap">
+    <div class="aviso">
+      <div>
+        <p class="num">Marketing Fest · 3ra edición</p>
+        <h2 id="t-${id}">Avisame cuando salga la 3ra</h2>
+        <p class="lead">Dejanos tus datos y te escribimos apenas abra la inscripción. Es libre y gratuita, pero los cupos vuelan.</p>
+      </div>
+      <form class="aviso-form" data-aviso="${esc(CONFIG.avisoWebhook)}" novalidate>
+        <div class="f"><label for="${id}-n">Nombre y apellido</label><input id="${id}-n" name="nombre" autocomplete="name" required></div>
+        <div class="f"><label for="${id}-e">Email</label><input id="${id}-e" name="email" type="email" autocomplete="email" required></div>
+        <div class="f"><label for="${id}-t">Teléfono (WhatsApp)</label><input id="${id}-t" name="whatsapp" type="tel" inputmode="tel" autocomplete="tel" placeholder="11 2345 6789" required></div>
+        <p class="err" role="alert"></p>
+        <button class="cta ink" type="submit">Avisame ${icon(P, 'arr')}</button>
+        <p class="fine">Solo te escribimos para avisarte de la 3ra edición del Marketing Fest.</p>
+      </form>
+      <div class="aviso-ok" hidden tabindex="-1"></div>
+    </div>
+  </div>
+</section>`;
+}
+
 function qa(k) {
   return [
     { q: '¿Dónde bajo las presentaciones del Fest?', a: `Están en <a href="${rel(k, 'f2026')}#descargas">la página de la 2da edición</a>, separadas por día. Tocá "Descargar PDF" en la charla que quieras.` },
+    { q: '¿Cuándo es la 3ra edición del Fest?', a: `Todavía no tiene fecha. Dejá tus datos en <a href="${rel(k, 'fest')}#tercera">Avisame cuando salga la 3ra</a> y te escribimos apenas abra la inscripción.` },
     { q: '¿Dónde veo el podcast?', a: `En nuestro <a href="${CONFIG.youtube}" ${ext}>canal de YouTube</a>. Si no sabés por cuál arrancar, andá por el de Con el Kora o el de McDonald's. Están todos en <a href="${rel(k, 'podcast')}">la página del podcast</a>.` },
     { q: 'Tengo una marca, ¿qué pueden hacer conmigo?', a: `Mirá <a href="${rel(k, 'servicios')}">nuestros servicios</a>: <a href="${rel(k, 'calle')}">Contenido en la calle</a>, <a href="${rel(k, 'videos')}">videos y UGC</a> con nosotros o alguien de tu equipo como cara, <a href="${rel(k, 'eventos')}">eventos</a> como el Marketing Fest y tu marca en el podcast.` },
     { q: '¿Cuánto sale?', a: `Depende de la idea. Escribile a ${esc(CONFIG.contacto.nombre)} por <a href="${esc(CONFIG.whatsapp)}" ${ext}>WhatsApp</a>, contale qué tenés en mente y te pasa una propuesta.` },
@@ -277,7 +302,7 @@ const BUILD = {
       </ul>
       <div class="btns">
         <a class="cta" href="${rel(k, 'f2026')}#descargas">Descargá las presentaciones ${icon(P, 'arr')}</a>
-        <a class="ghost" href="${rel(k, 'podcast')}">Mirá el podcast</a>
+        <a class="ghost" href="#tercera">Avisame de la 3ra edición</a>
       </div>
     </div>
     <figure class="manu" aria-label="Manu, el vocero con IA de Se Nos Fue de las Manos">
@@ -328,6 +353,7 @@ const BUILD = {
     <div class="btns"><a class="cta" href="${rel(k, 'podcast')}">Ver todos los capítulos ${icon(P, 'arr')}</a></div>
   </div>
 </section>
+${aviso(k, P)}
 ${band(k, P)}`,
       /* links viejos de la landing del Fest (mails y redes) */
       extraHead: `<script>(function(){var m={inscripcion:'descargas','el-fest':'',speakers:'descargas',cronograma:'descargas',preguntas:'',sponsors:'gracias'},h=location.hash.slice(1);
@@ -370,7 +396,7 @@ ${band(k, P, '¿Querés que tu marca esté en el podcast? También hacemos conte
         num: '#02', h1: 'Marketing Fest', trail: [['home', 'Inicio'], [null, 'Marketing Fest']],
         lead: 'El evento de marketing más grande de la Facultad de Ciencias Económicas de la UBA, abierto a todo el mundo, libre y gratuito. Lo hacemos para democratizar el conocimiento: que no tengas que pagar una fortuna para ver a los capos del rubro contar lo que hacen bien y entender cómo hacer crecer tu negocio o tu carrera profesional.',
         say: 'Ya van dos ediciones y más de 60 speakers. Elegí cuál querés ver.',
-        extra: `<img class="mf-logo" style="margin-top:2rem" src="${P(MF_LOGO.dark)}" alt="Marketing Fest, segunda edición">`,
+        extra: `<div class="btns"><a class="cta" href="#tercera">Avisame de la 3ra edición ${icon(P, 'arr')}</a></div><img class="mf-logo" style="margin-top:2rem" src="${P(MF_LOGO.dark)}" alt="Marketing Fest, segunda edición">`,
       })}
 <section class="ch" aria-labelledby="t-eds">
   <div class="wrap">
@@ -388,6 +414,7 @@ ${band(k, P, '¿Querés que tu marca esté en el podcast? También hacemos conte
     </div>
   </div>
 </section>
+${aviso(k, P)}
 ${band(k, P, '¿Querés sumar tu marca al próximo Marketing Fest u organizar un evento propio? Escribinos.')}`,
     });
   },
@@ -438,6 +465,7 @@ ${band(k, P, '¿Querés sumar tu marca al próximo Marketing Fest u organizar un
     </div>
   </div>
 </section>
+${aviso(k, P)}
 ${band(k, P, '¿Querés sumar tu marca a la 3ra edición del Marketing Fest u organizar un evento propio? Escribinos.')}`,
     });
   },
@@ -478,6 +506,7 @@ ${band(k, P, '¿Querés sumar tu marca a la 3ra edición del Marketing Fest u or
     </div>
   </div>
 </section>
+${aviso(k, P)}
 ${band(k, P, '¿Querés sumar tu marca a la 3ra edición del Marketing Fest u organizar un evento propio? Escribinos.')}`,
     });
   },

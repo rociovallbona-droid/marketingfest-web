@@ -44,6 +44,10 @@ Cada botón del menú es una página propia, con su título, descripción, Open 
 
 En el menú, "Marketing Fest" y "Servicios" tienen un desplegable (en desktop) con sus páginas internas. Los links viejos de la landing (`#inscripcion`, `#speakers`, `#cronograma`, `#primera-edicion`, `#organizan`, etc.) redirigen desde el inicio a la página nueva que corresponde.
 
+### "Avisame cuando salga la 3ra"
+
+Formulario (nombre y apellido, email, teléfono/WhatsApp) en el inicio, en `/marketing-fest/` y en las páginas de cada edición (`#tercera`); también hay botones "Avisame de la 3ra edición" en el hero del inicio y del Fest, y una respuesta en el chat de Manu. Hace POST a `CONFIG.avisoWebhook` con `{nombre, email, whatsapp, evento: 'Marketing Fest · 3ra edición', tipo: 'aviso-3ra-edicion', origen, fecha}` y empuja el evento `aviso_3ra_edicion` al `dataLayer` de GTM. Hoy usa el webhook de la pre-inscripción 2026 (`https://n8n.dtcomunicacion.com/webhook/preinscripcion-mkt-fest`, workflow `E6dF41wKNW31obCu`, data table `d7GBQXcVm9nlEQsh`). Ojo: ese workflow no duplica por email, así que quien ya estaba pre-inscripto en 2026 no se guarda de nuevo (igual ya está en la lista). Si se arma una tabla propia para la 3ra, cambiar solo `CONFIG.avisoWebhook`. En el navegador queda guardado con la clave `mktfest-aviso-3ra` para mostrar "¡Listo!" si vuelve.
+
 ## Marca
 
 ### SNFM (manual de marca de julio 2025, por Lila Sans)

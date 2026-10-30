@@ -54,3 +54,37 @@ if(chat && window.QA){
   $('[data-close]',chat).onclick=()=>chat.close();
   chat.addEventListener('click',e=>{ if(e.target===chat||e.target.closest('a')) chat.close(); });
 }
+
+/* Avisame de la 3ra edición: valida, manda los datos al webhook y muestra la confirmación.
+   Si ya se anotó en este navegador, muestra la confirmación directo. */
+const KEY='mktfest-aviso-3ra';
+$$('form[data-aviso]').forEach(form=>{
+  const box=form.parentNode, ok=$('.aviso-ok',box), err=$('.err',form), btn=$('button',form);
+  const done=(nombre,focus)=>{
+    form.hidden=true; ok.hidden=false;
+    ok.innerHTML=`<strong>¡Listo${nombre?', '+nombre.split(' ')[0].replace(/[<>&"]/g,''):''}!</strong>Te avisamos por mail y por WhatsApp apenas abra la inscripción de la 3ra edición.`;
+    if(focus) ok.focus();
+  };
+  try{ const saved=JSON.parse(localStorage.getItem(KEY)||'null'); if(saved) done(saved.nombre); }catch(e){}
+  const fail=(input,msg)=>{ err.textContent=msg; input.setAttribute('aria-invalid','true'); input.focus(); };
+  form.addEventListener('input',e=>{ e.target.removeAttribute('aria-invalid'); err.textContent=''; });
+  form.addEventListener('submit',async e=>{
+    e.preventDefault(); err.textContent='';
+    const f=form.elements, nombre=f.nombre.value.trim().replace(/\s+/g,' '), email=f.email.value.trim(), tel=f.whatsapp.value.trim();
+    if(nombre.split(' ').length<2) return fail(f.nombre,'Escribí tu nombre y apellido.');
+    if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return fail(f.email,'Revisá el email: le falta algo (por ejemplo, la @ o el dominio).');
+    if(tel.replace(/\D/g,'').length<10) return fail(f.whatsapp,'El teléfono tiene que tener al menos 10 números, con la característica (por ejemplo, 11 2345 6789).');
+    btn.disabled=true; btn.firstChild.textContent='Enviando… ';
+    try{
+      const r=await fetch(form.dataset.aviso,{method:'POST',headers:{'Content-Type':'application/json'},
+        body:JSON.stringify({nombre,email,whatsapp:tel,evento:'Marketing Fest · 3ra edición',tipo:'aviso-3ra-edicion',origen:location.pathname,fecha:new Date().toISOString()})});
+      if(!r.ok) throw 0;
+      try{ localStorage.setItem(KEY,JSON.stringify({nombre})); }catch(e){}
+      window.dataLayer&&dataLayer.push({event:'aviso_3ra_edicion'});
+      done(nombre,true);
+    }catch(x){
+      err.textContent='No pudimos guardar tus datos. Probá de nuevo en un rato o escribinos por Instagram a @senosfuedelasmanos.ok.';
+      btn.disabled=false; btn.firstChild.textContent='Avisame ';
+    }
+  });
+});
