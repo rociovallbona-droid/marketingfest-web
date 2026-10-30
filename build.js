@@ -333,7 +333,7 @@ function epCard(P, e, big) {
   <span class="go">${e.id ? 'Ver el capítulo' : 'Ver en el canal'} ${icon(P, 'arr')}</span>
 </a>`;
 }
-const hotEps = P => EPISODES.filter(e => e.hot).sort((a, b) => !!b.fest - !!a.fest).map(e => epCard(P, e, true)).join('\n');
+const hotEps = P => EPISODES.filter(e => e.hot).map(e => epCard(P, e, true)).join('\n');
 
 function logoRow(P, list, cls = '') {
   return `<div class="logo-row${cls ? ' ' + cls : ''}">${list.map(s => {
@@ -464,7 +464,7 @@ const BUILD = {
   <div class="wrap">
     <div class="ch-head">
       <h2 id="t-hot">Para arrancar el podcast</h2>
-      <div class="says">${av(P)}<p><b>Manu</b>Si tenés 40 minutos, mirá estos dos. Los de Con el Kora también pasaron por el Marketing Fest.</p></div>
+      <div class="says">${av(P)}<p><b>Manu</b>Si tenés 40 minutos, mirá estos dos episodios que la rompen: McDonald\'s, la empresa n.º 1 en el mundo, y Con el Kora, con Male y Facu, que empezaron de cero y no paran de crecer en redes.</p></div>
     </div>
     <div class="hot">${hotEps(P)}</div>
     <div class="btns"><a class="cta" href="${rel(k, 'podcast')}">Ver todos los capítulos ${icon(P, 'arr')}</a></div>
@@ -487,7 +487,7 @@ if(h in m){location.replace(m[h]==='descargas'?'${rel(k, 'p2026')}':'${rel(k, 'f
       body: `${pageHero(k, P, {
         deco: ['mano-chasquido', 'var(--paper)'], num: '#01', h1: 'El podcast', trail: [['home', 'Inicio'], [null, 'Podcast']],
         lead: 'Charlamos con gerentes de marketing de marcas referentes para ver lo que no se ve desde el aula: el verdadero detrás de cada empresa, la cocina del marketing. Lo hacemos junto a Tomás Cazalá y un equipo de docentes, ayudantes y estudiantes de la UBA.',
-        say: 'Si tenés 40 minutos, arrancá por estos dos. Los de Con el Kora también pasaron por el Marketing Fest.',
+        say: 'Si tenés 40 minutos, mirá estos dos episodios que la rompen: McDonald\'s, la empresa n.º 1 en el mundo, y Con el Kora, con Male y Facu, que empezaron de cero y no paran de crecer en redes.',
         extra: `<div class="btns"><a class="cta" href="${CONFIG.youtube}" ${ext}>Ver el canal en YouTube ${icon(P, 'arr')}</a></div>`,
       })}
 <section class="ch" aria-labelledby="t-eps">
