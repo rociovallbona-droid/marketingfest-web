@@ -13,7 +13,7 @@ const CONFIG = {
   instagram: 'https://www.instagram.com/senosfuedelasmanos.ok/',
   /* Contacto para servicios (marcas): nombre, teléfono como se muestra y link de WhatsApp con el texto precargado */
   contacto: { nombre: 'Juan Pedro', tel: '11 3478-4373' },
-  whatsapp: 'https://wa.me/5491134784373?text=' + encodeURIComponent('¡Hola Juan Pedro! Vi la web de Se Nos Fue de las Manos y quiero hacer algo con mi marca.')
+  whatsapp: 'https://wa.me/5491134784373?text=' + encodeURIComponent('¡Hola, Juampe! ¿Cómo estás? Te escribo desde la web de Se Nos Fue de las Manos para trabajar juntos.')
 };
 
 /* Manu, el vocero con IA de SNFM.
