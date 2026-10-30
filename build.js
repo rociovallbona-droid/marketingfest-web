@@ -11,8 +11,8 @@ const ROOT = __dirname;
 const ctx = {};
 vm.createContext(ctx);
 vm.runInContext(fs.readFileSync(path.join(ROOT, 'data.js'), 'utf8') +
-  '\nObject.assign(this,{CONFIG,MANU,ROLES,EPISODES,REELS,DATA,PH,GAL2,GAL,GAL_CATS,TEAM,MF_LOGO,MAIN_SPONSORS,SPONSORS,MEDIA,LOGOS,SPONSORS_ED1});', ctx);
-const { CONFIG, MANU, ROLES, EPISODES, REELS, DATA, PH, GAL2, GAL, GAL_CATS, TEAM, MF_LOGO, MAIN_SPONSORS, SPONSORS, MEDIA, LOGOS, SPONSORS_ED1 } = ctx;
+  '\nObject.assign(this,{CONFIG,MANU,ROLES,PODCAST_SPONSOR,EPISODES,REELS,DATA,PH,GAL2,GAL,GAL_CATS,TEAM,MF_LOGO,MAIN_SPONSORS,SPONSORS,MEDIA,LOGOS,SPONSORS_ED1});', ctx);
+const { CONFIG, MANU, ROLES, PODCAST_SPONSOR, EPISODES, REELS, DATA, PH, GAL2, GAL, GAL_CATS, TEAM, MF_LOGO, MAIN_SPONSORS, SPONSORS, MEDIA, LOGOS, SPONSORS_ED1 } = ctx;
 
 const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 const ext = 'target="_blank" rel="noopener"';
@@ -131,7 +131,7 @@ function qa(k) {
     { q: '¿Dónde veo el podcast?', a: `En nuestro <a href="${CONFIG.youtube}" ${ext}>canal de YouTube</a>. Si no sabés por cuál arrancar, andá por el de Con el Kora o el de McDonald's. Están todos en <a href="${rel(k, 'podcast')}">la página del podcast</a>.` },
     { q: 'Tengo una marca, ¿qué pueden hacer conmigo?', a: `Mirá <a href="${rel(k, 'servicios')}">nuestros servicios</a>: <a href="${rel(k, 'calle')}">Contenido en la calle</a>, <a href="${rel(k, 'videos')}">videos y UGC</a> con nosotros o alguien de tu equipo como cara, <a href="${rel(k, 'eventos')}">eventos</a> como el Marketing Fest y tu marca en el podcast.` },
     { q: '¿Cómo me sumo a Se Nos Fue?', a: `Anotate en <a href="${rel(k, 'sumate')}">Sumate</a> y contanos en qué podés ayudar. Ojo: no es remunerado, lo hacemos por amor al marketing.` },
-    { q: '¿Mi marca puede ser sponsor del podcast?', a: `¡Sí! Mirá <a href="${rel(k, 'sponsor')}">cómo sponsorear el podcast</a> o escribile directo a ${esc(CONFIG.contacto.nombre)} por <a href="${esc(CONFIG.whatsappSponsor)}" ${ext}>WhatsApp</a>.` },
+    { q: '¿Mi marca puede ser sponsor del podcast?', a: `¡Sí! Sponsorear solo el podcast sale ${esc(PODCAST_SPONSOR.precio)}. Mirá <a href="${rel(k, 'sponsor')}">qué incluye</a> o escribile directo a ${esc(CONFIG.contacto.nombre)} por <a href="${esc(CONFIG.whatsappSponsor)}" ${ext}>WhatsApp</a>.` },
     { q: '¿Cuánto sale?', a: `Depende de la idea. Escribile a ${esc(CONFIG.contacto.nombre)} por <a href="${esc(CONFIG.whatsapp)}" ${ext}>WhatsApp</a>, contale qué tenés en mente y te pasa una propuesta.` },
     { q: '¿Quién sos?', a: 'Soy Manu, el vocero con IA de Se Nos Fue de las Manos. Te ayudo a encontrar lo que buscás en la web. Para algo más, te paso con el equipo.' },
   ];
@@ -612,7 +612,20 @@ ${band(k, P)}`,
         say: `Para sponsorear, hablá directo con ${esc(CONFIG.contacto.nombre)}. Te arma la propuesta a medida.`,
         extra: `<div class="btns">${wa(P, `Escribile a ${esc(CONFIG.contacto.nombre)}`, 'cta', CONFIG.whatsappSponsor)}</div>`,
       })}
-<section class="ch" aria-labelledby="t-como">
+<section class="ch" aria-labelledby="t-precio">
+  <div class="wrap">
+    <div class="price">
+      <div class="price-t"><span>Sumate como</span><h2 id="t-precio">Sponsor del podcast</h2></div>
+      <div class="price-b">
+        <ul>${PODCAST_SPONSOR.incluye.map(([b, t]) => `<li><b>${esc(b)}</b> ${esc(t)}</li>`).join('')}</ul>
+        <p class="price-v"><strong>${esc(PODCAST_SPONSOR.precio)}</strong><small>${esc(PODCAST_SPONSOR.aclara)}</small></p>
+        ${wa(P, `Quiero ser sponsor`, 'cta', CONFIG.whatsappSponsor)}
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="ch" aria-labelledby="t-como" style="padding-top:0">
   <div class="wrap">
     <h2 class="sr" id="t-como">Cómo aparece tu marca</h2>
     <div class="svc">

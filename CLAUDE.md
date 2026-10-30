@@ -41,7 +41,7 @@ Cada botón del menú es una página propia, con su título, descripción, Open 
 | `/servicios/contenido-en-la-calle/` | Contenido en la calle | Reels de Instagram |
 | `/servicios/videos-y-ugc/` | Videos y UGC | UGC y producción de videos, con SNFM o alguien de la empresa como cara |
 | `/servicios/eventos/` | Eventos | Qué hacemos al organizar un evento y marcas que confiaron en el Fest |
-| `/servicios/sponsor-del-podcast/` | Sponsoreá el podcast | Cómo aparece la marca (set, menciones, dónde se ve), marcas que pasaron por el podcast y capítulos de muestra. Todos los CTA van a `CONFIG.whatsappSponsor`: WhatsApp de Juan Pedro con mensaje de sponsoreo. También hay una franja "Tu marca en el podcast" al final de `/podcast/` |
+| `/servicios/sponsor-del-podcast/` | Sponsoreá el podcast | Tarjeta de precio "Sponsor del podcast · 2.000 USD" (solo podcast, `PODCAST_SPONSOR`), cómo aparece la marca (set, menciones, dónde se ve), marcas que pasaron por el podcast y capítulos de muestra. Todos los CTA van a `CONFIG.whatsappSponsor`: WhatsApp de Juan Pedro con mensaje de sponsoreo. También hay una franja "Tu marca en el podcast" al final de `/podcast/` |
 | `/sumate/` | Sumate | Base de gente que quiere dar una mano (UGC, filmmakers, cámaras, edición, etc.). **No es remunerado: es por amor al marketing**, y se aclara arriba, en un recuadro y en una casilla obligatoria del formulario |
 
 En el menú, "Marketing Fest" y "Servicios" tienen un desplegable (en desktop) con sus páginas internas. Los links viejos de la landing (`#inscripcion`, `#speakers`, `#cronograma`, `#primera-edicion`, `#organizan`, etc.) redirigen desde el inicio a la página nueva que corresponde.
@@ -123,7 +123,7 @@ Sitio estático. Las páginas se **generan** con un script de Node sin dependenc
 4. **Link del capítulo #9** (Belu Fiora, Hacks Digital).
 6. **Logo de Mikhuna Nikkei** (sponsor de la 1ra edición), hoy como texto.
 7. **Base de "Sumate" en n8n:** crear el webhook y la data table y cargarlo en `CONFIG.sumateWebhook`.
-8. **Precios:** no se muestran en la web salvo que Ro lo pida.
+8. **Precios:** el único precio publicado es el del sponsoreo del podcast solo (2.000 USD, pedido de Ro el 30/10/2026), en `PODCAST_SPONSOR` de `data.js`. Los paquetes del Fest (main sponsor 6.000 USD, platinum, etc.) no se publican salvo que Ro lo pida. Confirmar con Ro qué incluye el de 2.000 (hoy: sponsor del podcast con transmisión en Gigared, set y menciones, activación o sorteo en la comunidad) y por cuánto tiempo.
 
 ## Checklist antes de cada entrega
 

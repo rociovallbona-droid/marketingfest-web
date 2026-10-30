@@ -32,6 +32,17 @@ const CONFIG = {
    video: mp4 vertical opcional; si está, reemplaza a img en la tarjeta (poster: su primer cuadro). */
 const MANU = { video: '', poster: '', img: 'assets/img/manu.webp', avatar: 'assets/img/manu-avatar.webp' };
 
+/* Sponsoreo del podcast (solo podcast, sin Marketing Fest). Se muestra en /servicios/sponsor-del-podcast/. */
+const PODCAST_SPONSOR = {
+  precio: '2.000 USD',
+  incluye: [
+    ['Sponsor del podcast SNFM', 'que también se transmite en el canal de televisión Gigared.'],
+    ['Tu marca en el set y en las menciones', 'de los capítulos, con link en la descripción.'],
+    ['Activación o sorteo', 'de productos de tu marca en la comunidad @senosfuedelasmanos.ok.']
+  ],
+  aclara: 'Solo el podcast: no incluye el Marketing Fest.'
+};
+
 /* Roles de la página "Sumate": {t: título, d: qué hace} */
 const ROLES = [
   {t:'Creador/a de contenido UGC', d:'Grabás en primera persona: reseñas, pruebas de producto y videos para marcas.'},
