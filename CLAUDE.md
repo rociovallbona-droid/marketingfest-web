@@ -34,13 +34,13 @@ Cada botón del menú es una página propia, con su título, descripción, Open 
 |---|---|---|
 | `/` | Inicio | Hero con Manu, "Qué hacemos" (tarjetas a Podcast, Marketing Fest y Servicios) y los dos capítulos destacados |
 | `/podcast/` | Podcast | Destacados (Con el Kora y McDonald's, `hot: true`) y todos los capítulos |
-| `/marketing-fest/` | Marketing Fest | Qué es el Fest y una tarjeta por edición |
+| `/marketing-fest/` | Marketing Fest | Qué es el Marketing Fest y una tarjeta por edición |
 | `/marketing-fest/2026/` | 2da edición | Números, **presentaciones para descargar** (`#descargas`, pestañas por día), fotos (`GAL2`) y marcas |
 | `/marketing-fest/2025/` | 1ra edición | Video, números, fotos por momento (descargables) y sponsors |
 | `/servicios/` | Nuestros servicios | Cada servicio explicado en breve con "Ver más info" |
 | `/servicios/contenido-en-la-calle/` | Contenido en la calle | Reels de Instagram |
 | `/servicios/videos-y-ugc/` | Videos y UGC | UGC y producción de videos, con SNFM o alguien de la empresa como cara |
-| `/servicios/eventos/` | Eventos | Qué hacemos al organizar un evento y marcas que confiaron en el Fest |
+| `/servicios/eventos/` | Eventos | Qué hacemos al organizar un evento y marcas que confiaron en el Marketing Fest |
 | `/servicios/sponsor-del-podcast/` | Sponsoreá el podcast | Tarjeta de precio "Sponsor del podcast · 2.000 USD" (solo podcast, `PODCAST_SPONSOR`), cómo aparece la marca (set, menciones, dónde se ve), marcas que pasaron por el podcast y capítulos de muestra. Todos los CTA van a `CONFIG.whatsappSponsor`: WhatsApp de Juan Pedro con mensaje de sponsoreo. También hay una franja "Tu marca en el podcast" al final de `/podcast/` |
 | `/sumate/` | Sumate | Base de gente que quiere dar una mano (UGC, filmmakers, cámaras, edición, etc.). **No es remunerado: es por amor al marketing**, y se aclara arriba, en un recuadro y en una casilla obligatoria del formulario |
 
@@ -48,7 +48,7 @@ En el menú, "Marketing Fest" y "Servicios" tienen un desplegable (en desktop) c
 
 ### "Avisame cuando salga la 3ra"
 
-Formulario (nombre y apellido, email, teléfono/WhatsApp) en el inicio, en `/marketing-fest/` y en las páginas de cada edición (`#tercera`); también hay botones "Avisame de la 3ra edición" en el hero del inicio y del Fest, y una respuesta en el chat de Manu. Hace POST a `CONFIG.avisoWebhook` con `{nombre, email, whatsapp, evento: 'Marketing Fest · 3ra edición', tipo: 'aviso-3ra-edicion', origen, fecha}` y empuja el evento `aviso_3ra_edicion` al `dataLayer` de GTM. Hoy usa el webhook de la pre-inscripción 2026 (`https://n8n.dtcomunicacion.com/webhook/preinscripcion-mkt-fest`, workflow `E6dF41wKNW31obCu`, data table `d7GBQXcVm9nlEQsh`). Ojo: ese workflow no duplica por email, así que quien ya estaba pre-inscripto en 2026 no se guarda de nuevo (igual ya está en la lista). Si se arma una tabla propia para la 3ra, cambiar solo `CONFIG.avisoWebhook`. En el navegador queda guardado con la clave `mktfest-aviso-3ra` para mostrar "¡Listo!" si vuelve.
+Formulario (nombre y apellido, email, teléfono/WhatsApp) en el inicio, en `/marketing-fest/` y en las páginas de cada edición (`#tercera`); también hay botones "Avisame de la 3ra edición" en el hero del inicio y del Marketing Fest, y una respuesta en el chat de Manu. Hace POST a `CONFIG.avisoWebhook` con `{nombre, email, whatsapp, evento: 'Marketing Fest · 3ra edición', tipo: 'aviso-3ra-edicion', origen, fecha}` y empuja el evento `aviso_3ra_edicion` al `dataLayer` de GTM. Hoy usa el webhook de la pre-inscripción 2026 (`https://n8n.dtcomunicacion.com/webhook/preinscripcion-mkt-fest`, workflow `E6dF41wKNW31obCu`, data table `d7GBQXcVm9nlEQsh`). Ojo: ese workflow no duplica por email, así que quien ya estaba pre-inscripto en 2026 no se guarda de nuevo (igual ya está en la lista). Si se arma una tabla propia para la 3ra, cambiar solo `CONFIG.avisoWebhook`. En el navegador queda guardado con la clave `mktfest-aviso-3ra` para mostrar "¡Listo!" si vuelve.
 
 ### Formularios y avisos por mail
 
@@ -77,16 +77,16 @@ Ro pasó el manual y los archivos en alta el 30/10/2026. Están en `assets/img/s
 - **Recursos gráficos principales:** las tres manos (`mano-chasquido`, `mano-ok`, `mano-saludo`). **Secundarios:** formas (`forma-destello`, `forma-estrella`, `forma-flor`, `forma-sol`, `forma-engranaje`, `forma-asterisco`), la flecha ↘ (`#arr` en `assets/icons.svg`) y el sticker redondo (`sticker.webp`). Manos y formas son siluetas blancas: se pintan con cualquier color de la paleta con `shape(P, nombre, color, clase)` en `build.js` (usa `mask-image`).
 - **Texturas:** papel arrugado claro y oscuro (`textura-clara`, `textura-oscura`), sutiles de fondo en el hero del inicio, los heros de cada página y las bandas amarillas.
 - **Pastillas tipo sticker** (como en el manual: "SE VIENE", "SOON"): `.pill` con `.p-red` / `.p-violet`, rotadas sobre el título del inicio ("Podcast", "Mkt Fest").
-- **Dónde está cada recurso:** sticker pegado en la tarjeta de Manu; mano OK amarilla en "Salimos del aula"; en los heros: podcast (chasquido amarillo), servicios (OK negra), sumate (saludo negra), sponsor del podcast (flor violeta), calle (sol rojo), videos (destello cian), eventos (asterisco verde). Se pasan con `deco: [nombre, color]` en `pageHero`.
+- **Dónde está cada recurso:** sticker pegado en la tarjeta de Manu; mano OK amarilla en "Salimos del aula"; en los heros: podcast (chasquido blanco: sobre fondo oscuro las manos van en blanco, como en el manual), servicios (OK negra), sumate (saludo negra), sponsor del podcast (flor violeta), calle (sol rojo), videos (destello cian), eventos (asterisco verde). Se pasan con `deco: [nombre, color]` en `pageHero`.
 
 ### Marketing Fest
 
-- **Logo y recursos: los que pasó Ro el 30/10/2026, en buena calidad**, en `assets/img/fest/` (webp). Usarlos siempre que se mencione el Fest:
+- **Logo y recursos: los que pasó Ro el 30/10/2026, en buena calidad**, en `assets/img/fest/` (webp). Usarlos siempre que se mencione el Marketing Fest:
   - Logo horizontal "MARKETING FEST": `logo-marketing-fest.webp` (negro y naranja, fondos claros), `logo-marketing-fest-blanco.webp` (blanco y naranja, fondos oscuros) y `logo-marketing-fest-negro.webp`.
   - Logo compacto "MKT FEST": `logo-mkt-fest.webp` y `logo-mkt-fest-blanco.webp`.
   - Recursos: estrellas sueltas y de a tres (`estrella-*`, `estrellas-*`, en naranja, amarillo, celeste y azul), bandas (`banda-naranja`, `banda-azul`), destellos de puntos (`destello-naranja`, `destello-amarillo`) y línea con punto (`linea-naranja`). Los originales en alta (PNG, también en gris, negro y un degradé) los tiene Ro en el Drive.
   - Rutas en `MF_LOGO` de `data.js` (`light`, `dark`, `mini`, `miniDark`).
-- **Dónde se usan:** las páginas del Fest tienen el hero con `fest: true` (logo arriba, destello naranja y tres estrellas amarillas de fondo); en `/marketing-fest/` el logo es el título (`logoTitle`). Las tarjetas de cada edición llevan una estrella, la tarjeta del Fest en el inicio lleva el "MKT FEST", las etiquetas de los formularios del Fest van sobre la banda naranja (`.num.ribbon`) y "Gracias a las marcas" lleva tres estrellas naranjas.
+- **Dónde se usan:** las páginas del Marketing Fest tienen el hero con `fest: true` (logo arriba, destello naranja y tres estrellas amarillas de fondo); en `/marketing-fest/` el logo es el título (`logoTitle`). Las tarjetas de cada edición llevan una estrella, la tarjeta del Marketing Fest en el inicio lleva el "MKT FEST", las etiquetas de los formularios del Marketing Fest van sobre la banda naranja (`.num.ribbon`) y "Gracias a las marcas" lleva tres estrellas naranjas.
 - Reemplaza al logo anterior con la bajada "SEGUNDA EDICIÓN" (426 px), que se sacó.
 - Las fotos de speakers son retratos en B&N sobre naranja `#E95D3A` (`--fest`).
 
@@ -98,6 +98,7 @@ Ro pasó el manual y los archivos en alta el 30/10/2026. Están en `assets/img/s
 - **Sin anglicismos innecesarios**, salvo los propios del rubro (speaker, sponsor, break, reel).
 - **Datos de speakers:** se respeta lo que viene de la planilla o del deck, solo con correcciones de tipeo. Nunca inventar títulos de charla.
 - **Números:** no inventar. 1ra edición: +1200 personas y 16 speakers. 2da edición: **más de 2600 personas** (dato de Ro, 30/10/2026) y +30 speakers. Entre las dos ediciones, **más de 3800 personas** y **más de 60 speakers** (datos de Ro). La cantidad de charlas sale de `DATA`.
+- **Siempre "Marketing Fest", nunca "Fest" solo** (pedido de Ro: es una marca). Vale para textos, botones, el chat de Manu, alt de imágenes y metadatos. El logo compacto "MKT FEST" es la única excepción, porque es un logo.
 - **No se anuncian marcas no confirmadas.** GenIA no se menciona.
 
 ### Reglas de diseño
@@ -117,7 +118,7 @@ Sitio estático. Las páginas se **generan** con un script de Node sin dependenc
 - **`assets/icons.svg`:** sprite con la flecha (`#arr`) y WhatsApp (`#wa`), se usa con `<use href="…/assets/icons.svg#arr">`. Necesita servirse por http (no anda abriendo el archivo con doble clic). Los logos de SNFM son imágenes en `assets/img/snfm/`.
 - **Rutas relativas** en todos los links (`rel()` en `build.js`), así funciona en un dominio propio o en una subcarpeta.
 - **`assets/img/`:** `speakers/`, `ed1/`, `logos/`. Las fotos de la 2da edición van en `assets/img/ed2/`.
-- **`assets/presentaciones/`:** los PDF de las charlas del Fest 2026 (`dia-hora-speaker.pdf`). El peso que muestra el botón lo calcula el build.
+- **`assets/presentaciones/`:** los PDF de las charlas del Marketing Fest 2026 (`dia-hora-speaker.pdf`). El peso que muestra el botón lo calcula el build.
 - **`assets/ed1-sala-llena.mp4` / `.webm` / `.jpg`:** video vertical de la 1ra edición.
 
 **SEO pendiente:** completar `CONFIG.site` con el dominio cuando esté definido y correr el build; eso agrega `canonical`, `og:url`, URLs absolutas en `og:image` y el `sitemap.xml`.
@@ -128,7 +129,7 @@ Sitio estático. Las páginas se **generan** con un script de Node sin dependenc
 - **`MANU`:** `img`, `avatar`, `video` y `poster` de Manu (ver arriba).
 - **`EPISODES`:** capítulos del podcast, del más nuevo al más viejo: `{n, id, t, g, b, hot, fest}`. `id` es el código de YouTube; si está vacío, el capítulo lleva al canal y la miniatura se arma con el título (pasa con el #9 de Belu Fiora, que no tiene link todavía). Las miniaturas salen de `i.ytimg.com/vi/<id>/hqdefault.jpg`.
 - **`REELS`:** códigos de los reels de Instagram; el primero (`DYiW6gNxA1m`) va grande como destacado. Se muestran con el embed oficial de IG, que se carga recién cuando la sección está cerca.
-- **`DATA`:** cronograma del Fest 2026: `{d, t, n, c, tp, k, ph, pause, dl, pend, ep}`. `dl` es la ruta del PDF; `pend: true` muestra "La presentación llega pronto"; `ep` son los números de capítulos del podcast relacionados (botón "Podcast #N"). Los paneles no tienen presentación.
+- **`DATA`:** cronograma del Marketing Fest 2026: `{d, t, n, c, tp, k, ph, pause, dl, pend, ep}`. `dl` es la ruta del PDF; `pend: true` muestra "La presentación llega pronto"; `ep` son los números de capítulos del podcast relacionados (botón "Podcast #N"). Los paneles no tienen presentación.
 - **`PH`:** fotos de speakers por slug.
 - **`GAL2`:** fotos de la 2da edición (`{src, alt}`), vacía por ahora.
 - **`GAL` / `GAL_CATS` / `TEAM`:** fotos de la 1ra edición (agrupadas por momento en el orden de `GAL_CATS`) y del equipo.
@@ -145,7 +146,7 @@ Sitio estático. Las páginas se **generan** con un script de Node sin dependenc
 4. **Link del capítulo #9** (Belu Fiora, Hacks Digital).
 6. **Logo de Mikhuna Nikkei** (sponsor de la 1ra edición), hoy como texto.
 7. **Importar `n8n/formularios-web.json` en n8n** (credencial SMTP, `fromEmail`, activar) para que lleguen los mails de todos los formularios. Si además quieren una planilla con todo, sumar un nodo de data table o Google Sheets al mismo workflow.
-8. **Precios:** el único precio publicado es el del sponsoreo del podcast solo (2.000 USD, pedido de Ro el 30/10/2026), en `PODCAST_SPONSOR` de `data.js`. Los paquetes del Fest (main sponsor 6.000 USD, platinum, etc.) no se publican salvo que Ro lo pida. Confirmar con Ro qué incluye el de 2.000 (hoy: sponsor del podcast con transmisión en Gigared, set y menciones, activación o sorteo en la comunidad) y por cuánto tiempo.
+8. **Precios:** el único precio publicado es el del sponsoreo del podcast solo (2.000 USD, pedido de Ro el 30/10/2026), en `PODCAST_SPONSOR` de `data.js`. Los paquetes del Marketing Fest (main sponsor 6.000 USD, platinum, etc.) no se publican salvo que Ro lo pida. Confirmar con Ro qué incluye el de 2.000 (hoy: sponsor del podcast con transmisión en Gigared, set y menciones, activación o sorteo en la comunidad) y por cuánto tiempo.
 
 ## Checklist antes de cada entrega
 

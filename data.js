@@ -15,7 +15,7 @@ const CONFIG = {
      Hoy usa el webhook de n8n de la pre-inscripción 2026 (workflow E6dF41wKNW31obCu, data table d7GBQXcVm9nlEQsh);
      los registros nuevos llegan con tipo 'aviso-3ra-edicion'. */
   avisoWebhook: 'https://n8n.dtcomunicacion.com/webhook/preinscripcion-mkt-fest',
-  /* Formularios de la web (capítulo del podcast, speaker y sponsor del Fest, Sumate y el aviso de la 3ra):
+  /* Formularios de la web (capítulo del podcast, speaker y sponsor del Marketing Fest, Sumate y el aviso de la 3ra):
      hacen POST a este webhook de n8n con {tipo, asunto, campos: [[etiqueta, valor]], datos, origen, fecha}.
      El workflow (n8n/formularios-web.json) manda un mail con todo a Ro, Tomás y Sol.
      Si no responde, el formulario ofrece mandar lo mismo por WhatsApp al contacto de abajo. */
@@ -52,7 +52,7 @@ const ROLES = [
   {t:'Sonido y streaming', d:'Micrófonos, consola y transmisiones en vivo.'},
   {t:'Diseño', d:'Piezas, miniaturas, placas y todo lo que se ve.'},
   {t:'Redes y community', d:'Publicás, respondés y hacés crecer la comunidad.'},
-  {t:'Producción de eventos', d:'Acreditaciones, escenario, speakers y logística el día del Fest.'}
+  {t:'Producción de eventos', d:'Acreditaciones, escenario, speakers y logística el día del Marketing Fest.'}
 ];
 
 /* Capítulos del podcast, del más nuevo al más viejo.
@@ -193,7 +193,7 @@ const TEAM = [
   {"src":"assets/img/ed1/equipo-3.jpg","alt":"El equipo, todos juntos"},
   {"src":"assets/img/ed1/equipo-4.jpg","alt":"Saludo desde atrás del escenario"},
   {"src":"assets/img/ed1/equipo-5.jpg","alt":"Mirando el escenario desde abajo"},
-  {"src":"assets/img/ed1/equipo-6.jpg","alt":"Conduciendo el Fest","pos":"50% 22%"},
+  {"src":"assets/img/ed1/equipo-6.jpg","alt":"Conduciendo el Marketing Fest","pos":"50% 22%"},
   {"src":"assets/img/ed1/equipo-7.jpg","alt":"El equipo en el photocall","pos":"50% 30%"},
   {"src":"assets/img/ed1/equipo-8.jpg","alt":"Esperando que arranque"},
   {"src":"assets/img/ed1/equipo-9.jpg","alt":"Selfie en el ascensor"}

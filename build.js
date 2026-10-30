@@ -223,14 +223,14 @@ function aviso(k, P, id = 'tercera') {
 
 function qa(k) {
   return [
-    { q: '¿Dónde bajo las presentaciones del Fest?', a: `Están en <a href="${rel(k, 'f2026')}#descargas">la página de la 2da edición</a>, separadas por día. Tocá "Descargar PDF" en la charla que quieras.` },
-    { q: '¿Cuándo es la 3ra edición del Fest?', a: `Todavía no tiene fecha. Dejá tus datos en <a href="${rel(k, 'fest')}#tercera">Avisame cuando salga la 3ra</a> y te escribimos apenas abra la inscripción.` },
+    { q: '¿Dónde bajo las presentaciones del Marketing Fest?', a: `Están en <a href="${rel(k, 'f2026')}#descargas">la página de la 2da edición</a>, separadas por día. Tocá "Descargar PDF" en la charla que quieras.` },
+    { q: '¿Cuándo es la 3ra edición del Marketing Fest?', a: `Todavía no tiene fecha. Dejá tus datos en <a href="${rel(k, 'fest')}#tercera">Avisame cuando salga la 3ra</a> y te escribimos apenas abra la inscripción.` },
     { q: '¿Dónde veo el podcast?', a: `En nuestro <a href="${CONFIG.youtube}" ${ext}>canal de YouTube</a>. Si no sabés por cuál arrancar, andá por el de Con el Kora o el de McDonald's. Están todos en <a href="${rel(k, 'podcast')}">la página del podcast</a>.` },
     { q: 'Tengo una marca, ¿qué pueden hacer conmigo?', a: `Mirá <a href="${rel(k, 'servicios')}">nuestros servicios</a>: <a href="${rel(k, 'calle')}">Contenido en la calle</a>, <a href="${rel(k, 'videos')}">videos y UGC</a> con nosotros o alguien de tu equipo como cara, <a href="${rel(k, 'eventos')}">eventos</a> como el Marketing Fest y tu marca en el podcast.` },
     { q: '¿Cómo me sumo a Se Nos Fue?', a: `Anotate en <a href="${rel(k, 'sumate')}">Sumate</a> y contanos en qué podés ayudar. Ojo: no es remunerado, lo hacemos por amor al marketing.` },
     { q: '¿Mi marca puede ser sponsor del podcast?', a: `¡Sí! Sponsorear solo el podcast sale ${esc(PODCAST_SPONSOR.precio)}. Mirá <a href="${rel(k, 'sponsor')}">qué incluye</a> o escribile directo a ${esc(CONFIG.contacto.nombre)} por <a href="${esc(CONFIG.whatsappSponsor)}" ${ext}>WhatsApp</a>.` },
     { q: '¿Puedo hacer un capítulo del podcast sin ser sponsor?', a: `¡Sí, y es gratis! Proponé tu capítulo en <a href="${rel(k, 'podcast')}#invitado">Vení al podcast</a>.` },
-    { q: '¿Cómo hago para ser speaker en el Fest?', a: `Es gratis. Contanos tu propuesta de valor (qué se lleva la gente de tu charla) en <a href="${rel(k, 'fest')}#speaker">Sé speaker en el Marketing Fest</a>.` },
+    { q: '¿Cómo hago para ser speaker en el Marketing Fest?', a: `Es gratis. Contanos tu propuesta de valor (qué se lleva la gente de tu charla) en <a href="${rel(k, 'fest')}#speaker">Sé speaker en el Marketing Fest</a>.` },
     { q: '¿Cómo sumo mi marca como sponsor de la 3ra edición?', a: `Dejanos tus datos en <a href="${rel(k, 'fest')}#sponsor-3ra">Sumá tu marca como sponsor</a> y te mandamos las opciones.` },
     { q: '¿Cuánto sale?', a: `Depende de la idea. Escribile a ${esc(CONFIG.contacto.nombre)} por <a href="${esc(CONFIG.whatsapp)}" ${ext}>WhatsApp</a>, contale qué tenés en mente y te pasa una propuesta.` },
     { q: '¿Quién sos?', a: 'Soy Manu, el vocero con IA de Se Nos Fue de las Manos. Te ayudo a encontrar lo que buscás en la web. Para algo más, te paso con el equipo.' },
@@ -402,11 +402,11 @@ const BUILD = {
   <div class="wrap">
     <div>
       <p class="num">#00</p>
-      <h1 id="t-hero"><span>Se nos fue</span><span>de las manos</span><span class="pill p-red" aria-hidden="true">Podcast</span><span class="pill p-violet" aria-hidden="true">Mkt Fest</span></h1>
+      <h1 id="t-hero"><span>Se nos fue</span><span>de las manos</span><span class="pill p-red" aria-hidden="true">Podcast</span><span class="pill p-violet" aria-hidden="true">Marketing Fest</span></h1>
       <p class="lead">Somos docentes, ayudantes y estudiantes de la UBA que enseñamos marketing desde otro lado: fuera del aula, en la cocina de cada marca.</p>
       <ul class="chips" aria-label="En números">
         <li><b>${EPISODES.length}</b>capítulos del podcast</li>
-        <li><b>+60</b>speakers en dos ediciones del Fest</li>
+        <li><b>+60</b>speakers en dos ediciones del Marketing Fest</li>
         <li><b>+1200</b>personas en la 1ra</li>
         <li><b>+2600</b>personas en la 2da</li>
       </ul>
@@ -449,7 +449,7 @@ const BUILD = {
     </div>
     <div class="cards">
       ${card('podcast', '#01', 'El podcast', `${EPISODES.length} capítulos con los que están detrás de McDonald's, CCU, Pepsico, Logitech y más.`, 'Ver los capítulos')}
-      ${card('fest', '#02', 'Marketing Fest', 'El evento de marketing más grande de la FCE UBA. En la 2da edición vinieron más de 2600 personas.', 'Conocé el Fest', MF_LOGO.mini)}
+      ${card('fest', '#02', 'Marketing Fest', 'El evento de marketing más grande de la FCE UBA. En la 2da edición vinieron más de 2600 personas.', 'Conocé el Marketing Fest', MF_LOGO.mini)}
       ${card('servicios', '#03', 'Nuestros servicios', 'Contenido en la calle, videos y UGC, eventos y sponsoreo del podcast.', 'Ver los servicios')}
       ${card('sumate', '#04', 'Sumate', '¿Hacés UGC, filmás o editás? Anotate y te llamamos cuando necesitemos una mano.', 'Quiero sumarme')}
     </div>
@@ -460,7 +460,7 @@ const BUILD = {
   <div class="wrap">
     <div class="ch-head">
       <h2 id="t-hot">Para arrancar el podcast</h2>
-      <div class="says">${av(P)}<p><b>Manu</b>Si tenés 40 minutos, mirá estos dos. Los de Con el Kora también pasaron por el Fest.</p></div>
+      <div class="says">${av(P)}<p><b>Manu</b>Si tenés 40 minutos, mirá estos dos. Los de Con el Kora también pasaron por el Marketing Fest.</p></div>
     </div>
     <div class="hot">${hotEps(P)}</div>
     <div class="btns"><a class="cta" href="${rel(k, 'podcast')}">Ver todos los capítulos ${icon(P, 'arr')}</a></div>
@@ -468,7 +468,7 @@ const BUILD = {
 </section>
 ${aviso(k, P)}
 ${band(k, P)}`,
-      /* links viejos de la landing del Fest (mails y redes) */
+      /* links viejos de la landing del Marketing Fest (mails y redes) */
       extraHead: `<script>(function(){var m={inscripcion:'descargas','el-fest':'',speakers:'descargas',cronograma:'descargas',preguntas:'',sponsors:'gracias'},h=location.hash.slice(1);
 if(h in m){location.replace('${rel(k, 'f2026')}'+(m[h]?'#'+m[h]:''));}else if(h==='primera-edicion'){location.replace('${rel(k, 'f2025')}');}else if(h==='organizan'){location.replace('${rel(k, 'eventos')}');}})();</script>\n`,
     });
@@ -481,9 +481,9 @@ if(h in m){location.replace('${rel(k, 'f2026')}'+(m[h]?'#'+m[h]:''));}else if(h=
       image: EPISODES.find(e => e.hot && e.id) ? `https://i.ytimg.com/vi/${EPISODES.find(e => e.hot && e.id).id}/hqdefault.jpg` : undefined,
       jsonld: [{ '@context': 'https://schema.org', '@type': 'PodcastSeries', name: 'Se Nos Fue de las Manos', inLanguage: 'es-AR', url: CONFIG.youtube, description: 'El canal donde el marketing se convierte en experiencias reales. Entrevistas a referentes, gerentes de marketing, creativos y docentes.' }],
       body: `${pageHero(k, P, {
-        deco: ['mano-chasquido', 'var(--y)'], num: '#01', h1: 'El podcast', trail: [['home', 'Inicio'], [null, 'Podcast']],
+        deco: ['mano-chasquido', 'var(--paper)'], num: '#01', h1: 'El podcast', trail: [['home', 'Inicio'], [null, 'Podcast']],
         lead: 'Charlamos con gerentes de marketing de marcas referentes para ver lo que no se ve desde el aula: el verdadero detrás de cada empresa, la cocina del marketing. Lo hacemos junto a Tomás Cazalá y un equipo de docentes, ayudantes y estudiantes de la UBA.',
-        say: 'Si tenés 40 minutos, arrancá por estos dos. Los de Con el Kora también pasaron por el Fest.',
+        say: 'Si tenés 40 minutos, arrancá por estos dos. Los de Con el Kora también pasaron por el Marketing Fest.',
         extra: `<div class="btns"><a class="cta" href="${CONFIG.youtube}" ${ext}>Ver el canal en YouTube ${icon(P, 'arr')}</a></div>`,
       })}
 <section class="ch" aria-labelledby="t-eps">
@@ -839,7 +839,7 @@ ${band(k, P)}`,
       </div>
     </div>
     <div class="thanks">
-      <h3>Marcas que ya confiaron en el Fest</h3>
+      <h3>Marcas que ya confiaron en el Marketing Fest</h3>
       ${logoRow(P, brands)}
     </div>
     <div class="next-links">
