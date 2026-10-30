@@ -23,6 +23,7 @@ const PAGES = {
   podcast:{ file: 'podcast/index.html' },
   fest:   { file: 'marketing-fest/index.html' },
   f2026:  { file: 'marketing-fest/2026/index.html' },
+  p2026:  { file: 'marketing-fest/2026/presentaciones/index.html' },
   f2025:  { file: 'marketing-fest/2025/index.html' },
   g2025:  { file: 'marketing-fest/2025/fotos/index.html' },
   servicios:{ file: 'servicios/index.html' },
@@ -224,7 +225,7 @@ function aviso(k, P, id = 'tercera') {
 
 function qa(k) {
   return [
-    { q: '¿Dónde bajo las presentaciones del Marketing Fest?', a: `Están en <a href="${rel(k, 'f2026')}#descargas">la página de la 2da edición</a>, separadas por día. Tocá "Descargar PDF" en la charla que quieras.` },
+    { q: '¿Dónde bajo las presentaciones del Marketing Fest?', a: `Están en <a href="${rel(k, 'p2026')}">las presentaciones de la 2da edición</a>, separadas por día. Tocá "Descargar PDF" en la charla que quieras.` },
     { q: '¿Cuándo es la 3ra edición del Marketing Fest?', a: `Todavía no tiene fecha. Dejá tus datos en <a href="${rel(k, 'fest')}#tercera">Avisame cuando salga la 3ra</a> y te escribimos apenas abra la inscripción.` },
     { q: '¿Dónde veo el podcast?', a: `En nuestro <a href="${CONFIG.youtube}" ${ext}>canal de YouTube</a>. Si no sabés por cuál arrancar, andá por el de Con el Kora o el de McDonald's. Están todos en <a href="${rel(k, 'podcast')}">la página del podcast</a>.` },
     { q: 'Tengo una marca, ¿qué pueden hacer conmigo?', a: `Mirá <a href="${rel(k, 'servicios')}">nuestros servicios</a>: <a href="${rel(k, 'calle')}">Contenido en la calle</a>, <a href="${rel(k, 'videos')}">videos y UGC</a> con nosotros o alguien de tu equipo como cara, <a href="${rel(k, 'eventos')}">eventos</a> como el Marketing Fest y tu marca en el podcast.` },
@@ -414,7 +415,7 @@ const BUILD = {
         <li><b>+2600</b>personas en la 2da</li>
       </ul>
       <div class="btns">
-        <a class="cta" href="${rel(k, 'f2026')}#descargas">Descargá las presentaciones ${icon(P, 'arr')}</a>
+        <a class="cta" href="${rel(k, 'p2026')}">Descargá las presentaciones ${icon(P, 'arr')}</a>
         <a class="ghost" href="#tercera">Avisame de la 3ra edición</a>
       </div>
     </div>
@@ -473,7 +474,7 @@ ${aviso(k, P)}
 ${band(k, P)}`,
       /* links viejos de la landing del Marketing Fest (mails y redes) */
       extraHead: `<script>(function(){var m={inscripcion:'descargas','el-fest':'',speakers:'descargas',cronograma:'descargas',preguntas:'',sponsors:'gracias'},h=location.hash.slice(1);
-if(h in m){location.replace('${rel(k, 'f2026')}'+(m[h]?'#'+m[h]:''));}else if(h==='primera-edicion'){location.replace('${rel(k, 'f2025')}');}else if(h==='organizan'){location.replace('${rel(k, 'eventos')}');}})();</script>\n`,
+if(h in m){location.replace(m[h]==='descargas'?'${rel(k, 'p2026')}':'${rel(k, 'f2026')}'+(m[h]?'#'+m[h]:''));}else if(h==='primera-edicion'){location.replace('${rel(k, 'f2025')}');}else if(h==='organizan'){location.replace('${rel(k, 'eventos')}');}})();</script>\n`,
     });
   },
 
@@ -545,10 +546,9 @@ ${band(k, P, '¿Querés sumar tu marca al próximo Marketing Fest u organizar un
   },
 
   f2026(k, P) {
-    const day = d => DATA.filter(r => r.d === d).map(r => talkRow(P, r)).join('\n');
     const dls = DATA.filter(r => r.dl).length;
     return layout(k, {
-      title: 'Marketing Fest 2026 · 2da edición: presentaciones para descargar',
+      title: 'Marketing Fest 2026 · Así fue la 2da edición en la FCE UBA',
       description: `Así fue la 2da edición del Marketing Fest en la FCE UBA, el 27 y 28 de octubre de 2026. Descargá en PDF las presentaciones de McDonald's, Tiendanube, Agens, Go For y más.`,
       jsonld: [festEvent(k, 'Marketing Fest 2026 · 2da edición', '2026-10-27T14:00:00-03:00', '2026-10-28T21:00:00-03:00', 'Dos días de charlas y paneles de marketing en la FCE UBA, libres y gratuitos, con más de 2600 personas y +30 speakers.')],
       body: `${pageHero(k, P, {
@@ -563,18 +563,13 @@ ${band(k, P, '¿Querés sumar tu marca al próximo Marketing Fest u organizar un
       <div><dt>${nTalks}</dt><dd>charlas y paneles</dd></div>
       <div><dt>${dls}</dt><dd>presentaciones para descargar</dd></div>
     </dl>
-    <div class="dl-head" id="descargas">
+    <div class="dl-card" id="descargas">
       <div>
-        <h2 id="t-dl" style="font-size:clamp(2.4rem,6vw,4.4rem);color:var(--y)">Las presentaciones</h2>
-        <div style="margin-top:1rem">${says(P, 'Bajalas en PDF. Las que faltan las subimos apenas nos lleguen.').replace('class="says"', 'class="says" style="margin:0"')}</div>
+        <h2 id="t-dl">Las presentaciones</h2>
+        ${says(P, 'Están todas juntas, separadas por día. Bajá las que quieras en PDF.').replace('class="says"', 'class="says" style="margin:1rem 0 0"')}
       </div>
-      <div class="tabs" role="tablist" aria-label="Día">
-        <button role="tab" id="tab-1" aria-controls="day-1" aria-selected="true">Martes 27</button>
-        <button role="tab" id="tab-2" aria-controls="day-2" aria-selected="false" tabindex="-1">Miércoles 28</button>
-      </div>
+      <a class="cta" href="${rel(k, 'p2026')}">Descargar las presentaciones · ${dls} PDF ${icon(P, 'arr')}</a>
     </div>
-    <ul class="talks" id="day-1" role="tabpanel" aria-labelledby="tab-1">${day(1)}</ul>
-    <ul class="talks" id="day-2" role="tabpanel" aria-labelledby="tab-2">${day(2)}</ul>
     ${GAL2.length ? `<div class="dl-head" id="fotos"><h2 style="font-size:clamp(2.4rem,6vw,4.4rem);color:var(--y)">Las fotos</h2></div>${gallery(P, GAL2)}` : ''}
     <div class="thanks" id="gracias">
       <img class="stars" src="${P('assets/img/fest/estrellas-naranja.webp')}" alt="" aria-hidden="true">
@@ -593,6 +588,32 @@ ${band(k, P, '¿Querés sumar tu marca al próximo Marketing Fest u organizar un
   </div>
 </section>
 ${aviso(k, P)}
+${band(k, P, '¿Querés sumar tu marca a la 3ra edición del Marketing Fest u organizar un evento propio? Escribinos.')}`,
+    });
+  },
+
+  p2026(k, P) {
+    const day = d => DATA.filter(r => r.d === d).map(r => talkRow(P, r)).join('\n');
+    const dls = DATA.filter(r => r.dl).length;
+    return layout(k, {
+      title: 'Presentaciones del Marketing Fest 2026 para descargar en PDF',
+      description: `Descargá en PDF las presentaciones de la 2da edición del Marketing Fest (27 y 28 de octubre de 2026, FCE UBA): McDonald's, Tiendanube, Agens, Go For, Komin y más.`,
+      body: `${pageHero(k, P, {
+        fest: true, num: 'Marketing Fest 2026 · 2da edición', h1: 'Las presentaciones', trail: [['home', 'Inicio'], ['fest', 'Marketing Fest'], ['f2026', '2da edición'], [null, 'Presentaciones']],
+        lead: `Las ${dls} presentaciones del 27 y 28 de octubre de 2026, separadas por día. Tocá "Descargar PDF" en la que quieras.`,
+        say: 'Las que faltan las subimos apenas nos lleguen. Los paneles no tienen presentación.',
+      })}
+<section class="ch s-ink" aria-label="Presentaciones por día" style="padding-top:clamp(32px,5vw,56px)">
+  <div class="wrap">
+    <div class="tabs" role="tablist" aria-label="Día" style="margin-bottom:1.25rem;width:max-content">
+      <button role="tab" id="tab-1" aria-controls="day-1" aria-selected="true">Martes 27</button>
+      <button role="tab" id="tab-2" aria-controls="day-2" aria-selected="false" tabindex="-1">Miércoles 28</button>
+    </div>
+    <ul class="talks" id="day-1" role="tabpanel" aria-labelledby="tab-1">${day(1)}</ul>
+    <ul class="talks" id="day-2" role="tabpanel" aria-labelledby="tab-2">${day(2)}</ul>
+    <div class="next-links"><a class="ghost" href="${rel(k, 'f2026')}">Volver a la 2da edición</a><a class="ghost" href="${rel(k, 'podcast')}">Escuchá a los speakers en el podcast</a></div>
+  </div>
+</section>
 ${band(k, P, '¿Querés sumar tu marca a la 3ra edición del Marketing Fest u organizar un evento propio? Escribinos.')}`,
     });
   },

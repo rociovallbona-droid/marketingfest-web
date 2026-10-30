@@ -35,7 +35,8 @@ Cada botón del menú es una página propia, con su título, descripción, Open 
 | `/` | Inicio | Hero con Manu, "Qué hacemos" (tarjetas a Podcast, Marketing Fest y Servicios) y los dos capítulos destacados |
 | `/podcast/` | Podcast | Destacados (Con el Kora y McDonald's, `hot: true`) y todos los capítulos |
 | `/marketing-fest/` | Marketing Fest | Qué es el Marketing Fest y una tarjeta por edición |
-| `/marketing-fest/2026/` | 2da edición | Números, **presentaciones para descargar** (`#descargas`, pestañas por día), fotos (`GAL2`) y marcas |
+| `/marketing-fest/2026/` | 2da edición | Números, bloque "Las presentaciones" (`#descargas`) con el botón "Descargar las presentaciones", fotos (`GAL2`) y marcas |
+| `/marketing-fest/2026/presentaciones/` | Presentaciones de la 2da edición | **La lista completa para descargar**, con pestañas por día. Pedido de Ro: en la página de la edición va solo el botón; el que quiere, entra. Los links viejos `#inscripcion`, `#speakers` y `#cronograma` y el botón del inicio llevan acá |
 | `/marketing-fest/2025/` | 1ra edición | Video, números, una muestra de 4 fotos (`GAL_TEASER` en `build.js`), botón "Ver la galería" y sponsors |
 | `/marketing-fest/2025/fotos/` | Galería de la 1ra edición | Todas las fotos por momento (`GAL_CATS`) y del equipo, descargables. Pedido de Ro: la página de la edición no tiene que ser larga; el que quiere, entra a la galería |
 | `/servicios/` | Nuestros servicios | Cada servicio explicado en breve con "Ver más info" |

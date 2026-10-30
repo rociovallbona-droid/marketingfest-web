@@ -505,3 +505,7 @@ dialog.chat::backdrop{background:rgba(0,0,0,.45)}
 .gal-teaser img{width:100%;height:100%;object-fit:cover}
 h2.gal-cat{font-size:clamp(1.8rem,3.4vw,2.6rem);margin:2.5rem 0 1rem}
 h2.gal-cat:first-child{margin-top:0}
+
+/* bloque "Las presentaciones" en la página de la 2da edición (la lista completa está en /presentaciones/) */
+.dl-card{display:flex;flex-wrap:wrap;gap:1.5rem 3rem;align-items:center;justify-content:space-between;margin:clamp(40px,6vw,72px) 0 0;padding:clamp(24px,4vw,40px);border:1px solid var(--deep-line);border-radius:22px}
+.dl-card h2{font-size:clamp(2.4rem,6vw,4.4rem);color:var(--y)}
